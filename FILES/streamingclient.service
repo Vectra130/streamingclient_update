@@ -1,0 +1,19 @@
+[Unit]
+Description=StreamingClient
+DefaultDependencies=no
+#Wants=streamingclient-boot.service
+After=streamingclient-boot.service network.target avahi-daemon.service
+
+[Service]
+Environment='ARGS=-d'
+ExecStart=/etc/vectra130/bin/StreamingClient $ARGS
+ExecStop=/usr/bin/killall StreamingClient
+Restart=on-failure
+Restart=on-abort
+Type=simple
+PIDFile=/var/run/StreamingClient.pid
+KillMode=none
+SendSIGKILL=no
+
+[Install]
+WantedBy=default.target

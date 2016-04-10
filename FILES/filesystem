@@ -1,0 +1,12 @@
+/etc
+-vectra130
+--scripts
+--configs
+---sysconfig
+---userconfig
+--data
+---vdr
+---kodi
+-systemd
+--system
+/sbin
