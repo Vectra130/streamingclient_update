@@ -1,38 +1,47 @@
 #!/bin/bash
 # v1.2 raspi
-. /etc/vectra130/configs/sysconfig/.sysconfig
 
 [ -z "$1" ] && clear
 [ -z "$1" ] && echo "Sammle Informationen ..."
 while true; do
 
+SERVERIP="192.168.1.80"
 VDR_CLIENT=""
 VDR_LOKAL=""
 DAEMONS=""
 FRONTEND=""
+CPU_CORES=$(nproc --all)
 CPU_USAGE_IDLE=$(top -n5 -d1 | grep Cpu\(s\)\: | grep -v grep | awk '{ print $8 }' | sed -e 's/,[0-9]//')
 CPU_USAGE_IDLE=$(echo $CPU_USAGE_IDLE | sed -e 's/.* //')
 CPU_USAGE=$[ 100-CPU_USAGE_IDLE ]
-#CPU_USAGE=$((100 - $CPU_USAGE_IDLE))
 CPU_FREQ=$(vcgencmd measure_clock arm | cut -d "=" -f 2)
 CORE_FREQ=$(vcgencmd measure_clock core | cut -d "=" -f 2)
 CORE_V=$(vcgencmd measure_volts core | cut -d "=" -f 2)
-CORE_T=$(vcgencmd measure_temp | cut -d "=" -f 2)
+cpuTemp0=$(cat /sys/class/thermal/thermal_zone0/temp)
+cpuTemp1=$(($cpuTemp0/1000))
+cpuTemp2=$(($cpuTemp0/100))
+cpuTempM=$(($cpuTemp2 % $cpuTemp1))
+cpuTemp=$cpuTemp1"."$cpuTempM"°C"
+gpuTemp0=$(/opt/vc/bin/vcgencmd measure_temp)
+gpuTemp0=${gpuTemp0//\'/°}
+gpuTemp=${gpuTemp0//temp=/}
+cpuMem=$(vcgencmd get_mem arm)
+cpuMem=${cpuMem//arm=/}
+cpuMem=${cpuMem//M/}
+gpuMem=$(vcgencmd get_mem gpu)
+gpuMem=${gpuMem//gpu=/}
+gpuMem=${gpuMem//M/}
+
 MEM_USAGE_TOTAL=$(free -m | grep Mem\: | grep -v grep | awk '{ print $2 }') 
 MEM_USAGE_FREE=$(free -m | grep Mem\: | grep -v grep | awk '{ print $3 }')
-#MEM_USAGE=$((($MEM_USAGE_FREE * 100 / $MEM_USAGE_TOTAL )))
 MEM_USAGE=$[ MEM_USAGE_FREE*100/MEM_USAGE_TOTAL ]
-#SWAP_USAGE_TOTAL=$(free -m | grep Swap\: | grep -v grep | awk '{ print $2 }')
-#SWAP_USAGE_FREE=$(free -m | grep Swap\: | grep -v grep | awk '{ print $3 }')
-#SWAP_USAGE=$((($SWAP_USAGE_FREE * 100 / $SWAP_USAGE_TOTAL )))
 CODEC_H264=$(vcgencmd codec_enabled H264)
 CODEC_MPG2=$(vcgencmd codec_enabled MPG2)
 CODEC_WVC1=$(vcgencmd codec_enabled WVC1)
 BROADCOM=$(vcgencmd version | grep [0-9][0-9]:[0-9][0-9]:[0-9][0-9])
 UNAME=$(uname -r)
 VDR_VERSION=$(/usr/bin/vdr -V -L/usr/bin/vdr 2>/dev/null | sed 's/.*(\(.*\)\/.*/\1/')
-#[ -e /tmp/.powersave ] && SUSPEND="*** System ist im StandBy ***"
-FRONTEND=$(cat /tmp/.frontendStatus)
+FRONTEND=$(cat /tmp/.StreamingClientStatus)
 if [ x"$FRONTEND" == x"suspend"  ]; then
     FRONTEND="*** System ist im StandBy ***"
 else
@@ -61,10 +70,13 @@ echo "#         RASPBERRY PI SYSTEM INFORMATIONEN         #"
 [ -z "$1" ] && echo "#####################################################"
 
 echo -e "\nCPU Frequenz       : $[ CPU_FREQ/1000000 ] Mhz"
+echo "CPU Cores          : $CPU_CORES"
 echo "CORE Frequenz      : $[ CORE_FREQ/1000000 ] Mhz"
 echo "CORE Spannung      : $CORE_V"
-echo "CPU Temperatur     : $CORE_T"
+echo -e "\nCPU Temperatur     : $cpuTemp"
+echo "GPU Temperatur     : $gpuTemp"
 
+echo -e "\nSpeicher           : $((cpuMem + gpuMem))MB (CPU:${cpuMem}MB / GPU:${gpuMem}MB)"
 echo -e "\nCPU Auslastung     : $CPU_USAGE"%
 echo "Speicher Nutzung   : $MEM_USAGE"%
 #echo "SWAP Nutzung       : $SWAP_USAGE"%

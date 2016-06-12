@@ -1,7 +1,7 @@
 #!/bin/bash
 # v2.0 raspi
 
-OPTIONS="-noverbose -T 2"
+OPTIONS="-noverbose -T 3"
 TYPE="$2"
 [ "$2" == "" ] && TYPE="png"
 if [ -e /etc/vectra130/images/screen_$1.$TYPE ]; then

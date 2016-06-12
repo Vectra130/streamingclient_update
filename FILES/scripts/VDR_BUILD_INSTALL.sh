@@ -208,6 +208,8 @@ fi
 
 #bauen
 echo -e "\nwende Aenderungen an (nutze $CORES Kerne)..."
+mountSize=$(df -h | grep "/tmp" | awk '{ print $2 }' | sed -e 's/M.*//')
+mount -o remount,size=100M /tmp
 ln -sf $DIR/ /usr/include/vdr
 ln -sf $DIR/ /usr/local/include/vdr
 export PKG_CONFIG_PATH=$DIR/PLUGINS/src/skindesigner/libskindesignerapi/:$PKG_CONFIG_PATH
@@ -241,7 +243,7 @@ read -n 1 -p "Neue VDR-Version installieren? (y/N):   " INPUT
 echo -n -e "\e[0m"
 if [ "x$INPUT" == "xy" ]; then
 	echo
-	[ ! -z $(pidof -xs vdr) ] && echo suspend > /tmp/.frontendStatus
+	[ ! -z $(pidof -xs vdr) ] && echo suspend > /tmp/.frontendSet
 	while [ ! -z $(pidof -xs vdr) ]; do
 		sleep 1
 	done
@@ -254,4 +256,5 @@ if [ "x$INPUT" == "xy" ]; then
 	fi
 fi
 echo -e "\n\n\e[0m"
+mount -o remount,size=${mountSize}M /tmp
 exit 0
