@@ -15,7 +15,10 @@ fi
 
 cd $UPDATEDIR
 ./FILES/scripts/showscreenimage.sh update
-cp BootSequenz StreamingClient CheckServer $BINDIR/
+install --mode=755 BootSequenz $BINDIR/
+install --mode=755 StreamingClient $BINDIR/
+install --mode=755 CheckServer $BINDIR/
 cp FILES/streamingclient.service FILES/streamingclient-boot.service $SYSTEMDDIR/
 
+sleep 2
 exit 0
