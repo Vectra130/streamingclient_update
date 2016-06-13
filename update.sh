@@ -22,8 +22,9 @@ install --mode=755 BootSequenz $BINDIR/
 install --mode=755 StreamingClient $BINDIR/
 install --mode=755 CheckServer $BINDIR/
 cp FILES/streamingclient.service FILES/streamingclient-boot.service $SYSTEMDDIR/
-
+cp /etc/vectra130/update/VERSION /etc/vectra130/VERSION
 logger -t UPDATE beendet
 
 sleep 2
+#reboot
 exit 0
