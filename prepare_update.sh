@@ -18,7 +18,7 @@ download()
 	fi
 }
 
-
+[ -e $UPDATEDIR ] && rm -r $UPDATEDIR
 download
 
 exit 0
