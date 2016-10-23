@@ -66,6 +66,7 @@ install --mode=755 FILES/streamingclient/StreamingClient $BINDIR/
 install --mode=755 FILES/streamingclient/CheckServer $BINDIR/
 cp -a FILES/streamingclient.service FILES/streamingclient-boot.service $SYSTEMDDIR/
 cp -a /etc/vectra130/update/VERSION /etc/vectra130/VERSION
+cp -ra FILES/scripts/* /etc/vectra130/scripts/
 #vdr
 echo "########## Aktualisiere vdr ..."
 rm -ra /usr/lib/vdr

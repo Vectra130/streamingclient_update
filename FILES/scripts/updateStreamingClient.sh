@@ -13,8 +13,19 @@ if [ x$ACTION == xcheck ]; then
 	[ -e $UPDATEDIR ] && rm -r $UPDATEDIR
 	wget https://raw.githubusercontent.com/Vectra130/streamingclient_update/master/VERSION -P $UPDATEDIR
 	VERSNOW=$(cat /etc/vectra130/VERSION)
+	VERSNOW1=$(printf "%02d" $(echo $VERSNOW | awk -F. '{ print $1 }'))
+	VERSNOW2=$(printf "%02d" $(echo $VERSNOW | awk -F. '{ print $2 }'))
+	VERSNOW3=$(printf "%02d" $(echo $VERSNOW | awk -F. '{ print $3 }'))
+	VERSNOWNUM=$VERSNOW1$VERSNOW2$VERSNOW3
+
 	VERSNEW=$(cat $UPDATEDIR/VERSION)
-	[ x$VERSNOW == x$VERSNEW ] && exit 1
+	VERSNEW1=$(printf "%02d" $(echo $VERSNEW | awk -F. '{ print $1 }'))
+	VERSNEW2=$(printf "%02d" $(echo $VERSNEW | awk -F. '{ print $2 }'))
+	VERSNEW3=$(printf "%02d" $(echo $VERSNEW | awk -F. '{ print $3 }'))
+	VERSNEWNUM=$VERSNEW1$VERSNEW2$VERSNEW3
+	[ "x$VERSNOWNUM" == "x" ] && exit 1
+	[ "x$VERSNEWNUM" == "x" ] && exit 1
+	[ $VERSNOWNUM -ge $VERSNEWNUM ] && exit 1
 	echo $VERSNEW
 fi
 

@@ -246,12 +246,14 @@ if [ "x$INPUT" == "xy" ]; then
 		sleep 1
 	done
 	echo -e "installiere...\n\n"
+	mount -o rw,remount /
 	make install
 	if [ "$?" == 0 ]; then
 		echo -e "\e[34m\n\nVDR aktualisiert\e[0m"
 	else
 		echo -e "\e[31m\n\nAktualisierung des VDR fehlgeschlagen"
 	fi
+	chown -R vdr:vdr /usr/lib/vdr
 fi
 echo -e "\n\n\e[0m"
 exit 0
