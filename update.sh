@@ -3,28 +3,98 @@
 
 UPDATEDIR="/etc/vectra130/update/git_update_files"
 SYSTEMDDIR="/etc/systemd/system"
-BINDIR="/etc/vectra130/bin"
+BINDIR="/usr/bin"
 
 #StreamingClient beenden
 logger -t UPDATE beende StreamingClient
 if [ x$(cat /tmp/.frontendSet) != xsuspend ]; then
-	echo stop > /tmp/.frontendSet
-	while [ $(pidof -xs StreamingClient | wc -w) != 0 ]; do
+	echo suspend > /tmp/.frontendSet
+	while [[ $(pidof -xs kodi.bin | wc -w) != 0 ] || [ $(pidof -xs vdr | wc -w) != 0 ]]; do
 		sleep 1
-		killall StreamingClient
 	done
 fi
+systemctl stop streamingclient
+sleep 2
+count=0
+while [ $(pidof -xs StreamingClient | wc -w) != 0 ]; do
+	sleep 1
+	killall StreamingClient
+	count=$[ count + 1 ]
+	if [ count > 30 ]; then
+		killall -9 StreamingClient
+	fi
+done
 
 logger -t UPDATE installiere Files
 cd $UPDATEDIR
 ./FILES/scripts/showscreenimage.sh update
-install --mode=755 BootSequenz $BINDIR/
-install --mode=755 StreamingClient $BINDIR/
-install --mode=755 CheckServer $BINDIR/
-cp FILES/streamingclient.service FILES/streamingclient-boot.service $SYSTEMDDIR/
-cp /etc/vectra130/update/VERSION /etc/vectra130/VERSION
+
+mount -o rw,remount /
+
+#system
+rm -r /etc/vectra130/bin
+cp -ra FILES/apt/* /etc/apt/
+apt-key adv --keyserver keyserver.ubuntu.com --recv-key 5243CDED
+aptitude -y update
+
+#proftpd
+aptitude -y install proftpd-basic
+cp -ra FILES/proftpd/* /etc/proftpd/
+#streamingclient
+install --mode=755 FILES/streamingclient/BootSequenz $BINDIR/
+install --mode=755 FILES/streamingclient/StreamingClient $BINDIR/
+install --mode=755 FILES/streamingclient/CheckServer $BINDIR/
+cp -a FILES/streamingclient.service FILES/streamingclient-boot.service $SYSTEMDDIR/
+cp -a /etc/vectra130/update/VERSION /etc/vectra130/VERSION
+#vdr
+rm -ra /usr/lib/vdr
+mkdir -p /usr/lib/vdr/plugins/
+cp -ra FILES/vdr/lib/* /usr/lib/vdr/plugins/
+cp -a FILES/vdr/vdr /usr/bin
+cp -a FILES/vdr/vdr.service /etc/systemd/system/
+#kodi
+aptitude -y install kodi
+cp -a FILES/kodi/kodi.service /etc/systemd/system/
+#systemctl
+systemctl daemon-reload
+systemctl disable syslog
+systemctl disable syslog-ng
+systemctl enable streamingclient
+systemctl enable streamingclient-boot
+systemctl disable vdr
+systemctl disable kodi
+
+#richtige user anlegen
+deluser vdr
+deluser kodi
+delgroup vdr
+delgroup kodi
+adduser --no-create-home --uid 1001 --gid 1001 --home /etc/vectra130/configs/vdrconfig --shell /bin/bash --disable-password vdr
+adduser --no-create-home --uid 1002 --gid 1002 --home /etc/vectra130/configs/kodiconfig --shell /bin/bash --disable-password kodi
+echo "vdr:vdr" | chpasswd
+echo "kodi:kodi" | chpasswd
+usermod -a -G video,audio,sudo,cdrom,plugdev,users,dialout,dip,input,ftp,kodi vdr
+usermod -a -G video,audio,sudo,cdrom,plugdev,users,dialout,dip,input,vdr kodi
+
+#datei rechte vergeben
+chown -R vdr:vdr /etc/vectra130/configs/vdrconfig
+chown -R kodi:kodi /etc/vectra130/configs/kodiconfig
+ln -sf ./ /etc/vectra130/configs/kodiconfig/.kodi
+chown -R ftp:ftp /etc/vectra130/configs/userconfig
+chown -R vdr:vdr /etc/vectra130/data/vdr
+chown -R kodi:kodi /etc/vectra130/data/kodi
+chown -R vdr:vdr /usr/*/vdr
+chown -R kodi:kodi /usr/*/kodi
+chown vdr:vdr /vdrvideo0?
+chmod 777 /vdrvideo0?
+
+
+				
+apt-get -y autoclean
+apt-get -y autoremove
+apt-get clean
 logger -t UPDATE beendet
 
 sleep 2
-#reboot
+reboot
 exit 0

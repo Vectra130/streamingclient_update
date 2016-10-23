@@ -12,17 +12,9 @@ if [ x$ACTION == xcheck ]; then
 	# pruefe git auf update
 	[ -e $UPDATEDIR ] && rm -r $UPDATEDIR
 	wget https://raw.githubusercontent.com/Vectra130/streamingclient_update/master/VERSION -P $UPDATEDIR
-	VERSNOW=$(cat /etc/vectra130/VERSION | awk -F_ '{ print $1 }')
-	VERSNOW1=$(echo $VERSNOW | awk -F. '{ print $1 }')
-	VERSNOW2=$(echo $VERSNOW | awk -F. '{ print $2 }')
-	VERSNOW3=$(echo $VERSNOW | awk -F. '{ print $3 }')
-	VERSNUMNOW=$[ VERSNOW1 * 10000 + VERSNOW2 * 100 + VERSNOW3 ]
-	VERSNEW=$(cat $UPDATEDIR/VERSION | awk -F_ '{ print $1 }')
-	VERSNEW1=$(echo $VERSNEW | awk -F. '{ print $1 }')
-	VERSNEW2=$(echo $VERSNEW | awk -F. '{ print $2 }')
-	VERSNEW3=$(echo $VERSNEW | awk -F. '{ print $3 }')
-	VERSNUMNEW=$[ VERSNEW1 * 10000 + VERSNEW2 * 100 + VERSNEW3 ]
-	[ "$VERSNUMNOW" -ge "$VERSNUMNEW" ] && exit 1
+	VERSNOW=$(cat /etc/vectra130/VERSION)
+	VERSNEW=$(cat $UPDATEDIR/VERSION)
+	[ x$VERSNOW == x$VERSNEW ] && exit 1
 	echo $VERSNEW
 fi
 

@@ -1,0 +1,10 @@
+[Unit]
+Description=VDR
+
+[Service]
+Environment=LANG=de_DE.UTF-8 LC_ALL=de_DE.UTF-8
+User=vdr
+ExecStart=/usr/bin/vdr
+
+[Install]
+WantedBy=local-fs.target
