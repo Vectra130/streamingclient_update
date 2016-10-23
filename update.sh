@@ -40,9 +40,20 @@ mount -o rw,remount /
 #system
 echo "########## Aktualisiere System Files ..."
 rm -r /etc/vectra130/bin
+cp -a FILES/fstab/fstab /etc/
 cp -ra FILES/apt/* /etc/apt/
 apt-key adv --keyserver keyserver.ubuntu.com --recv-key 5243CDED
 aptitude -y update
+
+#swapfile
+if [ ! -e /etc/vectra130/swapfile ]; then
+	echo "########## Erstelle Swap File ..."
+	dd if=/dev/zero of=/etc/vectra130/swapfile bs=1M count=2048
+	chown root:root /etc/vectra130/swapfile
+	chown 0600 /etc/vectra130/swapfile
+	mkswap /etc/vectra130/swapfile
+	swapon /etc/vectra130/swapfile
+fi
 
 #proftpd
 echo "########## Aktualisiere proftpd ..."
