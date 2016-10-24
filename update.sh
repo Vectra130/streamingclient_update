@@ -91,36 +91,36 @@ systemctl disable kodi
 
 #richtige user anlegen
 echo -e "\n\e[33m########## Aktualisiere User ...\e[0m" > $TTY
-if [ $(cat /etc/passwd | grep ^"ftp:x:1000:1000::/etc/vectra130/configs/userconfig:/bin/false" | wc -l) != 1 ];then
+#if [ $(cat /etc/passwd | grep ^"ftp:x:1000:1000::/etc/vectra130/configs/userconfig:/bin/false" | wc -l) != 1 ];then
 	deluser ftp
 	delgroup ftp
-	addgroup --gid 1000 ftp
-	adduser --no-create-home --uid 1000 --gid 1000 --home /etc/vectra130/configs/userconfig --shell /bin/false --disabled-password --disabled-login --system ftp
-fi
-if [ $(cat /etc/passwd | grep ^"vdr:x:1001:1001::/etc/vectra130/configs/vdrconfig:/bin/bash" | wc -l) != 1 ];then
+#	addgroup --gid 1000 ftp
+#	adduser --no-create-home --uid 1000 --gid 1000 --home /etc/vectra130/configs/userconfig --shell /bin/false --disabled-password --disabled-login --system ftp
+#fi
+if [ $(cat /etc/passwd | grep ^"vdr:x:1001:1001::/etc/vectra130/configs/userconfig:/bin/bash" | wc -l) != 1 ];then
 	deluser vdr
 	delgroup vdr
 	addgroup --gid 1001 vdr
-	adduser --no-create-home --uid 1001 --gid 1001 --home /etc/vectra130/configs/vdrconfig --shell /bin/bash --disabled-password --disabled-login --system vdr
+	adduser --no-create-home --uid 1001 --gid 1001 --home /etc/vectra130/configs/userconfig --shell /bin/bash --disabled-password --disabled-login --system vdr
 fi
-if [ $(cat /etc/passwd | grep ^"kodi:x:1002:1002::/etc/vectra130/configs/kodiconfig:/bin/bash" | wc -l) != 1 ];then
+if [ $(cat /etc/passwd | grep ^"kodi:x:1002:1002::/etc/vectra130/configs/userconfig:/bin/bash" | wc -l) != 1 ];then
 	deluser kodi
 	delgroup kodi
 	addgroup --gid 1002 kodi
-	adduser --no-create-home --uid 1002 --gid 1002 --home /etc/vectra130/configs/kodiconfig --shell /bin/bash --disabled-password --disabled-login --system kodi
+	adduser --no-create-home --uid 1002 --gid 1002 --home /etc/vectra130/configs/userconfig --shell /bin/bash --disabled-password --disabled-login --system kodi
 fi
 echo "vdr:vdr" | chpasswd
 echo "kodi:kodi" | chpasswd
-echo "ftp:ftp" | chpasswd
+#echo "ftp:ftp" | chpasswd
 usermod -a -G video,audio,sudo,cdrom,plugdev,users,dialout,dip,input,ftp,kodi vdr
 usermod -a -G video,audio,sudo,cdrom,plugdev,users,dialout,dip,input,vdr kodi
-usermod -a -G ftp ftp
+#usermod -a -G ftp ftp
 
 #datei rechte vergeben
 echo -e "\n\e[33m########## Aktualisiere User Rechte ...\e[0m" > $TTY
 chown -R vdr:vdr /etc/vectra130/configs/vdrconfig
 chown -R kodi:kodi /etc/vectra130/configs/kodiconfig
-chown -R ftp:ftp /etc/vectra130/configs/userconfig
+chown -R vdr:vdr /etc/vectra130/configs/userconfig
 chown -R vdr:vdr /etc/vectra130/data/vdr
 chown -R kodi:kodi /etc/vectra130/data/kodi
 chown -R vdr:vdr /usr/*/vdr
