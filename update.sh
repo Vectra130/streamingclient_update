@@ -6,26 +6,6 @@ UPDATEDIR="/etc/vectra130/update/git_update_files"
 SYSTEMDDIR="/etc/systemd/system"
 BINDIR="/usr/bin"
 
-#StreamingClient beenden
-logger -t UPDATE beende StreamingClient
-if [ x$(cat /tmp/.frontendSet) != xsuspend ]; then
-	echo suspend > /tmp/.frontendSet
-	while [[ $(pidof -xs kodi.bin | wc -w) != 0 ] || [ $(pidof -xs vdr | wc -w) != 0 ]]; do
-		sleep 1
-	done
-fi
-systemctl stop streamingclient
-sleep 2
-count=0
-while [ $(pidof -xs StreamingClient | wc -w) != 0 ]; do
-	sleep 1
-	killall StreamingClient
-	count=$[ count + 1 ]
-	if [ count > 30 ]; then
-		killall -9 StreamingClient
-	fi
-done
-
 logger -t UPDATE installiere Files
 cd $UPDATEDIR
 ./FILES/scripts/showscreenimage.sh update
