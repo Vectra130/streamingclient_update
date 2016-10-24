@@ -62,9 +62,8 @@ cp -a FILES/vdr/vdr /usr/bin
 cp -a FILES/vdr/vdr.service /etc/systemd/system/
 cp -a FILES/dbus/de.tvdr.vdr.conf /etc/dbus-1/system.d/
 rm -r /var/cache/vdr
-mkdir /var/cache/vdr
-touch /etc/vectra130/data/vdr/vtx
-ln -sf /etc/vectra130/data/vtx /var/cache/vdr/vtx
+mkdir /etc/vectra130/data/vdr
+ln -sf /etc/vectra130/data/vdr /var/cache/vdr
 #kodi
 echo -e "\n########## Aktualisiere kodi ..." > $TTY
 aptitude -y --no-gui install kodi
