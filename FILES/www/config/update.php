@@ -35,7 +35,7 @@ echo "<form method='post' action='update.php?hostname=".$hostname."&SYSTEMTYP=".
 if( $updateCheck[0] != "" )
 {
     echo '<p><b>Neues Online Update gefunden.</br></br>Aktuelle Version: v'.exec('cat /etc/vectra130/VERSION').'</br> Update Version  : v'.$updateCheck[0].'</br></br></p>';
-    echo '<p>Das Update installiert im Hintergrund.</br>Je nach Gr&ouml;&szlig;e und Internetverbindung kann dies einige Minuten dauern.</br></br>Es kann sein, das einige Dienste (VDR, Kodi, usw) beendet werden. Nach dem Update wird das System automatisch neu gestartet.</br>Diese Seite kann geschlossen werden.</br></br></br></b></p>';
+    echo '<p>Das Update installiert im Hintergrund.</br>Je nach Gr&ouml;&szlig;e und Internetverbindung kann dies einige Minuten dauern.</br></br>Alle Frontends (VDR, Kodi) werden beendet. Nach dem Update wird das System automatisch neu gestartet.</br></br></br></b></p>';
     echo "<a class='whiteButton' type='submit'>Herunterladen und Installieren</a><div class='spinner'></div>";
 } else
 {
