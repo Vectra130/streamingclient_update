@@ -3,7 +3,7 @@ Description=VDR
 
 [Service]
 Environment=LANG=de_DE.UTF-8 LC_ALL=de_DE.UTF-8
-User=vdr
+User=root
 ExecStart=/usr/bin/vdr
 
 [Install]
