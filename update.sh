@@ -55,6 +55,7 @@ cp -a FILES/streamingclient.service FILES/streamingclient-boot.service $SYSTEMDD
 cp -ra FILES/scripts/* /etc/vectra130/scripts/
 cp -ra FILES/sysimages/* /etc/vectra130/sysimages/
 cp -ra FILES/sysvideos/* /etc/vectra130/sysvideos/
+cp -a FILES/streamingclient
 #vdr
 echo -e "\n\e[33m########## Aktualisiere vdr ...\e[0m" > $TTY
 rm -ra /usr/lib/vdr
