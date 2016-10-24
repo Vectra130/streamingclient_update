@@ -82,8 +82,10 @@ deluser vdr
 deluser kodi
 delgroup vdr
 delgroup kodi
-adduser --no-create-home --uid 1001 --gid 1001 --home /etc/vectra130/configs/vdrconfig --shell /bin/bash --disable-password vdr
-adduser --no-create-home --uid 1002 --gid 1002 --home /etc/vectra130/configs/kodiconfig --shell /bin/bash --disable-password kodi
+addgroup --gid 1001 vdr
+addgroup --gid 1002 kodi
+adduser --no-create-home --uid 1001 --gid 1001 --home /etc/vectra130/configs/vdrconfig --shell /bin/bash --disabled-password --disabled-login --system vdr
+adduser --no-create-home --uid 1002 --gid 1002 --home /etc/vectra130/configs/kodiconfig --shell /bin/bash --disabled-password --disabled-login --system kodi
 echo "vdr:vdr" | chpasswd
 echo "kodi:kodi" | chpasswd
 usermod -a -G video,audio,sudo,cdrom,plugdev,users,dialout,dip,input,ftp,kodi vdr
@@ -109,9 +111,9 @@ apt-get -y autoremove
 apt-get clean
 cp -a /etc/vectra130/update/VERSION /etc/vectra130/VERSION
 rm -r /etc/vectra130/update/*
-echo -e "\n########## Update beendet, starte neu ..." > $TTY
+echo -e "\n\n\n############################## Update beendet, starte neu ... ##############################\n" > $TTY
 logger -t UPDATE beendet
 
-sleep 2
+sleep 10
 reboot
 exit 0
