@@ -24,6 +24,7 @@ if [ x$(cat /tmp/.frontendSet) != xsuspend ]; then
 	done
 fi
 systemctl stop streamingclient
+systemctl stop lirc
 sleep 2
 count=0
 while [ $(pidof -xs StreamingClient | wc -w) != 0 ]; do
