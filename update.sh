@@ -13,9 +13,10 @@ sleep 5
 #updateinfos zeigen
 chvt 1
 echo -e "\e[3J" > $TTY
+echo -e "\n############################## UPDATEVERLAUF ##############################\n" > $TTY
+echo -e "\n########## Updatefiles heruntergeladen" > $TTY
 
-echo -e "\n########## erstelle read-write filesystem ..." > $TTY
-exit 0
+echo -e "\n########## Erstelle read-write Filesystem ..." > $TTY
 mount -o rw,remount /
 
 #system
