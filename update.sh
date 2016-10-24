@@ -91,6 +91,12 @@ systemctl disable kodi
 
 #richtige user anlegen
 echo -e "\n\e[33m########## Aktualisiere User ...\e[0m" > $TTY
+if [ $(cat /etc/passwd | grep ^"ftp:x:1000:1000::/etc/vectra130/configs/userconfig:/bin/false" | wc -l) != 1 ];then
+	deluser ftp
+	delgroup ftp
+	addgroup --gid 1000 ftp
+	adduser --no-create-home --uid 1000 --gid 1000 --home /etc/vectra130/configs/userconfig --shell /bin/false --disabled-password --disabled-login --system ftp
+fi
 if [ $(cat /etc/passwd | grep ^"vdr:x:1001:1001::/etc/vectra130/configs/vdrconfig:/bin/bash" | wc -l) != 1 ];then
 	deluser vdr
 	delgroup vdr
@@ -102,12 +108,6 @@ if [ $(cat /etc/passwd | grep ^"kodi:x:1002:1002::/etc/vectra130/configs/kodicon
 	delgroup kodi
 	addgroup --gid 1002 kodi
 	adduser --no-create-home --uid 1002 --gid 1002 --home /etc/vectra130/configs/kodiconfig --shell /bin/bash --disabled-password --disabled-login --system kodi
-fi
-if [ $(cat /etc/passwd | grep ^"ftp:x:1000:1000::/etc/vectra130/configs/userconfig:/bin/false" | wc -l) != 1 ];then
-	deluser ftp
-	delgroup ftp
-	addgroup ftp
-	adduser --no-create-home --home /etc/vectra130/configs/userconfig --shell /bin/false --disabled-password --disabled-login --system ftp
 fi
 echo "vdr:vdr" | chpasswd
 echo "kodi:kodi" | chpasswd
