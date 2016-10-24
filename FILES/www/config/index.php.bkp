@@ -1,0 +1,241 @@
+<?php
+// v1.6 all
+//error_reporting(0);
+session_start();
+$rand = "01";
+$_SESSION['rand'] = $rand;
+exec("cat /etc/hostname", $hostname);
+$hostname = $hostname[0];
+exec("cat /etc/vectra130/configs/sysconfig/.sysconfig | grep SYSTEMTYP | awk -F= {' print $2 '}", $TMP);
+if(substr($TMP[0], 1, -1) == "CLIENT") {
+	exec("cat /etc/vectra130/configs/sysconfig/.sysconfig | grep CLIENTTYP | awk -F= {' print $2 '}", $TMP2);
+	$SYSTEMTYP = substr($TMP2[0], 1, -1);
+	$INFO = $SYSTEMTYP." VDR XBMC MultimediaSystem by Vectra130";
+}
+if(substr($TMP[0], 1, -1) == "SERVER") {
+        $SYSTEMTYP = "Server";
+        $INFO = "MultiClient VDR-Streaming-Server by Vectra130";
+}
+exec("cat /etc/vectra130/VERSION", $VERSION);
+exec("cat /etc/vectra130/configs/sysconfig/.sysconfig | grep VDRVERS | awk -F= {' print $2 '}", $VDRVERSION);
+$VERSION = $VERSION[0];
+
+$_SESSION['SYSTEMTYP'] = $SYSTEMTYP;
+$_SESSION['hostname'] = $hostname;
+$_SESSION['INFO'] = $INFO;
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title><?php echo $hostname;?> - <? echo $SYSTEMTYP; ?> Config</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=0"/>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="cache-control" content="no-store,no-cache, must-revalidate,post-check=0, pre-check=0,max-age=0">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Expires" content="0">
+	<link rel="apple-touch-startup-image" href="images/<? echo $SYSTEMTYP; ?>-startup.jpg?<?php echo $rand; ?>"> 
+	<link rel="apple-touch-icon" href="images/<? echo $SYSTEMTYP; ?>-iui-icon.png?<?php echo $rand; ?>" />
+ 	<link rel="icon" type="image/png" href="images/<? echo $SYSTEMTYP; ?>-iui-icon.png?<?php echo $rand; ?>">
+	<link rel="stylesheet" href="iui/iui.css?<?php echo $rand; ?>" type="text/css" />
+	<link rel="stylesheet" href="iui/iui-ext.css?<?php echo $rand; ?>" type="text/css" />
+    	<link rel="stylesheet" href="iui/t/default/default-theme.css?<?php echo $rand; ?>"  type="text/css"/>
+	<link rel="stylesheet" href="iui/iui-eigenes.css?<?php echo $rand; ?>" type="text/css" />
+	<link rel="stylesheet" href="iui/iui-eigenes.css?<?php echo $rand; ?>" type="text/safari" />
+	<script type="application/x-javascript" src="iui/iui.js?<?php echo $rand; ?>"></script>
+<!--	<script type="text/javascript" src="iui/iui-eigenes.js?<?php echo $rand; ?>"></script> -->
+
+</head>
+<?php
+exec('cat /etc/vectra130/configs/sysconfig/.sysconfig', $SYSCONFIG);
+for($i=0; $i<=count($SYSCONFIG); $i++) {
+	if(strpos($SYSCONFIG[$i],'FIRSTSTART="1"') !== false) {
+		$FIRSTSTART=1;
+	}
+}
+if($FIRSTSTART == "1") {
+?>
+<body onload="alert('Dies ist der Erste Start des <? echo $SYSTEMTYP; ?>\`s. Bitte alle Einstellungen vornehmen. In jedem Untermen&uuml; muss der Speichern-Button gedr&uuml;ckt werden. Nachdem alle Einstellungen vorgenommen wurden kann der <? echo $SYSTEMTYP; ?> mit dem Neustart-Button neu gestartet werden. Viel Spass!');">
+<?php
+}
+else {
+?>
+<body>
+<?php
+}
+unset($SYSCONFIG);
+?>
+    <div class="toolbar">
+        <h1 id="pageTitle"> </h1>
+        <a id="backButton" class="button" href="#"></a>
+	<a class="button" href="#home">Home</a>
+    </div>
+
+<?php
+if(eregi("MSIE", $_SERVER['HTTP_USER_AGENT'])) {
+?>
+<script type="text/javascript">
+	alert('Die Nutzung dieses Interfaces ist mit dem InternetExplorer nicht m\u00f6glich.\nDer Aufwand f\u00fcr die Anpassung an den InternetExplorer w\u00e4re mir zu gro\u00df.\n\n!!!!!!!!!! Der InternetExplorer ist halt ein beschissener Browser !!!!!!!!!!\n\n\nBitte benutze Firefox, Safari, Opera\noder irgendeinen anderen anst\u00e4ndigen Browser');
+</script>
+<?php
+exit();
+}
+?>
+
+<?php
+if("$SYSTEMTYP" == "Server") {
+	exec("/etc/vectra130/scripts/.set_local_hdds");
+}
+exec('cat /etc/vectra130/configs/sysconfig/.config', $SYSCONFIG);
+?>
+
+<div id="home" class="panel" title="<? echo $SYSTEMTYP; ?> Config (<?php echo $hostname;?>)" selected="true">
+
+<?php
+   echo "<h2><img onclick=\"alert('".$INFO." (v".$VERSION.")')\" align='middle' src='images/".$SYSTEMTYP."-icon.png'>&nbsp;&nbsp;&nbsp;</img></h2>";
+?>
+
+<ul>
+<?php
+//.config einlesen und verarbeiten
+$SUB=1;
+$SUBMENU = array();
+$MENU = array();
+for($i=0; $i<=count($SYSCONFIG); $i++) {
+	if(substr($SYSCONFIG[$i],0,1)==":") {
+		if(substr($SYSCONFIG[($i-1)],0,1)=="") {
+			echo  "</ul><ul>";
+		}
+		echo "<li><a href='#SUB".$SUB."'>".substr($SYSCONFIG[$i],1)."</a></li>";
+		$MENU[$SUB]=substr($SYSCONFIG[$i],1);
+		$SUB++;
+	}
+	if((substr($SYSCONFIG[$i],0,1)=="/")||(substr($SYSCONFIG[$i],0,1)=="-")) {
+		$SUBMENU[]=($SUB-1).":".$SYSCONFIG[$i];
+	}
+}
+echo "</ul>";
+if("$FIRSTSTART" !== "1") {
+	echo "<ul><li><a href='#commands'>Befehle</a></li></ul>";
+}
+if("$FIRSTSTART" !== "1" && "$SYSTEMTYP" == "Server") {
+	echo "<ul><li><a href='clients.php'>Streamingclients Online</a></li></ul>";
+}
+if(! eregi("iPhone", $_SERVER['HTTP_USER_AGENT'])) {
+	echo "<ul><li><a href='edit_channels.php'>Kanaleditor</a></li></ul>";
+}
+echo "<ul><li><a href='wol.php'>WakeOnLan</a></li></ul>";
+?>
+</br><a onclick="return confirm('Wirklich neu starten?');" href="restart.php?action=reboot" class='redButton' type='submit'><? echo $SYSTEMTYP; ?> Neustarten</a></br>
+<?php
+echo "</div>";
+
+//commands einlesen und menue erstellen
+echo "<div id='commands' class='panel' title='".$SYSTEMTYP." Config'>";
+echo "<p>N&uuml;tzliche Befehle.</br>Die Befehle werden ausgef&uuml;hrt wenn der Link gedr&uuml;ckt wird.</p>";
+exec('cat /etc/vectra130/www/config/commands', $COMMANDS);
+echo "<ul>";
+for($i=0; $i<count($COMMANDS); $i++) {
+	if(substr($COMMANDS[$i],0 ,1) == "") {
+		echo "</ul><ul>";
+	}
+	else {
+		$COMMAND = explode(":", $COMMANDS[$i]);
+//		echo "<div class='row'>";
+//		echo "<label title='".$COMMAND[2]."' id='label_test1'><font size='-1'>".$COMMAND[1]."</font size></label>";
+//		echo "<div title='".$COMMAND[2]."' class='statusLedOff' name='sw-test1' id='sw-test1' onclick=\"return confirm('\'".$COMMAND[1]."\' wirklich ausf&uuml;hren?');\" href='exec-command.php?command=".$COMMAND[0]."&name=".$COMMAND[1]."><span class='statusLedOff'></span></div>";
+//		echo "</div>";
+		echo "<li><a title='".$COMMAND[2]."' href='exec-command.php?command=".$COMMAND[0]."&name=".$COMMAND[1]."'><font size='-1'>".$COMMAND[1]."</font size></a></li>";
+	}
+}
+echo "</ul></div>";
+
+//Untermenues aus .config erstellen
+for($ii=1; $ii<$SUB; $ii++) {
+$count=0;
+echo "<form id='SUB".$ii."' class='panel' title='".$SYSTEMTYP." Config' action='exec-config.php' method='POST'><h2>".$MENU[$ii]."</h2><fieldset></fieldset>";
+	$subcount=0;
+	for($i=0; $i<=count($SUBMENU); $i++) {
+		if(substr($SUBMENU[$i],0,1)==$ii) {
+                if(($subcount==0)&&(substr($SUBMENU[$i],2,1)!="-")) {
+                        echo "<fieldset>";
+                }
+
+			if(substr($SUBMENU[$i],2,1)=="-") {
+				if($subcount!=0) {
+					echo "</fieldset>";
+				}
+				if(substr($SUBMENU[$i],3 ,3)=="---"){ //Menüpunkte
+					echo "<p><font color=blue><b><i><u>".substr($SUBMENU[$i],3)."</u></i></b></font></p>";
+				} else {
+					echo "<p>".substr($SUBMENU[$i],3)."</p>";
+				}
+                                        echo "<fieldset>";
+			}
+			else {
+			$tmp=explode(":", $SUBMENU[$i]);
+			if($tmp[4]=="C") {
+				echo "</fieldset><ul><li title='".$tmp[8]."'><a href='".$tmp[3]."?hostname=".$hostname."&SYSTEMTYP=".$SYSTEMTYP."'>".$tmp[7]."</a></li></ul><fieldset>";
+			}
+			else {
+			if(substr($tmp[2],0 ,9)=="VDRPLUGIN") {
+				exec('ls /usr/lib/vdr/plugins-'.$VDRVERSION[0].'/libvdr-'.substr($tmp[2],9).'.so.'.$VDRVERSION[0], $PLUG);
+			}
+			if(substr($tmp[2],0 ,9)!="VDRPLUGIN" || ($PLUG[0]!="" && substr($tmp[2],0 ,9)=="VDRPLUGIN")) {
+
+	        	echo "<div class='row form' title='".$tmp[8]."'><label>".$tmp[7]."</label>";
+			if($tmp[4]=="A") {
+				echo "<input type='text' name='".$tmp[2]."' style='text-align:right' placeholder='".$tmp[3]."'>";
+			}
+			if($tmp[4]=="AP") {
+		        	$re = '';
+       				for($place=0; $place<strlen($tmp[3]); $place++) {
+       				$re .= '*';
+       				}
+				$tmp[3] = $re;
+				echo "<input type='password' name='".$tmp[2]."' style='text-align:right' placeholder='".$tmp[3]."'>";
+			}
+			if($tmp[4]=="B") {
+	                        echo "<select name='".$tmp[2]."'>";
+				$tmp2=explode(",", $tmp[6]);
+				for($iii=0; $iii<count($tmp2); $iii++) {
+					echo "<option style='text-align:right' value='".$iii."'";
+					if($iii==$tmp[3]) {
+						echo " selected";
+					}
+					echo ">".$tmp2[$iii]."</option>";
+				}
+				echo "</select>";
+			}
+
+                        if($tmp[4]=="L") {
+                                echo "<select name='".$tmp[2]."' style='text-align:right'>";
+                                $tmp2=explode(",", $tmp[6]);
+                                for($iii=0; $iii<count($tmp2); $iii++) {
+                                        echo "<option value='".$tmp2[$iii]."'";
+                                        if($tmp2[$iii]==$tmp[3]) {
+                                                echo " selected";
+                                        }
+                                        echo ">".$tmp2[$iii]."&nbsp;</option>";
+                                }
+				echo "</select>";
+                        }
+			unset($PLUG);
+			}
+			}
+			echo "</div>";
+			}
+		$subcount++;
+		}
+	}
+echo "</fieldset></br>";
+echo "<a class='whiteButton' type='submit'>&Auml;nderungen Speichern</a><div class='spinner'></div>";
+
+echo "</br></form>";
+}
+?>
+</ul>
+</body>
+</html>
