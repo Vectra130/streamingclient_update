@@ -60,6 +60,11 @@ cp -ra FILES/vdr/lib/* /usr/lib/vdr/plugins/
 cp -ra FILES/vdr/vdrconfig/* /etc/vectra130/configs/vdrconfig/
 cp -a FILES/vdr/vdr /usr/bin
 cp -a FILES/vdr/vdr.service /etc/systemd/system/
+cp -a FILES/dbus/de.tvdr.vdr.conf /etc/dbus-1/system.d/
+rm -r /var/cache/vdr
+mkdir /var/cache/vdr
+touch /etc/vectra130/data/vdr/vtx
+ln -sf /etc/vectra130/data/vtx /var/cache/vdr/vtx
 #kodi
 echo -e "\n########## Aktualisiere kodi ..." > $TTY
 aptitude -y --no-gui install kodi
@@ -85,12 +90,16 @@ delgroup vdr
 delgroup kodi
 addgroup --gid 1001 vdr
 addgroup --gid 1002 kodi
+addgroup ftp
 adduser --no-create-home --uid 1001 --gid 1001 --home /etc/vectra130/configs/vdrconfig --shell /bin/bash --disabled-password --disabled-login --system vdr
 adduser --no-create-home --uid 1002 --gid 1002 --home /etc/vectra130/configs/kodiconfig --shell /bin/bash --disabled-password --disabled-login --system kodi
+adduser --no-create-home --home /etc/vectra130/configs/userconfig --shell /bin/false --disabled-password --disabled-login --system ftp
 echo "vdr:vdr" | chpasswd
 echo "kodi:kodi" | chpasswd
+echo "ftp:ftp" | chpasswd
 usermod -a -G video,audio,sudo,cdrom,plugdev,users,dialout,dip,input,ftp,kodi vdr
 usermod -a -G video,audio,sudo,cdrom,plugdev,users,dialout,dip,input,vdr kodi
+usermod -a -G ftp ftp
 
 #datei rechte vergeben
 echo -e "\n########## Aktualisiere User Rechte ..." > $TTY
