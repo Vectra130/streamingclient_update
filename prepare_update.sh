@@ -16,7 +16,10 @@ stop_streamingclient()
 #StreamingClient beenden
 if [ x$(cat /tmp/.frontendSet) != xsuspend ]; then
 	echo suspend > /tmp/.frontendSet
-	while [[ $(pidof -xs kodi.bin | wc -w) != 0 ] || [ $(pidof -xs vdr | wc -w) != 0 ]]; do
+	while [ $(pidof -xs vdr | wc -w) != 0 ]; do
+		sleep 1
+	done
+	while [ $(pidof -xs kodi.bin | wc -w) != 0 ]; do
 		sleep 1
 	done
 fi
