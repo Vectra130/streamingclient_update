@@ -51,11 +51,14 @@ echo -e "\n\e[33m########## Aktualisiere StreamingClient ...\e[0m" > $TTY
 install --mode=755 FILES/streamingclient/BootSequenz $BINDIR/
 install --mode=755 FILES/streamingclient/StreamingClient $BINDIR/
 install --mode=755 FILES/streamingclient/CheckServer $BINDIR/
-cp -a FILES/streamingclient.service FILES/streamingclient-boot.service $SYSTEMDDIR/
-cp -ra FILES/scripts/* /etc/vectra130/scripts/
-cp -ra FILES/sysimages/* /etc/vectra130/sysimages/
-cp -ra FILES/sysvideos/* /etc/vectra130/sysvideos/
-cp -a FILES/streamingclient
+cp -a FILES/streamingclient/streamingclient.service FILES/streamingclient/streamingclient-boot.service $SYSTEMDDIR/
+rm -r /etc/vectra130/scripts
+cp -ra FILES/scripts /etc/vectra130/
+rm -r /etc/vectra130/sysimages
+cp -ra FILES/sysimages /etc/vectra130/
+rm -r /etc/vectra130/sysvideos
+cp -ra FILES/sysvideos /etc/vectra130/
+cp -a FILES/streamingclient/.config.template /etc/vectra130/configs/sysconfig/
 #vdr
 echo -e "\n\e[33m########## Aktualisiere vdr ...\e[0m" > $TTY
 rm -ra /usr/lib/vdr
