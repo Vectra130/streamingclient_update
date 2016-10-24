@@ -23,6 +23,8 @@ mount -o remount,size=256M /tmp
 #system
 echo -e "\n\e[33m########## Aktualisiere System Files ...\e[0m" > $TTY
 rm -r /etc/vectra130/bin
+rm -r /etc/hostname
+echo "rpi-vdr" > /etc/hostname
 cp -a FILES/fstab/fstab /etc/
 cp -ra FILES/apt/* /etc/apt/
 apt-key adv --keyserver keyserver.ubuntu.com --recv-key 5243CDED
