@@ -9,11 +9,10 @@ TTY=/dev/tty1
 
 logger -t UPDATE installiere Files
 cd $UPDATEDIR
-./FILES/scripts/showscreenimage.sh update
 sleep 5
 #updateinfos zeigen
 chvt 1
-clear > $TTY
+echo -e "\e[3J" > $TTY
 
 echo -e "\n########## erstelle read-write filesystem ..." > $TTY
 exit 0

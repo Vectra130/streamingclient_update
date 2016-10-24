@@ -4,6 +4,11 @@
 UPDATEDIR="/etc/vectra130/update/git_update_files"
 GITREPO="https://github.com/Vectra130/streamingclient_update.git"
 
+update_info()
+{
+#grafik anzeigen
+/etc/vectra130/scripts/showscreenimage.sh update
+}
 
 download_update()
 {
@@ -51,6 +56,7 @@ install_update()
 
 [ -e $UPDATEDIR ] && rm -r $UPDATEDIR
 stop_streamingclient
+update_info
 download_update
 install_update
 

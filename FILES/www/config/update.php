@@ -18,7 +18,7 @@ if( "$ACTION" == "exec" ) {
 	if( $result[0] == "OK" )
 	{
 	    echo "<fieldset><p><b>Systemupdate wird durchgef&uuml;hrt. System nicht ausschalten.</br>Das System startet nach dem Update automatisch neu.</b></p></fieldset>";
-	    exec ('/bin/bash /etc/vectra130/update/prepare_update.sh > /dev/null &2>/dev/null &');
+	    exec ('/bin/bash /etc/vectra130/update/prepare_update.sh > /dev/tty1 &2>/dev/tty1 &');
 	} else
 	{
 	    echo "<fieldset><p><b>Ein Problem ist aufgetreten. Das Update konnte nicht herunter geladen werden!!</b></p></fieldset>";
