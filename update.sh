@@ -26,6 +26,8 @@ cp -a FILES/fstab/fstab /etc/
 cp -ra FILES/apt/* /etc/apt/
 apt-key adv --keyserver keyserver.ubuntu.com --recv-key 5243CDED
 aptitude -y update
+dpkg --configure -a
+debconf-set-selections FILES/debconf/selections
 
 #swapfile
 if [ ! -e /etc/vectra130/swapfile ]; then
@@ -39,7 +41,7 @@ fi
 
 #proftpd
 echo -e "\n########## Aktualisiere proftpd ..." > $TTY
-aptitude -y install proftpd-basic
+aptitude -y --no-gui install proftpd-basic
 cp -ra FILES/proftpd/* /etc/proftpd/
 #streamingclient
 echo -e "\n########## Aktualisiere StreamingClient ..." > $TTY
@@ -48,6 +50,8 @@ install --mode=755 FILES/streamingclient/StreamingClient $BINDIR/
 install --mode=755 FILES/streamingclient/CheckServer $BINDIR/
 cp -a FILES/streamingclient.service FILES/streamingclient-boot.service $SYSTEMDDIR/
 cp -ra FILES/scripts/* /etc/vectra130/scripts/
+cp -ra FILES/sysimages/* /etc/vectra130/sysimages/
+cp -ra FILES/sysvideos/* /etc/vectra130/sysvideos/
 #vdr
 echo -e "\n########## Aktualisiere vdr ..." > $TTY
 rm -ra /usr/lib/vdr
@@ -57,7 +61,7 @@ cp -a FILES/vdr/vdr /usr/bin
 cp -a FILES/vdr/vdr.service /etc/systemd/system/
 #kodi
 echo -e "\n########## Aktualisiere kodi ..." > $TTY
-aptitude -y install kodi
+aptitude -y --no-gui install kodi
 cp -a FILES/kodi/kodi.service /etc/systemd/system/
 #webif
 echo -e "\n########## Aktualisiere WebInterface ..." > $TTY
