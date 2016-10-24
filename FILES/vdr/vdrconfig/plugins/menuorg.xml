@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menus>
+    <system name="Schedule" />
+    <system name="Channels" />
+    <system name="Timers" />
+    <system name="Recordings" />
+    <plugin name="recsearch" />
+    <plugin name="channellists" />
+<!---    <menu name="Video Audio Fotos">
+	<plugin name="mplayer" />
+	<plugin name="dvd" />
+	<plugin name="vcd" />
+	<plugin name="mp3" />
+	<plugin name="cdda" />
+	<plugin name="dvdswitch" />
+	<plugin name="dvdselect" />
+	<plugin name="playlist" />
+	<plugin name="burn" />
+	<plugin name="image" />
+	<plugin name="radiolist" />
+	<plugin name="radio"/>
+	<plugin name="osdpip"/>
+    </menu>
+        <plugin name="vdrcd" />
+    <menu name="Spiele">
+	<plugin name="sudoku" />
+	<plugin name="solitaire" />
+	<plugin name="freecell" />
+	<plugin name="spider" />
+	<plugin name="games" />
+    </menu>
+-->
+    <menu name="System">
+        <system name="Setup" />
+        <system name="Commands" />
+        <plugin name="vdrc" />
+        <plugin name="text2skin" />
+        <plugin name="graphlcd" />
+        <plugin name="sysinfo" />
+        <plugin name="console" />
+        <plugin name="femon" />
+        <plugin name="rotor" />
+	<plugin name="softhddevice" />
+        <plugin name="streamdev-server" />
+	<plugin name="clock" />
+	<plugin name="director" />
+	<plugin name="chanorg" />
+	<plugin name="fritzbox" />
+	<plugin name="filebrowser" />
+	<plugin name="extrecmenu" />
+	<plugin name="calc" />
+	<plugin name="remotetimers" />
+	<plugin name="osdteletext" />
+	<plugin name="xineliboutput" />
+	<plugin name="noepgmenu" />
+	<plugin name="conflictcheckonly" />
+	<plugin name="epgsearch" />
+	<plugin name="epgsearchonly" />
+	<plugin name="epgsync" />
+	<plugin name="tvguide" />
+	<plugin name="epg2vdr" />
+	<plugin name="remoteosd" />
+    </menu>
+</menus>

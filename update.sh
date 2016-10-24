@@ -57,6 +57,7 @@ echo -e "\n########## Aktualisiere vdr ..." > $TTY
 rm -ra /usr/lib/vdr
 mkdir -p /usr/lib/vdr/plugins/
 cp -ra FILES/vdr/lib/* /usr/lib/vdr/plugins/
+cp -ra FILES/vdr/vdrconfig/* /etc/vectra130/configs/vdrconfig/
 cp -a FILES/vdr/vdr /usr/bin
 cp -a FILES/vdr/vdr.service /etc/systemd/system/
 #kodi
