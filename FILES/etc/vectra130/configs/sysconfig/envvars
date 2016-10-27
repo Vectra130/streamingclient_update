@@ -1,0 +1,16 @@
+#XDG_SESSION_ID=c1
+#TERM=xterm
+#SHELL=/bin/bash
+#SSH_CLIENT=192.168.1.102 53731 22
+#SSH_TTY=/dev/pts/0
+#USER=root
+#MAIL=/var/mail/root
+#PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/etc/vectra130/scripts:
+#PWD=/root
+#LANG=de_DE.UTF-8
+#SHLVL=1
+#HOME=/root
+#LOGNAME=root
+#SSH_CONNECTION=192.168.1.102 53731 192.168.1.82 22
+#XDG_RUNTIME_DIR=/run/user/0
+#_=/usr/bin/env

@@ -1,0 +1,12 @@
+[Unit]
+Description=StreamingClient Boot Sequenz
+DefaultDependencies=no
+After=-.mount
+Before=streamingclient.service networking.service
+
+[Service]
+ExecStart=-/usr/bin/BootSequenz
+Type=simple
+
+[Install]
+WantedBy=local-fs.target

@@ -4,7 +4,7 @@ Description=Kodi
 [Service]
 User=kodi
 #User=root
-Environment=HOME=/etc/vectra130
+Environment=HOME=/etc/vectra130/userconfig
 ExecStart=/usr/bin/kodi -fs --standalone
 
 [Install]
