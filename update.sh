@@ -8,6 +8,8 @@ UPDATEDIR="/usr/local/src/cplusplus/VDR/StreamingClient/UPDATE"
 UPDATEFILESDIR="$UPDATEDIR/FILES"
 SYSTEMDDIR="/etc/systemd/system"
 BINDIR="/usr/bin"
+VERSION=$(cat /etc/vectra130/VERSION)
+[ x$VERSION == x ] && exit 2
 
 # up = update
 # cf = force kopieren
@@ -16,6 +18,8 @@ BINDIR="/usr/bin"
 # nf = touch
 # sl = symlink
 # nd = ordner anlegen
+
+echo Erstelle Update $VERSION ...
 
 while read -r line; do
 	[ $(echo $line | grep -E "^up |^cf |^rc " | wc -l) == 0 ] && continue
@@ -27,6 +31,21 @@ done < $UPDATEDIR/file_tree
 
 [ ! -e $UPDATEFILESDIR/debconf ] && mkdir $UPDATEFILESDIR/debconf
 debconf-get-selections > $UPDATEFILESDIR/debconf/selections
+echo Archiv packen...
+[ -e ${UPDATEDIR}/FILES.tar ] && rm ${UPDATEDIR}/FILES.tar
+du -hs $UPDATEFILESDIR | awk '{ print $1 "B" }' > $UPDATEDIR/size_FILES
+tar cfpz ${UPDATEDIR}/FILES.tar $UPDATEFILESDIR && rm -r $UPDATEFILESDIR && echo ok
+du -hs $UPDATEDIR/FILES.tar | awk '{ print $1 "B" }' > $UPDATEDIR/size_FILES_TAR
+du -hs $UPDATEDIR --exclude=.git | awk '{ print $1 "B" }' > $UPDATEDIR/size_DOWNLOAD
+echo "FILES: $(cat /$UPDATEDIR/size_FILES)"
+echo "TAR:   $(cat /$UPDATEDIR/size_FILES_TAR)"
+echo "UPDATE:$(cat /$UPDATEDIR/size_UPDATE)"
+}
+
+upload_update()
+{
+echo "-- aktualisiere git ..."
+git add -A && git commit -m $VERSION && git push && echo "--- Version $VERSION hoch geladen"
 }
 
 install_update()
@@ -43,6 +62,9 @@ chvt 1
 echo -e "\e[3J" $LOG
 echo -e "\n\e[34m############################## UPDATEVERLAUF ##############################\e[0m\n" $LOG
 echo -e "\n\e[33m########## Updatefiles heruntergeladen\e[0m" $LOG
+
+echo -e "\n\e[33m########## Updatefiles entpacken ...\e[0m" $LOG
+tar xfpz ${UPDATEDIR}/FILES.tar && rm -r $UPDATEDIR/FILES.tar
 
 echo -e "\n\e[33m########## Erstelle read-write Filesystem ...\e[0m" $LOG
 mount -o rw,remount /
@@ -199,6 +221,8 @@ exit 0
 
 if [ x$1 == xcreate ]; then
 	create_update
+	read -n1 -i "Upload? " READ
+	[ x$READ == xy ] && upload_update
 	exit 0
 fi
 #install_update
