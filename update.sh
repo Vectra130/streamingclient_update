@@ -52,6 +52,7 @@ echo "UPDATE:$(cat /$UPDATEDIR/size_DOWNLOAD)"
 
 upload_update()
 {
+VERSION=$(cat VERSION)
 echo -e "\n-- aktualisiere git ..."
 git add -A && git commit -m $VERSION && git push && echo "--- Version $VERSION hoch geladen"
 }
@@ -232,6 +233,10 @@ if [ x$1 == xcreate ]; then
 	read -n1 -p "Upload [Y/n]?" READ
 	[ x$READ != xn ] && upload_update
 	echo
+	exit 0
+fi
+if [ x$1 == xupload ]; then
+	upload_update
 	exit 0
 fi
 install_update
