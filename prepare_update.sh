@@ -10,10 +10,18 @@ update_info()
 /etc/vectra130/scripts/showscreenimage.sh update
 }
 
-download_update()
+clone_update()
 {
 	#update herunterladen
+	[ -e $UPDATEDIR ] && rm -r $UPDATEDIR
 	git clone --depth 1 $GITREPO $UPDATEDIR
+}
+
+pull_update()
+{
+	#pull
+	cd $UPDATEDIR
+	git pull --depth 1
 }
 
 stop_streamingclient()
@@ -54,10 +62,13 @@ install_update()
 	fi
 }
 
-[ -e $UPDATEDIR ] && rm -r $UPDATEDIR
 stop_streamingclient
 update_info
-download_update
+if [ -d $UPDATEDIR/.git ]; then
+	pull_update
+else
+	clone_update
+fi
 install_update
 
 exit 0

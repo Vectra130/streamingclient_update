@@ -39,14 +39,14 @@ done < $UPDATEDIR/file_tree
 
 [ ! -e $UPDATEFILESDIR/debconf ] && mkdir $UPDATEFILESDIR/debconf
 debconf-get-selections > $UPDATEFILESDIR/debconf/selections
-echo Archiv packen...
+#echo Archiv packen...
 [ -e ${UPDATEDIR}/FILES.tar ] && rm ${UPDATEDIR}/FILES.tar
 du -hs $UPDATEFILESDIR | awk '{ print $1 "B" }' > $UPDATEDIR/size_FILES
-tar cfpz ${UPDATEDIR}/FILES.tar $UPDATEFILESDIR && rm -r $UPDATEFILESDIR && echo ok
-du -hs $UPDATEDIR/FILES.tar | awk '{ print $1 "B" }' > $UPDATEDIR/size_FILES_TAR
+#tar cfpz ${UPDATEDIR}/FILES.tar $UPDATEFILESDIR && rm -r $UPDATEFILESDIR && echo ok
+#du -hs $UPDATEDIR/FILES.tar | awk '{ print $1 "B" }' > $UPDATEDIR/size_FILES_TAR
 du -hs $UPDATEDIR --exclude=.git | awk '{ print $1 "B" }' > $UPDATEDIR/size_DOWNLOAD
 echo "FILES: $(cat /$UPDATEDIR/size_FILES)"
-echo "TAR:   $(cat /$UPDATEDIR/size_FILES_TAR)"
+#echo "TAR:   $(cat /$UPDATEDIR/size_FILES_TAR)"
 echo "UPDATE:$(cat /$UPDATEDIR/size_DOWNLOAD)"
 }
 
@@ -74,8 +74,8 @@ echo -e "\e[3J" $LOG
 echo -e "\n\e[34m############################## UPDATEVERLAUF ##############################\e[0m\n" $LOG
 echo -e "\n\e[33m########## Updatefiles heruntergeladen\e[0m" $LOG
 
-echo -e "\n\e[33m########## Updatefiles entpacken ...\e[0m" $LOG
-tar xfpz ${UPDATEDIR}/FILES.tar && rm -r $UPDATEDIR/FILES.tar || error_exit
+#echo -e "\n\e[33m########## Updatefiles entpacken ...\e[0m" $LOG
+#tar xfpz ${UPDATEDIR}/FILES.tar && rm -r $UPDATEDIR/FILES.tar || error_exit
 
 echo -e "\n\e[33m########## Erstelle read-write Filesystem ...\e[0m" $LOG
 mount -o rw,remount / || error_exit
@@ -222,7 +222,7 @@ apt-get -y autoclean
 apt-get -y autoremove
 apt-get clean
 cp -a /etc/vectra130/update/VERSION /etc/vectra130/VERSION || error_exit
-rm -r /etc/vectra130/update/*
+#rm -r /etc/vectra130/update/*
 echo -e "\n\n\n\e[32m############################## Update beendet, starte neu ... ##############################\e[0m\n" > $TTfY
 
 sleep 10
