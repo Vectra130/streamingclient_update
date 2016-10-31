@@ -6,9 +6,9 @@ $rand = "02";
 $_SESSION['rand'] = $rand;
 exec("cat /etc/hostname", $hostname);
 $hostname = $hostname[0];
-exec("cat /etc/vectra130/configs/sysconfig/config | grep ':SYSTEMTYP:' | awk -F':' {' print $3 '}", $TMP);
+exec("cat /etc/vectra130/configs/userconfig/config | grep ':SYSTEMTYP:' | awk -F':' {' print $3 '}", $TMP);
 if($TMP[0] == "CLIENT") {
-	exec("cat /etc/vectra130/configs/sysconfig/config | grep ':CLIENTTYP:' | awk -F':' {' print $3 '}", $TMP2);
+	exec("cat /etc/vectra130/configs/userconfig/config | grep ':CLIENTTYP:' | awk -F':' {' print $3 '}", $TMP2);
 	$SYSTEMTYP = $TMP2[0];
 	$INFO = $SYSTEMTYP." VDR/KODI StreamingClient by Vectra130";
 }
@@ -17,7 +17,7 @@ if($TMP[0] == "SERVER") {
         $INFO = "MultiClient VDR StreamingServer by Vectra130";
 }
 exec("cat /etc/vectra130/VERSION", $VERSION);
-exec("cat /etc/vectra130/configs/sysconfig/config | grep ':VDRVERS:' | awk -F':' {' print $3 '}", $VDRVERSION);
+exec("cat /etc/vectra130/configs/userconfig/config | grep ':VDRVERS:' | awk -F':' {' print $3 '}", $VDRVERSION);
 $VERSION = $VERSION[0];
 
 $_SESSION['SYSTEMTYP'] = $SYSTEMTYP;
@@ -68,7 +68,7 @@ if(eregi("MSIE", $_SERVER['HTTP_USER_AGENT'])) {
 exit();
 }
 
-exec('cat /etc/vectra130/configs/sysconfig/config', $SYSCONFIG);
+exec('cat /etc/vectra130/configs/userconfig/config', $SYSCONFIG);
 ?>
 
 <div id="home" class="panel" title="<?php echo $SYSTEMTYP; ?> Config (<?php echo $hostname;?>)" selected="true">
