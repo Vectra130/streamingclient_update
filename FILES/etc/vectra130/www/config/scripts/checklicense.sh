@@ -2,7 +2,7 @@
 # v2.0 raspi
 
 CONFIGTXT="/boot/config.txt"
-CONFIG="/etc/vectra130/configs/sysconfig/config"
+CONFIG="/etc/vectra130/configs/userconfig/config"
 
 #nur einmal ausfuehren!
 [ $(pidof -x $(basename $0) | wc -w) -gt 2 ] && exit 0

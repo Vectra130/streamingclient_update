@@ -12,7 +12,7 @@ $rand = $_SESSION['rand'];
 
 </br>
 <?php
-exec('cat /etc/vectra130/configs/sysconfig/config', $SYSCONFIG);
+exec('cat /etc/vectra130/configs/userconfig/config', $SYSCONFIG);
 exec("rm /etc/vectra130/configs/sysconfig/.tmp_output");
 for($i=0; $i<count($SYSCONFIG); $i++) {
 	$tmp=explode(":", $SYSCONFIG[$i]);
@@ -41,7 +41,7 @@ for($i=0; $i<count($SYSCONFIG); $i++) {
 			exec("echo '".$SYSCONFIG[$i]."' >> /etc/vectra130/configs/sysconfig/.tmp_output");
 		}
 }
-exec('mv /etc/vectra130/configs/sysconfig/.tmp_output /etc/vectra130/configs/sysconfig/config');
+exec('mv /etc/vectra130/configs/sysconfig/.tmp_output /etc/vectra130/configs/userconfig/config');
 if($SYSTEMTYP == "RasPi") {
 	exec('/bin/bash /etc/vectra130/www/config/scripts/checklicense.sh', $checklicense);
 }
