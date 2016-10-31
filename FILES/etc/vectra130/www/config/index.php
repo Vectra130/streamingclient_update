@@ -1,5 +1,5 @@
 <?php
-// v2.0 all
+// v2.1 all
 //error_reporting(0);
 session_start();
 $rand = "02";

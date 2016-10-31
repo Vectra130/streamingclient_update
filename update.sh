@@ -54,7 +54,7 @@ upload_update()
 {
 VERSION=$(cat VERSION)
 echo -e "\n-- aktualisiere git ..."
-git add -A
+git add -A -v
 git commit -m $VERSION
 git push && echo "--- Version $VERSION hoch geladen"
 }
