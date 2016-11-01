@@ -40,7 +40,7 @@ if( $updateCheck[0] != "" )
     echo "<a href='#' class='whiteButton' type='submit'>Herunterladen und Installieren</a><div class='spinner'></div>";
 } else
 {
-    echo '<fieldset><p>Kein Online Update gefunden</p></fieldset>';
+    echo '<fieldset><p>Kein Online Update gefunden</br>Das System ist auf dem aktuellen Stand</p></fieldset>';
 }
 ?>
 
