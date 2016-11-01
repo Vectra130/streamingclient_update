@@ -7,6 +7,7 @@ error_exit()
 echo -e "\n\n\e[31mUPDATE FEHLGESCHLAGEN!!!!!\n\n\e[0mDie letzten 20 Log Einträge:\n##########" | tee -a /dev/tty1
 tail -20 /etc/vectra130/update.log
 echo "##########"
+date > $DLOG
 exit 2
 }
 
@@ -67,6 +68,7 @@ SYSTEMDDIR="/etc/systemd/system"
 BINDIR="/usr/bin"
 TTY="> /dev/tty1"
 LOG="tee -a /dev/tty1 | tee -a /etc/vectra130/update.log"
+DLOG="tee -a /etc/vectra130/update.log"
 
 cd $UPDATEDIR
 #updateinfos zeigen
@@ -130,14 +132,14 @@ while read -r line; do
 	if [ x${line:0:2} == xup ]; then
 		DIR="$(dirname ${line:3})"
 		[ ! -e $DIR ] && mkdir -p $DIR
-#		echo "--> kopiere ${line:3} (option:${line:0:2})"
+		echo "--> kopiere ${line:3} (option:${line:0:2})" | $DLOG
 		cp -rau $UPDATEFILESDIR/${line:3} $DIR
 		if [ $? -ne 0 ]; then error_exit; fi
 	fi
 	if [ x${line:0:2} == xcf ]; then
 		DIR="$(dirname ${line:3})"
 		[ ! -e $DIR ] && mkdir -p $DIR
-#		echo "--> kopiere ${line:3} (option:${line:0:2})"
+		echo "--> kopiere ${line:3} (option:${line:0:2})" | $DLOG
 		cp -raf $UPDATEFILESDIR/${line:3} $DIR
 		if [ $? -ne 0 ]; then error_exit; fi
 	fi
@@ -145,18 +147,18 @@ while read -r line; do
 		[ -e ${line:3} ] && rm -r ${line:3}
 		DIR="$(dirname ${line:3})"
 		[ ! -e $DIR ] && mkdir -p $DIR
-#		echo "--> kopiere ${line:3} (option:${line:0:2})"
+		echo "--> kopiere ${line:3} (option:${line:0:2})" | $DLOG
 		cp -ra $UPDATEFILESDIR/${line:3} $DIR
 		if [ $? -ne 0 ]; then error_exit; fi
 	fi
 	if [ x${line:0:2} == xrm ]; then
 		[ -e ${line:3} ] && rm -r ${line:3}
-#		echo "--> lösche ${line:3} (option:${line:0:2})"
+		echo "--> lösche ${line:3} (option:${line:0:2})" | $DLOG
 	fi
 	if [ x${line:0:2} == xnf ]; then
 		DIR="$(dirname ${line:3})"
 		[ ! -e $DIR ] && mkdir -p $DIR
-#		echo "--> touch ${line:3} (option:${line:0:2})"
+		echo "--> touch ${line:3} (option:${line:0:2})" | $DLOG
 		touch ${line:3}
 	fi
 	if [ x${line:0:2} == xsl ]; then
@@ -164,13 +166,13 @@ while read -r line; do
 		line2=$(echo $line | awk '{ print $3 }')
 		DIR="$(dirname $line2)"
 		[ ! -e $DIR ] && mkdir -p $DIR
-#		echo "--> symlink $line1 -> $line2 (option:${line:0:2})"
+		echo "--> symlink $line1 -> $line2 (option:${line:0:2})" | $DLOG
 		ln -sf $line1 $line2
 	fi
 	if [ x${line:0:2} == xnd ]; then
 		DIR="${line:3}"
 		[ ! -e $DIR ] && mkdir -p $DIR
-#		echo "--> mkdir ${line:3} (option:${line:0:2})"
+		echo "--> mkdir ${line:3} (option:${line:0:2})" | $DLOG
 	fi
 done < $UPDATEDIR/file_tree
 if [ $(cat /boot/config.txt | grep "^dtoverlay=lirc-rpi" | wc -l) != 1 ]; then
@@ -254,6 +256,7 @@ if [ $? -ne 0 ]; then error_exit; fi
 #rm -r /etc/vectra130/update/*
 echo -e "\n\n\n\e[32m############################## Update beendet, starte neu ... ##############################\e[0m\n" > $TTfY
 
+date > $DLOG
 sleep 10
 reboot
 exit 0

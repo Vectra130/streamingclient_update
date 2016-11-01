@@ -36,7 +36,6 @@ if [ x$ACTION == xupdate ]; then
 		chmod +x $UPDATEDIR/prepare_update.sh
 		echo OK
 	fi
-	date >> /etc/vectra130/update.log
 fi
 
 exit 0
