@@ -1,55 +1,3 @@
-nano /etc/vectra130/VERSION 
-nano FILES/www/config/update.php
-nano update.sh 
-mv FILES/scripts/updateStreamingClient.sh FILES/www/config/scripts/
-rm FILES/scripts/aa-StreamingClientBoot 
-nano FILES/scripts/powertest.sh 
-rm FILES/scripts/powertest.sh 
-ls FILES/scripts/
-ls -l /etc/vectra130/scripts/
-nano update.sh 
-ls FILES/streamingclient/
-ls FILES/streamingclient/ -a
-git status; git add -A; git commit -m bugfix; git push
-top
-dpkg -l | grep syslog
-systemctl start syslog.service 
-nano /etc/systemd/system/syslog.service
-systemctl start rsyslog.service 
-echo test > /tmp/test > /tmp/test2
-cat /tmp/test
-cat /tmp/test2
-top
-cat /etc/passwd
-exit
-ls -la /etc/vectra130/
-ls -la /etc/vectra130/configs/kodiconfig/
-rm /etc/vectra130/configs/kodiconfig/.kodi
-rm /etc/vectra130/configs/kodiconfig/kodiconfig 
-ls -la /etc/vectra130/configs/kodiconfig/
-journalctl -u streamingclient -r
-ls -l /boot/
-echo vdr > /tmp/.frontendSet 
-journalctl -u vdr.service -r
-nano /usr/local/src/vdr-2.2.0/thread.c
-nano /etc/systemd/system/vdr.service 
-mount -o rw,remount /
-nano /etc/systemd/system/vdr.service 
-mount -o ro,remount /
-nano /etc/vectra130/configs/vdrconfig/conf.avail/00-vdr.conf 
-y
-echo suspend > /tmp/.frontendSet 
-journalctl -u vdr.service -r
-journalctl -u vdr.service -r
-pidof -x vdr
-echo vdr > /tmp/.frontendSet 
-journalctl -u vdr.service -r
-ls -l /etc/vectra130/configs/vdrconfig/
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-nano update.sh 
-cat /etc/passwd
-cat /etc/group
-nano update.sh 
 delgroup 1001
 delgroup 1002
 nano update.sh 
@@ -498,3 +446,55 @@ nano update.sh
 [ x$(cp -rau /etc/vectra130/VERSION /tmp/test | echo $?) != x ] || echo fail
 [ x$(cp -rau /etc/vectra130/VERSIONe /tmp/test | echo $?) != x ] || echo fail
 nano update.sh
+ls -l /etc/vectra130/update/git_update_files/
+ls -l /etc/vectra130/update/git_update_files/FILES/
+ls -la /etc/vectra130/update/git_update_files/FILES/
+ls -la /etc/vectra130/update/git_update_files/
+tail -f /etc/vectra130/update.log 
+nano /etc/vectra130/www/config/update.php
+tail -f /etc/vectra130/update.log 
+cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
+nano update.sh
+./update.sh create
+nano update.sh
+./update.sh create
+./update.sh upload
+tail -f /etc/vectra130/update.log 
+nano /etc/vectra130/www/config/update.php
+./update.sh create
+nano /etc/vectra130/VERSION 
+tail -f /etc/vectra130/update.log 
+tail -f /etc/vectra130/update.log 
+tail -f /etc/vectra130/update.log 
+cat /etc/vectra130/update.log 
+echo test |tee -a /tmp/test1
+cat /tmp/test1 
+echo test > /tmp/test2 | tee -a /tmp/test1
+cat /tmp/test1 
+cat /tmp/test2
+top
+ps aux | grep update
+watch pidof -x prepare_update.sh
+pidof -x prepare_update.sh
+ps aux | grep prepare_update.sh
+top
+cat /etc/vectra130/update.log 
+nano /etc/vectra130/update/prepare_update.sh 
+nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
+nano prepare_update.sh
+nano update.sh
+./update.sh create
+nano update.sh
+nano update.sh
+./update.sh create
+nano /etc/vectra130/VERSION 
+nano /etc/vectra130/VERSION 
+nano update.sh
+./update.sh create
+nano /etc/vectra130/VERSION 
+./update.sh create
+nano update.sh
+./update.sh create
+cat /etc/vectra130/update.log 
+watch cat /etc/vectra130/update.log 
+tail -f /etc/vectra130/update.log 

@@ -74,19 +74,19 @@ SYSTEMDDIR="/etc/systemd/system"
 BINDIR="/usr/bin"
 TTY="> /dev/tty1"
 LOG="tee -a /dev/tty1 | tee -a /etc/vectra130/update.log"
-DLOG="tee -a /etc/vectra130/update.log"
+DLOG="/etc/vectra130/update.log"
 
 cd $UPDATEDIR
 #updateinfos zeigen
 chvt 1
-echo -e "\e[3J" | $LOG
-echo -e "\n\e[34m############################## UPDATEVERLAUF ##############################\e[0m\n" | $LOG
-echo -e "\n\e[33m########## Updatefiles heruntergeladen\e[0m" | $LOG
+echo -e "\e[3J" #| $LOG
+echo -e "\n\e[34m############################## UPDATEVERLAUF ##############################\e[0m\n" #| $LOG
+echo -e "\n\e[33m########## Updatefiles heruntergeladen\e[0m" #| $LOG
 
-#echo -e "\n\e[33m########## Updatefiles entpacken ...\e[0m" | $LOG
+#echo -e "\n\e[33m########## Updatefiles entpacken ...\e[0m" #| $LOG
 #tar xfpz ${UPDATEDIR}/FILES.tar && rm -r $UPDATEDIR/FILES.tar || error_exit
 
-echo -e "\n\e[33m########## Erstelle read-write Filesystem ...\e[0m" | $LOG
+echo -e "\n\e[33m########## Erstelle read-write Filesystem ...\e[0m" #| $LOG
 mount -o rw,remount /
 if [ $? -ne 0 ]; then error_exit; fi
 mount -o rw,remount /boot
@@ -95,7 +95,7 @@ mount -o remount,size=256M /tmp
 if [ $? -ne 0 ]; then error_exit; fi
 
 #system
-echo -e "\n\e[33m########## Aktualisiere Quellen ...\e[0m" | $LOG
+echo -e "\n\e[33m########## Aktualisiere Quellen ...\e[0m" #| $LOG
 cp -ra FILES/etc/apt/* /etc/apt/
 if [ $? -ne 0 ]; then error_exit; fi
 apt-key adv --keyserver keyserver.ubuntu.com --recv-key 5243CDED
@@ -106,7 +106,7 @@ if [ $? -ne 0 ]; then error_exit; fi
 
 #swapfile
 if [ ! -e /etc/vectra130/swapfile ]; then
-	echo -e "\n\e[33m########## Erstelle Swap File ...\e[0m" | $LOG
+	echo -e "\n\e[33m########## Erstelle Swap File ...\e[0m" #| $LOG
 	dd if=/dev/zero of=/etc/vectra130/swapfile bs=1M count=2048
 	chown root:root /etc/vectra130/swapfile
 	chown 0600 /etc/vectra130/swapfile
@@ -115,17 +115,17 @@ if [ ! -e /etc/vectra130/swapfile ]; then
 fi
 
 #proftpd
-echo -e "\n\e[33m########## Aktualisiere proftpd ...\e[0m" | $LOG
+echo -e "\n\e[33m########## Aktualisiere proftpd ...\e[0m" #| $LOG
 aptitude -y --no-gui install proftpd-basic
 if [ $? -ne 0 ]; then error_exit; fi
 
 #kodi
-echo -e "\n\e[33m########## Aktualisiere kodi ...\e[0m" | $LOG
+echo -e "\n\e[33m########## Aktualisiere kodi ...\e[0m" #| $LOG
 aptitude -y --no-gui install kodi
 if [ $? -ne 0 ]; then error_exit; fi
 
 # dateien kopieren
-echo -e "\n\e[33m########## Kopiere Files ($(du -hs | awk '{ print $1 }')B) ...\e[0m" | $LOG
+echo -e "\n\e[33m########## Kopiere Files ($(du -hs | awk '{ print $1 }')B) ...\e[0m" #| $LOG
 # up = update
 # cf = force kopieren
 # rc = original(ordner) vorher komplett löschen, dann kopieren
@@ -138,33 +138,33 @@ while read -r line; do
 	if [ x${line:0:2} == xup ]; then
 		DIR="$(dirname ${line:3})"
 		[ ! -e $DIR ] && mkdir -p $DIR
-		echo "--> kopiere ${line:3} (option:${line:0:2})" | $DLOG
-		cp -rau $UPDATEFILESDIR/${line:3} $DIR
+#		echo "--> kopiere ${line:3} (option:${line:0:2})" | $DLOG
+		cp -rauv $UPDATEFILESDIR/${line:3} $DIR >> $DLOG
 		if [ $? -ne 0 ]; then error_exit; fi
 	fi
 	if [ x${line:0:2} == xcf ]; then
 		DIR="$(dirname ${line:3})"
 		[ ! -e $DIR ] && mkdir -p $DIR
-		echo "--> kopiere ${line:3} (option:${line:0:2})" | $DLOG
-		cp -raf $UPDATEFILESDIR/${line:3} $DIR
+#		echo "--> kopiere ${line:3} (option:${line:0:2})" | $DLOG
+		cp -rafv $UPDATEFILESDIR/${line:3} $DIR >> $DLOG
 		if [ $? -ne 0 ]; then error_exit; fi
 	fi
 	if [ x${line:0:2} == xrc ]; then
 		[ -e ${line:3} ] && rm -r ${line:3}
 		DIR="$(dirname ${line:3})"
 		[ ! -e $DIR ] && mkdir -p $DIR
-		echo "--> kopiere ${line:3} (option:${line:0:2})" | $DLOG
-		cp -ra $UPDATEFILESDIR/${line:3} $DIR
+#		echo "--> kopiere ${line:3} (option:${line:0:2})" | $DLOG
+		cp -rav $UPDATEFILESDIR/${line:3} $DIR >> $DLOG
 		if [ $? -ne 0 ]; then error_exit; fi
 	fi
 	if [ x${line:0:2} == xrm ]; then
 		[ -e ${line:3} ] && rm -r ${line:3}
-		echo "--> lösche ${line:3} (option:${line:0:2})" | $DLOG
+		echo "--> lösche ${line:3} (option:${line:0:2})" >> $DLOG
 	fi
 	if [ x${line:0:2} == xnf ]; then
 		DIR="$(dirname ${line:3})"
 		[ ! -e $DIR ] && mkdir -p $DIR
-		echo "--> touch ${line:3} (option:${line:0:2})" | $DLOG
+		echo "--> touch ${line:3} (option:${line:0:2})" >> $DLOG
 		touch ${line:3}
 	fi
 	if [ x${line:0:2} == xsl ]; then
@@ -172,13 +172,13 @@ while read -r line; do
 		line2=$(echo $line | awk '{ print $3 }')
 		DIR="$(dirname $line2)"
 		[ ! -e $DIR ] && mkdir -p $DIR
-		echo "--> symlink $line1 -> $line2 (option:${line:0:2})" | $DLOG
-		ln -sf $line1 $line2
+#		echo "--> symlink $line1 -> $line2 (option:${line:0:2})" | $DLOG
+		ln -sfv $line1 $line2 >> $DLOG
 	fi
 	if [ x${line:0:2} == xnd ]; then
 		DIR="${line:3}"
 		[ ! -e $DIR ] && mkdir -p $DIR
-		echo "--> mkdir ${line:3} (option:${line:0:2})" | $DLOG
+		echo "--> mkdir ${line:3} (option:${line:0:2})" >> $DLOG
 	fi
 done < $UPDATEDIR/file_tree
 if [ $(cat /boot/config.txt | grep "^dtoverlay=lirc-rpi" | wc -l) != 1 ]; then
@@ -193,7 +193,7 @@ fi
 
 
 #systemctl
-echo -e "\n\e[33m########## Aktualisiere systemctl ...\e[0m" | $LOG
+echo -e "\n\e[33m########## Aktualisiere systemctl ...\e[0m" #| $LOG
 systemctl daemon-reload
 systemctl disable syslog
 systemctl disable syslog-ng
@@ -203,7 +203,7 @@ systemctl disable vdr
 systemctl disable kodi
 
 #richtige user anlegen
-echo -e "\n\e[33m########## Aktualisiere User ...\e[0m" | $LOG
+echo -e "\n\e[33m########## Aktualisiere User ...\e[0m" #| $LOG
 deluser ftp
 delgroup ftp
 if [ $(cat /etc/passwd | grep ^"vdr:x:1001:1001::/etc/vectra130/configs/userconfig:/bin/bash" | wc -l) != 1 ];then
@@ -232,7 +232,7 @@ usermod -a -G video,audio,sudo,cdrom,plugdev,users,dialout,dip,input,vdr kodi
 if [ $? -ne 0 ]; then error_exit; fi
 
 #datei rechte vergeben
-echo -e "\n\e[33m########## Aktualisiere User Rechte ...\e[0m" | $LOG
+echo -e "\n\e[33m########## Aktualisiere User Rechte ...\e[0m" #| $LOG
 chown -R vdr:vdr /etc/vectra130/configs/vdrconfig
 if [ $? -ne 0 ]; then error_exit; fi
 chown -R kodi:kodi /etc/vectra130/configs/kodiconfig
@@ -253,7 +253,7 @@ chmod 777 /vdrvideo0?
 if [ $? -ne 0 ]; then error_exit; fi
 
 #aufräumen
-echo -e "\n\e[33m########## Räume auf uns schließe Update ab ...\e[0m" | $LOG
+echo -e "\n\e[33m########## Räume auf uns schließe Update ab ...\e[0m" #| $LOG
 apt-get -y autoclean
 apt-get -y autoremove
 apt-get clean
