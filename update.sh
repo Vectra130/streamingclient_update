@@ -63,13 +63,17 @@ upload_update()
 VERSION=$(cat VERSION)
 echo -e "\n-- aktualisiere git ..."
 git add -A -v
-git commit -m $VERSION
+read -p "Commit Info: " COMMIT
+echo
+[ "x$COMMIT" == x ] && COMMIT=$VERSION
+git commit -m "$COMMIT"
 git push && echo "--- Version $VERSION hoch geladen"
 }
 
 install_update()
 {
 UPDATEDIR="/etc/vectra130/update/git_update_files"
+UPDATEFILESDIR="$UPDATEDIR/FILES"
 SYSTEMDDIR="/etc/systemd/system"
 BINDIR="/usr/bin"
 TTY="> /dev/tty1"
@@ -139,14 +143,14 @@ while read -r line; do
 		DIR="$(dirname ${line:3})"
 		[ ! -e $DIR ] && mkdir -p $DIR
 #		echo "--> kopiere ${line:3} (option:${line:0:2})" >> $DLOG
-		cp -rauv $UPDATEDIR/${line:3} $DIR >> $DLOG
+		cp -rauv $UPDATEFILESDIR/${line:3} $DIR >> $DLOG
 		if [ $? -ne 0 ]; then error_exit; fi
 	fi
 	if [ x${line:0:2} == xcf ]; then
 		DIR="$(dirname ${line:3})"
 		[ ! -e $DIR ] && mkdir -p $DIR
 #		echo "--> kopiere ${line:3} (option:${line:0:2})" >> $DLOG
-		cp -rafv $UPDATEDIR/${line:3} $DIR >> $DLOG
+		cp -rafv $UPDATEFILESDIR/${line:3} $DIR >> $DLOG
 		if [ $? -ne 0 ]; then error_exit; fi
 	fi
 	if [ x${line:0:2} == xrc ]; then
@@ -154,7 +158,7 @@ while read -r line; do
 		DIR="$(dirname ${line:3})"
 		[ ! -e $DIR ] && mkdir -p $DIR
 #		echo "--> kopiere ${line:3} (option:${line:0:2})" >> $DLOG
-		cp -rav $UPDATEDIR/${line:3} $DIR >> $DLOG
+		cp -rav $UPDATEFILESDIR/${line:3} $DIR >> $DLOG
 		if [ $? -ne 0 ]; then error_exit; fi
 	fi
 	if [ x${line:0:2} == xrm ]; then
