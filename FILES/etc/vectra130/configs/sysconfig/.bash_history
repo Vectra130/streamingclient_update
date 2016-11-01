@@ -1,62 +1,3 @@
-nano update.sh
-nano update.sh
-echo -e \e[3mhallo\e[0m
-echo -e "\e[3mhallo\e[0m"
-echo -e "\e[1mhallo\e[0m"
-echo -e "\e[2mhallo\e[0m"
-echo -e "\e[3mhallo\e[0m"
-echo -e "\e[4mhallo\e[0m"
-echo -e "\e[5mhallo\e[0m"
-echo -e "\e[6mhallo\e[0m"
-echo -e "\e[7mhallo\e[0m"
-echo -e "\e[8mhallo\e[0m"
-echo -e "\e[9mhallo\e[0m"
-echo -e "\e[10mhallo\e[0m"
-echo -e "\e[11mhallo\e[0m"
-echo -e "\e[12mhallo\e[0m"
-echo -e "\e[13mhallo\e[0m"
-echo -e "\e[14mhallo\e[0m"
-echo -e "\e[15mhallo\e[0m"
-echo -e "\e[16mhallo\e[0m"
-echo -e "\e[17mhallo\e[0m"
-echo -e "\e[18mhallo\e[0m"
-echo -e "\e[19mhallo\e[0m"
-echo -e "\e[20mhallo\e[0m"
-nano /etc/vectra130/scripts/VDR_BUILD_INSTALL.sh 
-echo -e "\e[33mhallo\e[0m"
-nano update.sh
-nano /etc/vectra130/scripts/VDR_BUILD_INSTALL.sh 
-nano update.sh
-nano /etc/vectra130/scripts/VDR_BUILD_INSTALL.sh 
-nano update.sh
-nano update.sh
-df -h
-apt-get clean
-mount -o rw,remount /
-apt-get clean
-mount -o ro,remount /
-df -h
-git status; git add -A; git commit -m bugfix; git push
-nano /etc/vectra130/www/config/index.php
-ls -l /etc/hostname 
-nano /etc/hos
-ls -l /etc/ | grep ^l
-ls /tmp_system/
-nano update.sh
-git status; git add -A; git commit -m bugfix; git push
-nano ../FILES/configs/.config.template 
-nano /etc/vectra130/configs/sysconfig/config
-nano ../FILES/configs/.config.template 
-cp -a /etc/vectra130/configs/sysconfig/.config.template FILES/streamingclient/
-nano update.sh
-ls FILES/
-ls FILES/streamingclient/
-nano update.sh
-nano ../Makefile 
-git status; git add -A; git commit -m bugfix; git push
-diff -u update.sh update.sh.save 
-rm update.sh.save 
-git status; git add -A; git commit -m bugfix; git push
 nano /etc/vectra130/VERSION 
 nano FILES/www/config/update.php
 nano update.sh 
@@ -498,3 +439,62 @@ nano update.sh
 ls
 tar --help | grep -i thread
 tar --help | grep -i comp
+cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
+nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
+nano prepare_update.sh 
+cp prepare_update.sh prepare_update.sh.bkp
+nano prepare_update.sh 
+ls -la /etc/vectra130/update
+ls -la /etc/vectra130/update/
+nano prepare_update.sh 
+nano update.sh
+nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
+nano prepare_update.sh 
+git pull --depth 1
+nano update.sh
+./update.sh create
+ls -a
+rm size_FILES_TAR 
+./update.sh upload
+./update.sh upload
+nano /etc/vectra130/VERSION 
+scp 192.168.1.81:/etc/vectra130/www/config/index.php /etc/vectra130/www/config/
+nano /etc/vectra130/www/config/index.php
+update create
+./update create
+./update.sh create
+nano /etc/vectra130/VERSION 
+./update.sh create
+grep sysconfig /etc/vectra130/www/config/*
+sed -i -e 's/sysconfig\/config/userconfig\/config/g' /etc/vectra130/www/*
+sed -i -e 's/sysconfig\/config/userconfig\/config/g' /etc/vectra130/www/config/*
+sed -i -e 's/sysconfig\/config/userconfig\/config/g' /etc/vectra130/www/config/scripts/*
+sed -i -e 's/sysconfig\/config/userconfig\/config/g' /etc/vectra130/scripts/*
+./update.sh create
+git add --help
+nano update.sh
+nano /etc/vectra130/www/config/index.php
+./update.sh create
+nano /etc/vectra130/VERSION 
+cd /etc/vectra130/www/config/
+nano update.php
+nano /etc/vectra130/configs/userconfig/config 
+nano update.php
+nano index.php
+cd /etc/vectra130/www/config/
+nano index.php update.php
+nano /etc/vectra130/VERSION 
+nano index.php update.php
+cd /etc/vectra130/www/config/
+nano update.php
+cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
+nano update.sh
+cp -rau /etc/vectra130/VERSION /tmp/test | echo $?
+cp -rau /etc/vectra130/VERSION1 /tmp/test | echo $?
+nano update.sh
+[ x$(cp -rau /etc/vectra130/VERSION1 /tmp/test) != x ] || echo fail
+[ x$(cp -rau /etc/vectra130/VERSION /tmp/test) != x ] || echo fail
+[ x$(cp -rau /etc/vectra130/VERSION /tmp/test | echo $?) != x ] || echo fail
+[ x$(cp -rau /etc/vectra130/VERSION /tmp/test | echo $?) != x ] || echo fail
+[ x$(cp -rau /etc/vectra130/VERSIONe /tmp/test | echo $?) != x ] || echo fail
+nano update.sh

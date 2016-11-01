@@ -4,8 +4,9 @@
 
 error_exit()
 {
-echo -e "\n\n\e[31mUPDATE FEHLGESCHLAGEN!!!!!\n\n\e[0mDie letzten 10 Log Einträge:\n" | tee -a /dev/tty1
-tail -10 /etc/vectra130/update.log
+echo -e "\n\n\e[31mUPDATE FEHLGESCHLAGEN!!!!!\n\n\e[0mDie letzten 20 Log Einträge:\n##########" | tee -a /dev/tty1
+tail -20 /etc/vectra130/update.log
+echo "##########"
 exit 2
 }
 
@@ -65,34 +66,39 @@ UPDATEDIR="/etc/vectra130/update/git_update_files"
 SYSTEMDDIR="/etc/systemd/system"
 BINDIR="/usr/bin"
 TTY="> /dev/tty1"
-LOG="| tee -a /dev/tty1 | tee -a /etc/vectra130/update.log"
+LOG="tee -a /dev/tty1 | tee -a /etc/vectra130/update.log"
 
 cd $UPDATEDIR
 #updateinfos zeigen
 chvt 1
-echo -e "\e[3J" $LOG
-echo -e "\n\e[34m############################## UPDATEVERLAUF ##############################\e[0m\n" $LOG
-echo -e "\n\e[33m########## Updatefiles heruntergeladen\e[0m" $LOG
+echo -e "\e[3J" | $LOG
+echo -e "\n\e[34m############################## UPDATEVERLAUF ##############################\e[0m\n" | $LOG
+echo -e "\n\e[33m########## Updatefiles heruntergeladen\e[0m" | $LOG
 
-#echo -e "\n\e[33m########## Updatefiles entpacken ...\e[0m" $LOG
+#echo -e "\n\e[33m########## Updatefiles entpacken ...\e[0m" | $LOG
 #tar xfpz ${UPDATEDIR}/FILES.tar && rm -r $UPDATEDIR/FILES.tar || error_exit
 
-echo -e "\n\e[33m########## Erstelle read-write Filesystem ...\e[0m" $LOG
-mount -o rw,remount / || error_exit
-mount -o rw,remount /boot || error_exit
-mount -o remount,size=256M /tmp || error_exit
+echo -e "\n\e[33m########## Erstelle read-write Filesystem ...\e[0m" | $LOG
+mount -o rw,remount /
+if [ $? -ne 0 ]; then error_exit; fi
+mount -o rw,remount /boot
+if [ $? -ne 0 ]; then error_exit; fi
+mount -o remount,size=256M /tmp
+if [ $? -ne 0 ]; then error_exit; fi
 
 #system
-echo -e "\n\e[33m########## Aktualisiere Quellen ...\e[0m" $LOG
-cp -ra FILES/etc/apt/* /etc/apt/ || error_exit
+echo -e "\n\e[33m########## Aktualisiere Quellen ...\e[0m" | $LOG
+cp -ra FILES/etc/apt/* /etc/apt/
+if [ $? -ne 0 ]; then error_exit; fi
 apt-key adv --keyserver keyserver.ubuntu.com --recv-key 5243CDED
 aptitude -y update
 dpkg --configure -a
-debconf-set-selections FILES/debconf/selections || error_exit
+debconf-set-selections FILES/debconf/selections
+if [ $? -ne 0 ]; then error_exit; fi
 
 #swapfile
 if [ ! -e /etc/vectra130/swapfile ]; then
-	echo -e "\n\e[33m########## Erstelle Swap File ...\e[0m" $LOG
+	echo -e "\n\e[33m########## Erstelle Swap File ...\e[0m" | $LOG
 	dd if=/dev/zero of=/etc/vectra130/swapfile bs=1M count=2048
 	chown root:root /etc/vectra130/swapfile
 	chown 0600 /etc/vectra130/swapfile
@@ -101,15 +107,17 @@ if [ ! -e /etc/vectra130/swapfile ]; then
 fi
 
 #proftpd
-echo -e "\n\e[33m########## Aktualisiere proftpd ...\e[0m" $LOG
-aptitude -y --no-gui install proftpd-basic || error_exit
+echo -e "\n\e[33m########## Aktualisiere proftpd ...\e[0m" | $LOG
+aptitude -y --no-gui install proftpd-basic
+if [ $? -ne 0 ]; then error_exit; fi
 
 #kodi
-echo -e "\n\e[33m########## Aktualisiere kodi ...\e[0m" $LOG
-aptitude -y --no-gui install kodi || error_exit
+echo -e "\n\e[33m########## Aktualisiere kodi ...\e[0m" | $LOG
+aptitude -y --no-gui install kodi
+if [ $? -ne 0 ]; then error_exit; fi
 
 # dateien kopieren
-echo -e "\n\e[33m########## Kopiere Files ($(du -hs | awk '{ print $1 }')B) ...\e[0m" $LOG
+echo -e "\n\e[33m########## Kopiere Files ($(du -hs | awk '{ print $1 }')B) ...\e[0m" | $LOG
 # up = update
 # cf = force kopieren
 # rc = original(ordner) vorher komplett löschen, dann kopieren
@@ -123,20 +131,23 @@ while read -r line; do
 		DIR="$(dirname ${line:3})"
 		[ ! -e $DIR ] && mkdir -p $DIR
 #		echo "--> kopiere ${line:3} (option:${line:0:2})"
-		cp -rau $UPDATEFILESDIR/${line:3} $DIR || error_exit
+		cp -rau $UPDATEFILESDIR/${line:3} $DIR
+		if [ $? -ne 0 ]; then error_exit; fi
 	fi
 	if [ x${line:0:2} == xcf ]; then
 		DIR="$(dirname ${line:3})"
 		[ ! -e $DIR ] && mkdir -p $DIR
 #		echo "--> kopiere ${line:3} (option:${line:0:2})"
-		cp -raf $UPDATEFILESDIR/${line:3} $DIR || error_exit
+		cp -raf $UPDATEFILESDIR/${line:3} $DIR
+		if [ $? -ne 0 ]; then error_exit; fi
 	fi
 	if [ x${line:0:2} == xrc ]; then
 		[ -e ${line:3} ] && rm -r ${line:3}
 		DIR="$(dirname ${line:3})"
 		[ ! -e $DIR ] && mkdir -p $DIR
 #		echo "--> kopiere ${line:3} (option:${line:0:2})"
-		cp -ra $UPDATEFILESDIR/${line:3} $DIR || error_exit
+		cp -ra $UPDATEFILESDIR/${line:3} $DIR
+		if [ $? -ne 0 ]; then error_exit; fi
 	fi
 	if [ x${line:0:2} == xrm ]; then
 		[ -e ${line:3} ] && rm -r ${line:3}
@@ -146,7 +157,7 @@ while read -r line; do
 		DIR="$(dirname ${line:3})"
 		[ ! -e $DIR ] && mkdir -p $DIR
 #		echo "--> touch ${line:3} (option:${line:0:2})"
-		touch ${line:3} || error_exit
+		touch ${line:3}
 	fi
 	if [ x${line:0:2} == xsl ]; then
 		line1=$(echo $line | awk '{ print $2 }')
@@ -154,7 +165,7 @@ while read -r line; do
 		DIR="$(dirname $line2)"
 		[ ! -e $DIR ] && mkdir -p $DIR
 #		echo "--> symlink $line1 -> $line2 (option:${line:0:2})"
-		ln -sf $line1 $line2 || error_exit
+		ln -sf $line1 $line2
 	fi
 	if [ x${line:0:2} == xnd ]; then
 		DIR="${line:3}"
@@ -174,7 +185,7 @@ fi
 
 
 #systemctl
-echo -e "\n\e[33m########## Aktualisiere systemctl ...\e[0m" $LOG
+echo -e "\n\e[33m########## Aktualisiere systemctl ...\e[0m" | $LOG
 systemctl daemon-reload
 systemctl disable syslog
 systemctl disable syslog-ng
@@ -184,44 +195,62 @@ systemctl disable vdr
 systemctl disable kodi
 
 #richtige user anlegen
-echo -e "\n\e[33m########## Aktualisiere User ...\e[0m" $LOG
+echo -e "\n\e[33m########## Aktualisiere User ...\e[0m" | $LOG
 deluser ftp
 delgroup ftp
 if [ $(cat /etc/passwd | grep ^"vdr:x:1001:1001::/etc/vectra130/configs/userconfig:/bin/bash" | wc -l) != 1 ];then
 	deluser vdr
 	delgroup vdr
-	addgroup --gid 1001 vdr || error_exit
-	adduser --no-create-home --uid 1001 --gid 1001 --home /etc/vectra130/configs/userconfig --shell /bin/bash --disabled-password --disabled-login --system vdr || error_exit
+	addgroup --gid 1001 vdr
+	if [ $? -ne 0 ]; then error_exit; fi
+	adduser --no-create-home --uid 1001 --gid 1001 --home /etc/vectra130/configs/userconfig --shell /bin/bash --disabled-password --disabled-login --system vdr
+	if [ $? -ne 0 ]; then error_exit; fi
 fi
 if [ $(cat /etc/passwd | grep ^"kodi:x:1002:1002::/etc/vectra130/configs/userconfig:/bin/bash" | wc -l) != 1 ];then
 	deluser kodi
 	delgroup kodi
-	addgroup --gid 1002 kodi || error_exit
-	adduser --no-create-home --uid 1002 --gid 1002 --home /etc/vectra130/configs/userconfig --shell /bin/bash --disabled-password --disabled-login --system kodi || error_exit
+	addgroup --gid 1002 kodi
+	if [ $? -ne 0 ]; then error_exit; fi
+	adduser --no-create-home --uid 1002 --gid 1002 --home /etc/vectra130/configs/userconfig --shell /bin/bash --disabled-password --disabled-login --system kodi
+	if [ $? -ne 0 ]; then error_exit; fi
 fi
-echo "vdr:vdr" | chpasswd || error_exit
-echo "kodi:kodi" | chpasswd || error_exit
-usermod -a -G video,audio,sudo,cdrom,plugdev,users,dialout,dip,input,kodi vdr || error_exit
-usermod -a -G video,audio,sudo,cdrom,plugdev,users,dialout,dip,input,vdr kodi || error_exit
+echo "vdr:vdr" | chpasswd
+if [ $? -ne 0 ]; then error_exit; fi
+echo "kodi:kodi" | chpasswd
+if [ $? -ne 0 ]; then error_exit; fi
+usermod -a -G video,audio,sudo,cdrom,plugdev,users,dialout,dip,input,kodi vdr
+if [ $? -ne 0 ]; then error_exit; fi
+usermod -a -G video,audio,sudo,cdrom,plugdev,users,dialout,dip,input,vdr kodi
+if [ $? -ne 0 ]; then error_exit; fi
 
 #datei rechte vergeben
-echo -e "\n\e[33m########## Aktualisiere User Rechte ...\e[0m" $LOG
-chown -R vdr:vdr /etc/vectra130/configs/vdrconfig || error_exit
-chown -R kodi:kodi /etc/vectra130/configs/kodiconfig || error_exit
-chown -R vdr:vdr /etc/vectra130/configs/userconfig || error_exit
-chown -R vdr:vdr /etc/vectra130/data/vdr || error_exit
-chown -R kodi:kodi /etc/vectra130/data/kodi || error_exit
-chown -R vdr:vdr /usr/*/vdr || error_exit
-chown -R kodi:kodi /usr/*/kodi || error_exit
-chown -R vdr:vdr /vdrvideo0? || error_exit
-chmod 777 /vdrvideo0? || error_exit
+echo -e "\n\e[33m########## Aktualisiere User Rechte ...\e[0m" | $LOG
+chown -R vdr:vdr /etc/vectra130/configs/vdrconfig
+if [ $? -ne 0 ]; then error_exit; fi
+chown -R kodi:kodi /etc/vectra130/configs/kodiconfig
+if [ $? -ne 0 ]; then error_exit; fi
+chown -R vdr:vdr /etc/vectra130/configs/userconfig
+if [ $? -ne 0 ]; then error_exit; fi
+chown -R vdr:vdr /etc/vectra130/data/vdr
+if [ $? -ne 0 ]; then error_exit; fi
+chown -R kodi:kodi /etc/vectra130/data/kodi
+if [ $? -ne 0 ]; then error_exit; fi
+chown -R vdr:vdr /usr/*/vdr
+if [ $? -ne 0 ]; then error_exit; fi
+chown -R kodi:kodi /usr/*/kodi
+if [ $? -ne 0 ]; then error_exit; fi
+chown -R vdr:vdr /vdrvideo0?
+if [ $? -ne 0 ]; then error_exit; fi
+chmod 777 /vdrvideo0?
+if [ $? -ne 0 ]; then error_exit; fi
 
 #aufräumen
-echo -e "\n\e[33m########## Räume auf uns schließe Update ab ...\e[0m" $LOG
+echo -e "\n\e[33m########## Räume auf uns schließe Update ab ...\e[0m" | $LOG
 apt-get -y autoclean
 apt-get -y autoremove
 apt-get clean
-cp -a /etc/vectra130/update/VERSION /etc/vectra130/VERSION || error_exit
+cp -a /etc/vectra130/update/VERSION /etc/vectra130/VERSION
+if [ $? -ne 0 ]; then error_exit; fi
 #rm -r /etc/vectra130/update/*
 echo -e "\n\n\n\e[32m############################## Update beendet, starte neu ... ##############################\e[0m\n" > $TTfY
 
