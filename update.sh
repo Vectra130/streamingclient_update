@@ -7,7 +7,7 @@ error_exit()
 echo -e "\n\n\e[31mUPDATE FEHLGESCHLAGEN!!!!!\n\n\e[0mDie letzten 20 Log Einträge:\n##########" | tee -a /dev/tty1
 tail -20 /etc/vectra130/update.log
 echo "##########"
-date > $DLOG
+date >> $DLOG
 exit 2
 }
 
@@ -139,14 +139,14 @@ while read -r line; do
 		DIR="$(dirname ${line:3})"
 		[ ! -e $DIR ] && mkdir -p $DIR
 #		echo "--> kopiere ${line:3} (option:${line:0:2})" | $DLOG
-		cp -rauv $UPDATEFILESDIR/${line:3} $DIR >> $DLOG
+		cp -rauv $UPDATEDIR/${line:3} $DIR >> $DLOG
 		if [ $? -ne 0 ]; then error_exit; fi
 	fi
 	if [ x${line:0:2} == xcf ]; then
 		DIR="$(dirname ${line:3})"
 		[ ! -e $DIR ] && mkdir -p $DIR
 #		echo "--> kopiere ${line:3} (option:${line:0:2})" | $DLOG
-		cp -rafv $UPDATEFILESDIR/${line:3} $DIR >> $DLOG
+		cp -rafv $UPDATEDIR/${line:3} $DIR >> $DLOG
 		if [ $? -ne 0 ]; then error_exit; fi
 	fi
 	if [ x${line:0:2} == xrc ]; then
@@ -154,7 +154,7 @@ while read -r line; do
 		DIR="$(dirname ${line:3})"
 		[ ! -e $DIR ] && mkdir -p $DIR
 #		echo "--> kopiere ${line:3} (option:${line:0:2})" | $DLOG
-		cp -rav $UPDATEFILESDIR/${line:3} $DIR >> $DLOG
+		cp -rav $UPDATEDIR/${line:3} $DIR >> $DLOG
 		if [ $? -ne 0 ]; then error_exit; fi
 	fi
 	if [ x${line:0:2} == xrm ]; then
@@ -209,26 +209,26 @@ delgroup ftp
 if [ $(cat /etc/passwd | grep ^"vdr:x:1001:1001::/etc/vectra130/configs/userconfig:/bin/bash" | wc -l) != 1 ];then
 	deluser vdr
 	delgroup vdr
-	addgroup --gid 1001 vdr
+	addgroup --gid 1001 vdr >> $DLOG
 	if [ $? -ne 0 ]; then error_exit; fi
-	adduser --no-create-home --uid 1001 --gid 1001 --home /etc/vectra130/configs/userconfig --shell /bin/bash --disabled-password --disabled-login --system vdr
+	adduser --no-create-home --uid 1001 --gid 1001 --home /etc/vectra130/configs/userconfig --shell /bin/bash --disabled-password --disabled-login --system vdr >> $DLOG
 	if [ $? -ne 0 ]; then error_exit; fi
 fi
 if [ $(cat /etc/passwd | grep ^"kodi:x:1002:1002::/etc/vectra130/configs/userconfig:/bin/bash" | wc -l) != 1 ];then
 	deluser kodi
 	delgroup kodi
-	addgroup --gid 1002 kodi
+	addgroup --gid 1002 kodi >> $DLOG
 	if [ $? -ne 0 ]; then error_exit; fi
-	adduser --no-create-home --uid 1002 --gid 1002 --home /etc/vectra130/configs/userconfig --shell /bin/bash --disabled-password --disabled-login --system kodi
+	adduser --no-create-home --uid 1002 --gid 1002 --home /etc/vectra130/configs/userconfig --shell /bin/bash --disabled-password --disabled-login --system kodi >> $DLOG
 	if [ $? -ne 0 ]; then error_exit; fi
 fi
-echo "vdr:vdr" | chpasswd
+echo "vdr:vdr" | chpasswd >> $DLOG
 if [ $? -ne 0 ]; then error_exit; fi
-echo "kodi:kodi" | chpasswd
+echo "kodi:kodi" | chpasswd >> $DLOG
 if [ $? -ne 0 ]; then error_exit; fi
-usermod -a -G video,audio,sudo,cdrom,plugdev,users,dialout,dip,input,kodi vdr
+usermod -a -G video,audio,sudo,cdrom,plugdev,users,dialout,dip,input,kodi vdr >> $DLOG
 if [ $? -ne 0 ]; then error_exit; fi
-usermod -a -G video,audio,sudo,cdrom,plugdev,users,dialout,dip,input,vdr kodi
+usermod -a -G video,audio,sudo,cdrom,plugdev,users,dialout,dip,input,vdr kodi >> $DLOG
 if [ $? -ne 0 ]; then error_exit; fi
 
 #datei rechte vergeben
@@ -257,12 +257,12 @@ echo -e "\n\e[33m########## Räume auf uns schließe Update ab ...\e[0m" #| $LOG
 apt-get -y autoclean
 apt-get -y autoremove
 apt-get clean
-cp -a /etc/vectra130/update/VERSION /etc/vectra130/VERSION
+cp -av /etc/vectra130/update/VERSION /etc/vectra130/VERSION >> $DLOG
 if [ $? -ne 0 ]; then error_exit; fi
 #rm -r /etc/vectra130/update/*
 echo -e "\n\n\n\e[32m############################## Update beendet, starte neu ... ##############################\e[0m\n" > $TTfY
 
-date > $DLOG
+date >> $DLOG
 sleep 10
 reboot
 exit 0
