@@ -4,7 +4,7 @@
 
 error_exit()
 {
-echo -e "\n\n\e[31mUPDATE FEHLGESCHLAGEN!!!!!\n\n\e[0mDie letzten 20 Log Einträge:\n##########" | tee -a /dev/tty1
+echo -e "\n\n\e[31mUPDATE FEHLGESCHLAGEN!!!!!\n\n\e[0mDie letzten 20 Log Einträge:\n##########" # | tee -a /dev/tty1
 tail -20 /etc/vectra130/update.log
 echo "##########"
 date >> $DLOG
@@ -138,14 +138,14 @@ while read -r line; do
 	if [ x${line:0:2} == xup ]; then
 		DIR="$(dirname ${line:3})"
 		[ ! -e $DIR ] && mkdir -p $DIR
-#		echo "--> kopiere ${line:3} (option:${line:0:2})" | $DLOG
+#		echo "--> kopiere ${line:3} (option:${line:0:2})" >> $DLOG
 		cp -rauv $UPDATEDIR/${line:3} $DIR >> $DLOG
 		if [ $? -ne 0 ]; then error_exit; fi
 	fi
 	if [ x${line:0:2} == xcf ]; then
 		DIR="$(dirname ${line:3})"
 		[ ! -e $DIR ] && mkdir -p $DIR
-#		echo "--> kopiere ${line:3} (option:${line:0:2})" | $DLOG
+#		echo "--> kopiere ${line:3} (option:${line:0:2})" >> $DLOG
 		cp -rafv $UPDATEDIR/${line:3} $DIR >> $DLOG
 		if [ $? -ne 0 ]; then error_exit; fi
 	fi
@@ -153,7 +153,7 @@ while read -r line; do
 		[ -e ${line:3} ] && rm -r ${line:3}
 		DIR="$(dirname ${line:3})"
 		[ ! -e $DIR ] && mkdir -p $DIR
-#		echo "--> kopiere ${line:3} (option:${line:0:2})" | $DLOG
+#		echo "--> kopiere ${line:3} (option:${line:0:2})" >> $DLOG
 		cp -rav $UPDATEDIR/${line:3} $DIR >> $DLOG
 		if [ $? -ne 0 ]; then error_exit; fi
 	fi
@@ -172,7 +172,7 @@ while read -r line; do
 		line2=$(echo $line | awk '{ print $3 }')
 		DIR="$(dirname $line2)"
 		[ ! -e $DIR ] && mkdir -p $DIR
-#		echo "--> symlink $line1 -> $line2 (option:${line:0:2})" | $DLOG
+#		echo "--> symlink $line1 -> $line2 (option:${line:0:2})" >> $DLOG
 		ln -sfv $line1 $line2 >> $DLOG
 	fi
 	if [ x${line:0:2} == xnd ]; then
