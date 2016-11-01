@@ -18,7 +18,13 @@ UPDATEFILESDIR="$UPDATEDIR/FILES"
 SYSTEMDDIR="/etc/systemd/system"
 BINDIR="/usr/bin"
 VERSION=$(cat /etc/vectra130/VERSION)
+read -n 1 -p "Update Version $VERSION ok? [Y/n] " CHECK
+if [ x$CHECK == xn ]; then
+	echo
+	read -p "Neue Update Version eingeben: " VERSION
+fi
 [ x$VERSION == x ] && exit 2
+echo
 
 # up = update
 # cf = force kopieren
