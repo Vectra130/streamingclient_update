@@ -68,7 +68,7 @@ echo "$(cat /$UPDATEDIR/UPDATE.info)"
 
 upload_update()
 {
-VERSION=$(cat VERSION)
+VERSION=$(cat UPDATE.info | grep VERSION | awk -F: '{ print $2 }')
 echo -e "\n-- aktualisiere git ..."
 git add -A -v
 read -p "Commit Info: " COMMIT
