@@ -141,6 +141,7 @@ echo -e "\n\e[33m########## Kopiere Files ($(du -hs | awk '{ print $1 }')B) ...\
 # nf = touch
 # sl = symlink
 # nd = ordner anlegen
+[ -e  /etc/vectra130/configs/sysconfig/config ] && mv /etc/vectra130/configs/sysconfig/config /etc/vectra130/configs/userconfig/config
 while read -r line; do
 	[ $(echo $line | grep -E "^up |^cf |^rc |^rm |^nf |^sl |^nd " | wc -l) == 0 ] && continue
 	echo -n "."
@@ -155,12 +156,12 @@ while read -r line; do
 		DIR="$(dirname ${line:3})"
 		[ ! -e $DIR ] && mkdir -p $DIR
 #		echo "--> kopiere ${line:3} (option:${line:0:2})" >> $DLOG
-		[ -e ${line:3} ] && rm -rf ${line:3}
+		rm -r ${line:3} >> $DLOG
 		cp -rafv $UPDATEFILESDIR/${line:3} $DIR >> $DLOG
 		if [ $? -ne 0 ]; then error_exit; fi
 	fi
 	if [ x${line:0:2} == xrc ]; then
-		[ -e ${line:3} ] && rm -r ${line:3}
+		rm -r ${line:3} >> $DLOG
 		DIR="$(dirname ${line:3})"
 		[ ! -e $DIR ] && mkdir -p $DIR
 #		echo "--> kopiere ${line:3} (option:${line:0:2})" >> $DLOG
@@ -201,7 +202,7 @@ fi
 if [ $(cat /boot/config.txt | grep "^dtoverlay=pi3-act-led,gpio=11" | wc -l) != 1 ]; then
 	echo "dtoverlay=pi3-act-led,gpio=11" >> /boot/config.txt
 fi
-[ -e  /etc/vectra130/configs/sysconfig/config ] && mv /etc/vectra130/configs/sysconfig/config /etc/vectra130/configs/userconfig/config
+
 # patche anwenden
 echo -e "\n\e[33m########## Patche Dateien ...\e[0m" #| $LOG
 for i in $(find $UPDATEDIR/PATCHES -type f | sed 's/.*PATCHES\(.*\).diff/\1/');

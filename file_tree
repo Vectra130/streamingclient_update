@@ -50,7 +50,7 @@ cf /etc/fstab
 cf /etc/dbus-1/system.d/de.tvdr.vdr.conf
 cf /etc/apt/sources.list
 cf /etc/apt/sources.list.d
-cf /etc/hostname
+rc /etc/hostname
 
 nd /tmp_system
 sl /tmp_system/hosts /etc/
