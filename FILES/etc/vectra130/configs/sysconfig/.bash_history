@@ -1,4 +1,3 @@
-nano update.php
 cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
 nano update.sh
 cp -rau /etc/vectra130/VERSION /tmp/test | echo $?
@@ -498,3 +497,4 @@ nano /etc/vectra130/www/config/update.php
 cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
 ./update.sh create
 nano /etc/vectra130/VERSION 
+exit
