@@ -103,7 +103,7 @@ mount -o remount,size=256M /tmp
 if [ $? -ne 0 ]; then error_exit; fi
 
 #system
-echo -e "\n\e[33m########## Aktualisiere Quellen ...\e[0m" #| $LOG
+echo -e "\n\e[33m########## Aktualisiere Paket Quellen ...\e[0m" #| $LOG
 cp -ra FILES/etc/apt/* /etc/apt/
 if [ $? -ne 0 ]; then error_exit; fi
 apt-key adv --keyserver keyserver.ubuntu.com --recv-key 5243CDED
@@ -122,14 +122,9 @@ if [ ! -e /etc/vectra130/swapfile ]; then
 	swapon /etc/vectra130/swapfile
 fi
 
-#proftpd
-echo -e "\n\e[33m########## Aktualisiere proftpd ...\e[0m" #| $LOG
-aptitude -y --no-gui install proftpd-basic
-if [ $? -ne 0 ]; then error_exit; fi
-
-#kodi
-echo -e "\n\e[33m########## Aktualisiere kodi ...\e[0m" #| $LOG
-aptitude -y --no-gui install kodi
+#programme aktualisieren
+echo -e "\n\e[33m########## Aktualisiere Programme ...\e[0m" #| $LOG
+aptitude -y --no-gui install proftpd-basic kodi
 if [ $? -ne 0 ]; then error_exit; fi
 
 # dateien kopieren
@@ -143,6 +138,7 @@ echo -e "\n\e[33m########## Kopiere Files ($(du -hs | awk '{ print $1 }')B) ...\
 # nd = ordner anlegen
 while read -r line; do
 	[ $(echo $line | grep -E "^up |^cf |^rc |^rm |^nf |^sl |^nd " | wc -l) == 0 ] && continue
+	echo -n "."
 	if [ x${line:0:2} == xup ]; then
 		DIR="$(dirname ${line:3})"
 		[ ! -e $DIR ] && mkdir -p $DIR
@@ -199,8 +195,15 @@ if [ $(cat /boot/config.txt | grep "^dtoverlay=pi3-act-led,gpio=11" | wc -l) != 
 	echo "dtoverlay=pi3-act-led,gpio=11" >> /boot/config.txt
 fi
 
+# patche anwenden
+echo -e "\n\e[33m########## Patche Dateien ...\e[0m" #| $LOG
+for i in $(find $UPDATEDIR/PATCHES -type f | sed 's/.*PATCHES\(.*\).diff/\1/');
+do
+	echo -n "."
+	patch -fv "$i" < $UPDATEDIR/PATCHES/$i.diff >> $DLOG
+done
 
-#systemctl
+# systemctl
 echo -e "\n\e[33m########## Aktualisiere systemctl ...\e[0m" #| $LOG
 systemctl daemon-reload
 systemctl disable syslog
@@ -212,8 +215,10 @@ systemctl disable kodi
 
 #richtige user anlegen
 echo -e "\n\e[33m########## Aktualisiere User ...\e[0m" #| $LOG
-deluser ftp
-delgroup ftp
+if [ $(cat /etc/passwd | grep ^"ftp:" | wc -l) != 1 ];then
+	deluser ftp
+	delgroup ftp
+fi
 if [ $(cat /etc/passwd | grep ^"vdr:x:1001:1001::/etc/vectra130/configs/userconfig:/bin/bash" | wc -l) != 1 ];then
 	deluser vdr
 	delgroup vdr
@@ -272,7 +277,7 @@ apt-get clean
 cp -av /etc/vectra130/update/VERSION /etc/vectra130/VERSION >> $DLOG
 if [ $? -ne 0 ]; then error_exit; fi
 #rm -r /etc/vectra130/update/*
-echo -e "\n\n\n\e[32m############################## Update beendet, starte neu ... ##############################\e[0m\n" > $TTfY
+echo -e "\n\n\n\e[32m############################## Update beendet, starte neu ... ##############################\e[0m\n"
 
 date >> $DLOG
 sleep 10

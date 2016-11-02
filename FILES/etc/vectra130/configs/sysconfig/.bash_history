@@ -1,14 +1,3 @@
-rm -r TEST/
-./update.sh create
-nano update.sh 
-./update.sh create
-ls FILES/
-cat file_tree 
-ls FILES/apt/
-nano update.sh 
-cat file_tree 
-nano file_tree 
-nano update.sh 
 nano update.sh 
 ./update.sh create
 cat TEST/debconf/selections 
@@ -498,3 +487,14 @@ which lighttpd
 nano /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/file_tree 
 nano /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/file_tree 
 nano /etc/vectra130/configs/userconfig/config 
+cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
+nano update.sh
+./update.sh create
+nano /etc/vectra130/VERSION 
+nano /etc/vectra130/VERSION 
+nano /etc/vectra130/update/VERSION 
+ls -l /etc/vectra130/update
+nano /etc/vectra130/www/config/update.php
+./update.sh create
+ps aux | grep git
+tail -f /etc/vectra130/update.log 

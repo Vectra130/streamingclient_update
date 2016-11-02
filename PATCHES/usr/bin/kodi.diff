@@ -1,0 +1,12 @@
+--- kodi.orig	2016-11-02 09:31:32.063743857 +0100
++++ kodi	2016-11-02 09:34:23.513743792 +0100
+@@ -26,7 +26,8 @@
+ datarootdir="${prefix}/share"
+ LIBDIR="${exec_prefix}/lib"
+ CRASHLOG_DIR=${CRASHLOG_DIR:-$HOME}
+-USERDATA_DIR="${HOME}/.${bin_name}"
++#USERDATA_DIR="${HOME}/.${bin_name}"
++USERDATA_DIR="/etc/vectra130/configs/kodiconfig"
+ 
+ 
+ # Check for some options used by this script
