@@ -34,6 +34,8 @@ cf /usr/bin/StreamingClient
 cf /usr/bin/BootSequenz
 cf /usr/bin/CheckServer
 
+fc /usr/local/sbin/lighttpd
+
 rc /usr/lib/vdr/plugins
 
 cf /etc/systemd/system/vdr.service
@@ -42,6 +44,7 @@ cf /etc/systemd/system/streamingclient.service
 cf /etc/systemd/system/streamingclient-boot.service
 
 fc /etc/proftpd
+fc /etc/lighttpd
 fc /etc/fstab
 up /etc/dbus-1/system.d/de.tvdr.vdr.conf
 fc /etc/apt/sources.list

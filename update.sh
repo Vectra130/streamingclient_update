@@ -43,6 +43,10 @@ while read -r line; do
 	[ ! -e $DIR ] && mkdir -p $DIR
 	echo "--> kopiere ${line:3} (option:${line:0:2})"
 	cp -rau ${line:3} $DIR
+	if [ $? -ne 0 ]; then
+		echo "Datei nicht gefunden!!!"
+		exit 2
+	fi
 done < $UPDATEDIR/file_tree
 
 [ ! -e $UPDATEFILESDIR/debconf ] && mkdir $UPDATEFILESDIR/debconf
@@ -218,38 +222,42 @@ if [ $(cat /etc/passwd | grep ^"vdr:x:1001:1001::/etc/vectra130/configs/userconf
 	adduser --no-create-home --uid 1001 --gid 1001 --home /etc/vectra130/configs/userconfig --shell /bin/bash --disabled-password --disabled-login --system vdr >> $DLOG
 	if [ $? -ne 0 ]; then error_exit; fi
 fi
-if [ $(cat /etc/passwd | grep ^"kodi:x:1002:1002::/etc/vectra130/configs/userconfig:/bin/bash" | wc -l) != 1 ];then
+#if [ $(cat /etc/passwd | grep ^"kodi:x:1002:1002::/etc/vectra130/configs/userconfig:/bin/bash" | wc -l) != 1 ];then
 	deluser kodi
 	delgroup kodi
-	addgroup --gid 1002 kodi >> $DLOG
-	if [ $? -ne 0 ]; then error_exit; fi
-	adduser --no-create-home --uid 1002 --gid 1002 --home /etc/vectra130/configs/userconfig --shell /bin/bash --disabled-password --disabled-login --system kodi >> $DLOG
-	if [ $? -ne 0 ]; then error_exit; fi
-fi
+#	addgroup --gid 1002 kodi >> $DLOG
+#	if [ $? -ne 0 ]; then error_exit; fi
+#	adduser --no-create-home --uid 1002 --gid 1002 --home /etc/vectra130/configs/userconfig --shell /bin/bash --disabled-password --disabled-login --system kodi >> $DLOG
+#	if [ $? -ne 0 ]; then error_exit; fi
+#fi
 echo "vdr:vdr" | chpasswd >> $DLOG
 if [ $? -ne 0 ]; then error_exit; fi
-echo "kodi:kodi" | chpasswd >> $DLOG
+#echo "kodi:kodi" | chpasswd >> $DLOG
+#if [ $? -ne 0 ]; then error_exit; fi
+#usermod -a -G video,audio,sudo,cdrom,plugdev,users,dialout,dip,input,kodi vdr >> $DLOG
+usermod -a -G video,audio,sudo,cdrom,plugdev,users,dialout,dip,input vdr >> $DLOG
 if [ $? -ne 0 ]; then error_exit; fi
-usermod -a -G video,audio,sudo,cdrom,plugdev,users,dialout,dip,input,kodi vdr >> $DLOG
-if [ $? -ne 0 ]; then error_exit; fi
-usermod -a -G video,audio,sudo,cdrom,plugdev,users,dialout,dip,input,vdr kodi >> $DLOG
-if [ $? -ne 0 ]; then error_exit; fi
+#usermod -a -G video,audio,sudo,cdrom,plugdev,users,dialout,dip,input,vdr kodi >> $DLOG
+#if [ $? -ne 0 ]; then error_exit; fi
 
 #datei rechte vergeben
 echo -e "\n\e[33m########## Aktualisiere User Rechte ...\e[0m" #| $LOG
 chown -R vdr:vdr /etc/vectra130/configs/vdrconfig
 if [ $? -ne 0 ]; then error_exit; fi
-chown -R kodi:kodi /etc/vectra130/configs/kodiconfig
+#chown -R kodi:kodi /etc/vectra130/configs/kodiconfig
+chown -R vdr:vdr /etc/vectra130/configs/kodiconfig
 if [ $? -ne 0 ]; then error_exit; fi
 chown -R vdr:vdr /etc/vectra130/configs/userconfig
 if [ $? -ne 0 ]; then error_exit; fi
 chown -R vdr:vdr /etc/vectra130/data/vdr
 if [ $? -ne 0 ]; then error_exit; fi
-chown -R kodi:kodi /etc/vectra130/data/kodi
+#chown -R kodi:kodi /etc/vectra130/data/kodi
+chown -R vdr:vdr /etc/vectra130/data/kodi
 if [ $? -ne 0 ]; then error_exit; fi
 chown -R vdr:vdr /usr/*/vdr
 if [ $? -ne 0 ]; then error_exit; fi
-chown -R kodi:kodi /usr/*/kodi
+#chown -R kodi:kodi /usr/*/kodi
+chown -R vdr:vdr /usr/*/kodi
 if [ $? -ne 0 ]; then error_exit; fi
 chown -R vdr:vdr /vdrvideo0?
 if [ $? -ne 0 ]; then error_exit; fi

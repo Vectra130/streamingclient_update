@@ -1,126 +1,3 @@
-delgroup 1001
-delgroup 1002
-nano update.sh 
-git status; git add -A; git commit -m bugfix; git push
-nano FILES/vdr/vdrconfig/conf.avail/00-vdr.conf 
-nano FILES/vdr/vdr.service 
-git status; git add -A; git commit -m bugfix; git push
-nano /etc/vectra130/VERSION 
-top
-journalctl -u streamingclient -r
-journalctl -u vdr.service 
-cat /etc/passwd
-cat /etc/group
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-nano update.sh 
-chown -R vdr:vdr /etc/vectra130/configs/vdrconfig
-addgroup --gid 1001 vdr
-cat /etc/group
-delgroup ftp
-addgroup --gid 1001 vdr
-delgroup ftp
-deluser vdr
-mount -o rw,remount /
-delgroup ftp
-cat /etc/group
-nano update.sh 
-deluser ftp
-nano update.sh 
-git status; git add -A; git commit -m bugfix; git push
-deluser vdr
-delgroup ftp
-cat /etc/group
-nano /etc/vectra130/VERSION 
-ls /etc/vectra130/update/
-nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
-/etc/vectra130/www/config/scripts/updateStreamingClient.sh update &
-/etc/vectra130/update/prepare_update.sh &
-nano update.sh 
-pidof -x update.sh
-/etc/vectra130/update/prepare_update.sh 
-journalctl -u vdr.service -r
-systemctl status kodi.service 
-pa aux | grep vdr
-ps aux | grep vdr
-ps aux | grep kodi
-ls -l /etc/vectra130/configs/vdrconfig/
-ls -l /etc/vectra130/configs/vdrconfig/conf.d/
-cd /usr/local/src/cplusplus/VDR/StreamingClient/
-nano INCLUDES/vdr.cpp 
-make
-make install
-cat /etc/passwd
-cat /etc/group
-nano UPDATE/update.sh 
-nano UPDATE/update.sh 
-usermod -a -G video,audio,sudo,cdrom,plugdev,users,dialout,dip,input,kodi vdr
-cat /etc/group
-nano UPDATE/update.sh 
-cat /etc/passwd
-nano UPDATE/FILES/kodi/kodi.service 
-nano /etc/vectra130/configs/userconfig/
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-tree ./
-tree -h
-tree --help
-tree -d
-nano file_tree
-ls FILES/vdr/vdrconfig/
-nano file_tree
-ls FILES/kodi/
-nano file_tree
-ls FILES/streamingclient/
-nano file_tree
-nano file_tree
-ls FILES/proftpd/
-ls /etc/proftpd/
-nano file_tree
-ls /etc/dbus-1/system.d/de.tvdr.vdr.conf 
-nano file_tree
-nano update.sh 
-./update.sh 
-./update.sh create
-nano update.sh 
-nano /etc/vectra130/scripts/sysinfo.sh 
-nano /etc/vectra130/scripts/VDR_BUILD_INSTALL.sh 
-nano /etc/vectra130/scripts/VDR_BUILD_INSTALL.sh 
-nano update.sh 
-./update.sh create
-nano update.sh 
-./update.sh create
-nano update.sh 
-./update.sh create
-dirname --help
-nano update.sh 
-./update.sh create
-nano update.sh 
-./update.sh create
-nano update.sh 
-rsync -h
-nano update.sh 
-./update.sh create
-ls TEST/
-tree TEST/ -d
-nano update.sh 
-./update.sh create
-nano file_tree 
-./update.sh create
-ls /etc/vectra130/configs/vdrconfig/
-nano file_tree 
-cp --help
-cp --help
-nano update.sh 
-./update.sh createt
-nano update.sh 
-./update.sh create
-rsync --help
-cp -h
-cp --help
-nano update.sh 
-./update.sh 
-./update.sh create
-nano update.sh 
-./update.sh create
 rm -r TEST/
 ./update.sh create
 nano update.sh 
@@ -498,3 +375,126 @@ nano update.sh
 cat /etc/vectra130/update.log 
 watch cat /etc/vectra130/update.log 
 tail -f /etc/vectra130/update.log 
+cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
+nano update.sh
+nano /etc/vectra130/www/config/update.php
+nano update.sh
+nano update.sh
+cat /etc/vectra130/update.log 
+nano update.sh
+cp --help
+nano update.sh
+cp /etc/vectra130/VERSION /tmp/
+echo $?
+echo $?
+cp /etc/vectra130/VERSIONq /tmp/
+echo $?
+cp -raf /etc/vectra130/VERSION /tmp/
+echo $?
+cp -rafv /etc/vectra130/VERSION /tmp/
+cp -rafv /etc/vectra130/VERSION /tmp/ >> /tmp/test1
+echo $?
+cp -rafv /etc/vectra130/VERSIONh /tmp/ >> /tmp/test1
+echo $?
+cp -rafv /etc/vectra130/VERSION /tmp/ >> /tmp/test1
+echo $?
+nano update.sh
+./update.sh create
+cat /etc/vectra130/update.log 
+nano file_tree 
+ls -l /etc/vectra130/configs/vdrconfig/
+nano update.sh
+tail -f /etc/vectra130/update.log 
+nano update.sh
+nano /etc/vectra130/update/prepare_update.sh 
+/etc/vectra130/update/git_update_files/update.sh 
+nano update.sh
+./update.sh create
+tail -f /etc/vectra130/update.log 
+cat /etc/vectra130/update.log 
+nano update.sh
+./update.sh create
+/etc/vectra130/update/git_update_files/update.sh 
+nano update.sh
+nano update.sh
+./update.sh create
+nano update.sh
+./update.sh upload
+tail -f /etc/vectra130/update.log 
+cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
+nano update.sh
+cat /etc/passwd
+cat /etc/group
+cat /etc/vectra130/update.log 
+cat /etc/vectra130/update.log | more
+systemctl status proftpd.service 
+systemctl status proftpd.service 
+systemctl status proftpd.service -l
+nano file_tree 
+nano /etc/proftpd/conf.d/custom.conf 
+mount -o rw,remount /
+nano /etc/proftpd/conf.d/custom.conf 
+mount -o ro,remount /
+systemctl start proftpd.service -l
+systemctl status proftpd.service -l
+find --help
+find --help
+find / -uid 1002 -type d 
+cat /etc/group
+find / -uid 115 -type d 
+find / -uid 116 -type d 
+ls -l /etc/vectra130/configs/kodiconfig/temp/
+cat /etc/vectra130/configs/kodiconfig/temp/kodi.log 
+nano /etc/vectra130/configs/kodiconfig/kodiconfig 
+nano /etc/vectra130/configs/kodiconfig/userdata/profiles.xml 
+cd /etc/vectra130/
+mount -o re,remount /
+mount -o rw,remount /
+apt-get source kodi
+ls
+mount -o ro,remount /
+dpkg -l | grep kodi
+cd kodi-15.2/
+ls
+nano ../kodi_15.2-2~jessie.dsc 
+ls -a
+nano .pc
+nano copying.txt 
+nano debian/source/format 
+nano debian/kodi.install 
+cat debian/kodi.install 
+ls -ld /usr/bin/xbmc 
+cat debian/kodi.install 
+ls -ld /usr/share/kodi/
+ls -ld /usr/share/xbmc
+ls -ld /usr/share/icons/
+ls -ld /usr/share/applications/
+ls -l /usr/share/applications/
+ls -l /usr/share/icons/
+ls -l /usr/share/icons/hicolor/
+nano debian/kodi.default 
+nano debian/kodi.init 
+nano debian/rules 
+nano debian/watch 
+nano debian/README.source 
+nano debian/README.Debian 
+nano debian/kodi-bin.install 
+cat debian/*.install
+ls -ld /usr/include/kodi
+ls -ld /usr/lib/xbmc
+ls -ld /usr/lib/kodi
+ls -ld /usr/lib/python*
+ls -ld /usr/lib/python*/* | grep kodi
+ls -ld /usr/lib/python*/*/ | grep kodi
+ls -ld /usr/lib/python*/*/* | grep kodi
+ls -ld /usr/share/kodi/
+ls -l /usr/share/kodi/
+mount -o rw,remount /
+nano /etc/systemd/system/kodi.service 
+mount -o ro,remount /
+nano /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/file_tree 
+which lighttpd
+which lighttpd
+nano /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/file_tree 
+nano /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/file_tree 
+nano /etc/vectra130/configs/userconfig/config 

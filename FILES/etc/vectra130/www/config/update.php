@@ -13,7 +13,7 @@ if (!isset($SYSTEMTYP)) {
 }
 
 if( "$ACTION" == "exec" ) {
-	exec ('/bin/bash /etc/vectra130/www/config/scripts/updateStreamingClient.sh update', $result);
+	exec ('/bin/bash /etc/vectra130/www/config/scripts/updateStreaming'.$SYSTEMTYP.'.sh update', $result);
         echo "<div class='panel' id='update_exec' title='System Update' selected='true'>";
 	if( $result[0] == "OK" )
 	{
@@ -27,7 +27,7 @@ if( "$ACTION" == "exec" ) {
 else {
 
 // update files laden
-exec('/etc/vectra130/www/config/scripts/updateStreamingClient.sh check', $updateCheck);
+exec('/etc/vectra130/www/config/scripts/updateStreaming'.$SYSTEMTYP.'.sh check', $updateCheck);
 ?>
 <div class='panel' id='update' title='Update - <?php echo $hostname; ?>' selected='true'>
 <?php

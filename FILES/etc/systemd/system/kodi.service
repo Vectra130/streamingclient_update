@@ -2,8 +2,8 @@
 Description=Kodi
 
 [Service]
-User=kodi
-#User=root
+#User=kodi
+User=root
 Environment=HOME=/etc/vectra130
 ExecStart=/usr/bin/kodi -fs --standalone
 
