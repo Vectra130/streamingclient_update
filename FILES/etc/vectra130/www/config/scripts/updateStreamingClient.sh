@@ -10,7 +10,7 @@ GITREPO="https://github.com/Vectra130/streamingclient_update.git"
 
 if [ x$ACTION == xcheck ]; then
 	# pruefe git auf update
-	[ -e $UPDATEDIR ] && rm -r $UPDATEDIR
+	[ -e $UPDATEDIR/VERSION ] && rm $UPDATEDIR/VERSION
 	wget https://raw.githubusercontent.com/Vectra130/streamingclient_update/master/VERSION -P $UPDATEDIR
 	VERSNOW=$(cat /etc/vectra130/VERSION)
 	VERSNOW1=$(printf "%02d" $(echo $VERSNOW | awk -F. '{ print $1 }'))

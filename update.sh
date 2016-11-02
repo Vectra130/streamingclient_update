@@ -124,7 +124,7 @@ fi
 
 #programme aktualisieren
 echo -e "\n\e[33m########## Aktualisiere Programme ...\e[0m" #| $LOG
-aptitude -y --no-gui install proftpd-basic kodi
+aptitude -y --no-gui install proftpd-basic kodi # kodi-eventclients-common kodi-eventclients-kodi-send
 if [ $? -ne 0 ]; then error_exit; fi
 
 # dateien kopieren
@@ -185,6 +185,7 @@ while read -r line; do
 		echo "--> mkdir ${line:3} (option:${line:0:2})" >> $DLOG
 	fi
 done < $UPDATEDIR/file_tree
+echo
 if [ $(cat /boot/config.txt | grep "^dtoverlay=lirc-rpi" | wc -l) != 1 ]; then
 	echo "dtoverlay=lirc-rpi" >> /boot/config.txt
 fi
@@ -202,6 +203,7 @@ do
 	echo -n "."
 	patch -fv "$i" < $UPDATEDIR/PATCHES/$i.diff >> $DLOG
 done
+echo
 
 # systemctl
 echo -e "\n\e[33m########## Aktualisiere systemctl ...\e[0m" #| $LOG
@@ -215,7 +217,7 @@ systemctl disable kodi
 
 #richtige user anlegen
 echo -e "\n\e[33m########## Aktualisiere User ...\e[0m" #| $LOG
-if [ $(cat /etc/passwd | grep ^"ftp:" | wc -l) != 1 ];then
+if [ $(cat /etc/passwd | grep ^"ftp:" | wc -l) == 1 ];then
 	deluser ftp
 	delgroup ftp
 fi
@@ -228,13 +230,14 @@ if [ $(cat /etc/passwd | grep ^"vdr:x:1001:1001::/etc/vectra130/configs/userconf
 	if [ $? -ne 0 ]; then error_exit; fi
 fi
 #if [ $(cat /etc/passwd | grep ^"kodi:x:1002:1002::/etc/vectra130/configs/userconfig:/bin/bash" | wc -l) != 1 ];then
+if [ $(cat /etc/passwd | grep ^"kodi:" | wc -l) == 1 ];then
 	deluser kodi
 	delgroup kodi
 #	addgroup --gid 1002 kodi >> $DLOG
 #	if [ $? -ne 0 ]; then error_exit; fi
 #	adduser --no-create-home --uid 1002 --gid 1002 --home /etc/vectra130/configs/userconfig --shell /bin/bash --disabled-password --disabled-login --system kodi >> $DLOG
 #	if [ $? -ne 0 ]; then error_exit; fi
-#fi
+fi
 echo "vdr:vdr" | chpasswd >> $DLOG
 if [ $? -ne 0 ]; then error_exit; fi
 #echo "kodi:kodi" | chpasswd >> $DLOG

@@ -27,7 +27,7 @@ up /etc/vectra130/sysimages
 up /etc/vectra130/sysvideos
 rc /etc/vectra130/scripts
 sl /etc/vectra130/configs/sysconfig/VDR-Streaming-Client.service /etc/avahi/services/
-sl configs/kodiconfig /etc/vectra130/.kodi
+#sl configs/kodiconfig /etc/vectra130/.kodi
 
 cf /usr/bin/vdr
 cf /usr/bin/StreamingClient

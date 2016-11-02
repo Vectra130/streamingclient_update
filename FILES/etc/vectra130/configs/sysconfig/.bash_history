@@ -1,74 +1,3 @@
-nano update.sh 
-./update.sh create
-cat TEST/debconf/selections 
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-ls -a /etc/vectra130/configs/sysconfig/
-nano /etc/vectra130/configs/sysconfig/VDR-Streaming-Client.service 
-ls -l /etc/avahi/services/VDR-Streaming-Client.service 
-nano update.sh 
-ls -la /etc/avahi/services/
-nano update.sh 
-cd ..
-nano INCLUDES/standards.h 
-grep SYS_CONF_DIR *
-grep SYS_CONF_DIR INCLUDES/*
-make clean
-make -j2
-make install
-mv /etc/vectra130/configs/sysconfig/config /etc/vectra130/configs/userconfig/
-cd UPDATE/
-ls -la /etc/vectra130/configs/sysconfig/
-nano /etc/vectra130/configs/sysconfig/hostname 
-rm /etc/vectra130/configs/sysconfig/hostname 
-ls -la /etc/vectra130/configs/sysconfig/
-nano file_tree 
-nano file_tree 
-nano update.sh 
-rm -h
-rm --help
-nano update.sh 
-ls -l /etc/ | grep ^l
-nano update.sh 
-reboot
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-nano update.sh 
-mount -o rw,remount /boot
-nano /boot/config.txt
-nano update.sh 
-nano file_tree 
-nano /boot/cmdline.txt
-nano update.sh 
-nano file_tree 
-cat file_tree 
-nano update.sh 
-nano file_tree update.sh 
-nano file_tree 
-nano update.sh 
-nano update.sh file_tree 
-nano update.sh file_tree 
-nano update.sh file_tree 
-nano update.sh file_tree 
-nano update.sh file_tree 
-ls -la /etc/vectra130/configs/vdrconfig/
-nano update.sh file_tree 
-nano update.sh file_tree 
-nano update.sh file_tree 
-nano update.sh file_tree 
-nano update.sh file_tree 
-nano update.sh /tmp/test
-nano update.sh /tmp/test
-chmod +x /tmp/test 
-nano /tmp/test 
-/tmp/test 
-nano /tmp/test 
-nano update.sh /tmp/test
-/tmp/test 
-/tmp/test 
-nano /tmp/test 
-du -hs TEST
-du -s TESTr
-du -s TEST
-nano update.sh 
 cp update.sh update.sh.bkp
 nano update.sh 
 echo hallo welt | tee /tmp/test1
@@ -498,3 +427,74 @@ nano /etc/vectra130/www/config/update.php
 ./update.sh create
 ps aux | grep git
 tail -f /etc/vectra130/update.log 
+which /kodi-sebd
+which /kodi-send
+which kodi-send
+which kodi-bin
+which kodi.bin
+which kodi?bin
+nano /usr/bin/kodi
+ls /usr/lib/kodi/
+ls /usr/lib/kodi/system/
+ls /usr/lib/kodi/addons/
+ls -la /usr/lib/kodi/
+cd /usr/bin/
+cp kodi kodi.orig
+mount -o rw,remount /
+cp kodi kodi.orig
+nano kodi
+ls /etc/vectra130/configs/userconfig/
+ls /etc/vectra130/configs/kodiconfig/
+nano kodi
+nano kodi
+diff -u kodi.orig kodi
+diff -u kodi.orig kodi > /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/usr/bin/kodi
+mkdir -p /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/usr/bin/
+diff -u kodi.orig kodi > /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/usr/bin/kodi
+rm kodi.orig 
+mount -o rw,remount /
+mount -o rw,remount /
+nano kodi
+mount -o ro,remount /
+cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
+ls
+nano prepare_update.sh
+ls -a /etc/vectra130/update/git_update_files/
+nano update.sh
+mv PATCHES/usr/bin/kodi PATCHES/usr/bin/kodi.diff
+find PATCHES/ -type f
+nano update.sh
+find /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/ -type f
+find /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/ -type f | sed 's/.*PATCHES\(.*\)/\1/'
+nano update.sh
+patch /usr/bin/kodi < /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/usr/bin/kodi.diff 
+mount -o rw,remount /
+patch /usr/bin/kodi < /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/usr/bin/kodi.diff 
+nano /usr/bin/kodi
+patch /usr/bin/kodi < /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/usr/bin/kodi.diff 
+patch -h
+patch --help
+patch -t /usr/bin/kodi < /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/usr/bin/kodi.diff 
+nano /usr/bin/kodi
+patch -f /usr/bin/kodi < /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/usr/bin/kodi.diff 
+nano /usr/bin/kodi
+patch -f /usr/bin/kodi < /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/usr/bin/kodi.diff 
+nano /usr/bin/kodi
+echo $?
+patch -t /usr/bin/kodi < /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/usr/bin/kodi.diff 
+echo $?
+patch -f /usr/bin/kodi < /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/usr/bin/kodi.diff 
+echo $?
+nano update.sh
+patch -t /usr/bin/kodi < /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/usr/bin/kodi.diff 
+nano /usr/bin/kodi
+nano update.sh
+nano update.sh
+find /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/ -type f | sed 's/.*PATCHES\(.*\).diff/\1/'
+find /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/ -type f | sed 's/.*PATCHES\(.*\)/\1/'
+nano update.sh
+nano update.sh
+./update.sh create
+nano /etc/vectra130/VERSION 
+cat /boot/config.txt
+ps aux | grep git
