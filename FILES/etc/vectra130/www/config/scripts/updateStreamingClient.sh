@@ -31,6 +31,7 @@ fi
 
 if [ x$ACTION == xupdate ]; then
 	date > /etc/vectra130/update.log
+	[ -e $UPDATEDIR/prepare_update.sh ] && rm $UPDATEDIR/prepare_update.sh
 	wget https://raw.githubusercontent.com/Vectra130/streamingclient_update/master/prepare_update.sh -P $UPDATEDIR
 	if [ -e $UPDATEDIR/prepare_update.sh ]; then
 		chmod +x $UPDATEDIR/prepare_update.sh

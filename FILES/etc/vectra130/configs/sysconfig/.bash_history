@@ -1,48 +1,3 @@
-cp update.sh update.sh.bkp
-nano update.sh 
-echo hallo welt | tee /tmp/test1
-cat /tmp/test1 
-tee -h
-tee --help
-echo hallo welt | tee /tmp/test1
-cat /tmp/test1 
-echo hallo welt | tee -a /tmp/test1 | tee -a /tmp/test2
-cat /tmp/test1 
-cat /tmp/test2
-echo hallo welt | tee -a /tmp/test1 | tee -a /tmp/test2
-cat /tmp/test2
-cat /tmp/test1 
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-nano update.sh
-tee --help
-nano update.sh
-./update.sh create
-git status
-rm -r TEST/
-nano .gitignore
-git status
-git add -A
-nano /etc/vectra130/www/config/update.php
-echo hallo | tee -a /tmp/test1 > /dev/null 
-cat /tmp/test1
-nano /etc/vectra130/www/config/update.php
-nano /etc/vectra130/www/config/update.php
-nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
-./update.sh create
-git status
-git add -A
-git commit -m "1.13.1"
-git push
-nano /etc/vectra130/VERSION 
-nano /etc/vectra130/www/config/update.php
-nano /etc/vectra130/www/config/update.php
-nano /etc/vectra130/www/config/index.php
-nano /etc/vectra130/VERSION 
-journalctl -u vdr.service  -r
-ls -l /dev/vchiq 
-echo vdr > /tmp/.frontendSet 
-journalctl -u vdr.service  -r
-journalctl -u vdr.service  -r
 pidof -x StreamingClient 
 systemctl restart streamingclient
 killall StreamingClient 
@@ -498,3 +453,48 @@ nano update.sh
 nano /etc/vectra130/VERSION 
 cat /boot/config.txt
 ps aux | grep git
+cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
+nano update.sh
+apt-cache search kodi-send
+nano update.sh
+nano update.sh
+aptitude install kodi-eventclients-kodi-send
+mount -o rw,remount /
+aptitude install kodi-eventclients-kodi-send
+aptitude --help
+aptitude --help
+aptitude install kodi-eventclients-kodi-send kodi-eventclients-kodi-common
+nano update.sh
+aptitude install kodi-eventclients-kodi-send kodi-eventclients-common
+aptitude update
+aptitude install kodi-eventclients-kodi-send kodi-eventclients-common
+apt-cache policy kodi-eventclients-*
+apt-cache search kodi-eventclients-common
+nano update.sh
+nano /etc/systemd/system/kodi.service 
+nano file_tree 
+ls -la /etc/vectra130/
+rm /etc/vectra130/.kodi
+rm /etc/vectra130/kodi*
+rm -r /etc/vectra130/kodi*
+df -h
+ls -la /etc/vectra130/configs/
+ls -la /etc/vectra130/configs/userconfig/
+ls -la /etc/vectra130/configs/kodiconfig/
+rm /etc/vectra130/configs/kodiconfig/kodiconfig 
+ls -la /etc/vectra130/configs/kodiconfig/
+./update.sh create
+nano prepare_update.sh
+nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
+./update.sh create
+./update.sh upload
+nano /etc/vectra130/VERSION 
+ps aux | grep git
+tail -f /etc/vectra130/update.log 
+nano prepare_update.sh
+./update.sh create
+tail -f /etc/vectra130/update.log 
+ps aux | grep git
+tail -f /etc/vectra130/update.log 
+tail -f /etc/vectra130/update.log 
+reboot
