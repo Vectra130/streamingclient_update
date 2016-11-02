@@ -13,21 +13,27 @@ if (!isset($SYSTEMTYP)) {
 }
 
 if( "$ACTION" == "exec" ) {
-	exec ('/bin/bash /etc/vectra130/www/config/scripts/updateStreaming'.$SYSTEMTYP.'.sh update', $result);
-        echo "<div class='panel' id='update_exec' title='System Update' selected='true'>";
-	if( $result[0] == "OK" )
-	{
-	    echo "<fieldset><p><b>Systemupdate wird durchgef&uuml;hrt. System nicht ausschalten.</br>Das System startet nach dem Update automatisch neu.</b></p></fieldset>";
-	    exec ('/bin/bash /etc/vectra130/update/prepare_update.sh | tee -a /etc/vectra130/update.log > /dev/tty1 &2>/dev/tty1 &');
-	} else
-	{
-	    echo "<fieldset><p><b>Ein Problem ist aufgetreten. Das Update konnte nicht herunter geladen werden!!</b></p></fieldset>";
-	}
+    if( $SYSTEMTYP == "Server" )
+	exec ('/bin/bash /etc/vectra130/www/config/scripts/updateStreamingServer.sh update', $result);
+    else
+	exec ('/bin/bash /etc/vectra130/www/config/scripts/updateStreamingClient.sh update', $result);
+    echo "<div class='panel' id='update_exec' title='System Update' selected='true'>";
+    if( $result[0] == "OK" )
+    {
+	echo "<fieldset><p><b>Systemupdate wird durchgef&uuml;hrt. System nicht ausschalten.</br>Das System startet nach dem Update automatisch neu.</b></p></fieldset>";
+	exec ('/bin/bash /etc/vectra130/update/prepare_update.sh | tee -a /etc/vectra130/update.log > /dev/tty1 &2>/dev/tty1 &');
+    } else
+    {
+	echo "<fieldset><p><b>Ein Problem ist aufgetreten. Das Update konnte nicht herunter geladen werden!!</b></p></fieldset>";
+    }
 }
 else {
 
 // update files laden
-exec('/etc/vectra130/www/config/scripts/updateStreaming'.$SYSTEMTYP.'.sh check', $updateCheck);
+if( $SYSTEMTYP == "Server" )
+    exec('/etc/vectra130/www/config/scripts/updateStreamingServer.sh check', $updateCheck);
+else
+    exec('/etc/vectra130/www/config/scripts/updateStreamingClient.sh check', $updateCheck);
 ?>
 <div class='panel' id='update' title='Update - <?php echo $hostname; ?>' selected='true'>
 <?php
