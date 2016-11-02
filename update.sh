@@ -271,7 +271,7 @@ echo -e "\n\e[33m########## Räume auf uns schließe Update ab ...\e[0m" #| $LOG
 apt-get -y autoclean
 apt-get -y autoremove
 apt-get clean
-echo $VERSION > /etc/vectra130/VERSION
+#echo $VERSION > /etc/vectra130/VERSION
 rm -r /etc/vectra130/update/*
 echo -e "\n\n\n\e[32m############################## Update beendet, starte neu ... ##############################\e[0m\n"
 
