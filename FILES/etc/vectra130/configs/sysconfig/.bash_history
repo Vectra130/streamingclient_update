@@ -1,86 +1,3 @@
-nano update.sh
-./update.sh create
-nano update.sh
-read -n 1 -i "test ? \0" Test
-read -n 1 -i "test" Test
-read --help
-read -n 1 -p "test ? \0" Test
-read -n 1 -p "test ? " Test
-nano update.sh
-ls
-nano update.sh
-ls -l
-./update.sh create
-nano update.sh
-ls -l
-nano update.sh
-echo -e "\e[31m hallo"
-echo -e "\e[0m hallo"
-nano update.sh
-./update.sh
-nano update.sh
-./update.sh
-ls /etc/vectra130/
-cat /etc/vectra130/update
-cat /etc/vectra130/update.log 
-./update.sh
-nano update.sh
-nano /etc/vectra130/update.log 
-./update.sh
-nano /etc/vectra130/update.log 
-./update.sh
-nano update.sh
-nano file_tree 
-nano update.sh
-./update.sh create
-nano update.sh
-nano update.sh
-ls
-tar --help | grep -i thread
-tar --help | grep -i comp
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
-nano prepare_update.sh 
-cp prepare_update.sh prepare_update.sh.bkp
-nano prepare_update.sh 
-ls -la /etc/vectra130/update
-ls -la /etc/vectra130/update/
-nano prepare_update.sh 
-nano update.sh
-nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
-nano prepare_update.sh 
-git pull --depth 1
-nano update.sh
-./update.sh create
-ls -a
-rm size_FILES_TAR 
-./update.sh upload
-./update.sh upload
-nano /etc/vectra130/VERSION 
-scp 192.168.1.81:/etc/vectra130/www/config/index.php /etc/vectra130/www/config/
-nano /etc/vectra130/www/config/index.php
-update create
-./update create
-./update.sh create
-nano /etc/vectra130/VERSION 
-./update.sh create
-grep sysconfig /etc/vectra130/www/config/*
-sed -i -e 's/sysconfig\/config/userconfig\/config/g' /etc/vectra130/www/*
-sed -i -e 's/sysconfig\/config/userconfig\/config/g' /etc/vectra130/www/config/*
-sed -i -e 's/sysconfig\/config/userconfig\/config/g' /etc/vectra130/www/config/scripts/*
-sed -i -e 's/sysconfig\/config/userconfig\/config/g' /etc/vectra130/scripts/*
-./update.sh create
-git add --help
-nano update.sh
-nano /etc/vectra130/www/config/index.php
-./update.sh create
-nano /etc/vectra130/VERSION 
-cd /etc/vectra130/www/config/
-nano update.php
-nano /etc/vectra130/configs/userconfig/config 
-nano update.php
-nano index.php
-cd /etc/vectra130/www/config/
 nano index.php update.php
 nano /etc/vectra130/VERSION 
 nano index.php update.php
@@ -497,4 +414,87 @@ ls -la /etc/vectra130/update
 ls -la /etc/vectra130/update
 tail -f /etc/vectra130/update.log 
 ls -la /etc/vectra130/update
+tail -f /etc/vectra130/update.log 
+cat /etc/vectra130/VERSION 
+cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
+nano update.sh 
+ls
+echo kodi > /tmp/.frontendSet 
+cd /usr/local/src/
+wget https://github.com/xbmc/xbmc/blob/master/tools/EventClients/Clients/Kodi%20Send/kodi-send.py
+nano kodi-send.py 
+rm kodi-send.py 
+wget https://raw.githubusercontent.com/xbmc/xbmc/master/tools/EventClients/Clients/Kodi%20Send/kodi-send.py
+nano kodi-send.py 
+chmod +x kodi-send.py 
+./kodi-send.py 
+aptitude install kodi-eventclients-common 
+mount -o rw,remount /
+aptitude install kodi-eventclients-common 
+./kodi-send.py 
+./kodi-send.py --action="Quit"
+pidof -x kodi
+echo kodi > /tmp/.frontendSet 
+watch pidof -x kodi
+systemctl status kodi
+nano /usr/bin/kodi
+systemctl start kodi
+systemctl status kodi
+nano /usr/bin/kodi
+nano /etc/systemd/system/kodi.service 
+echo kodi > /tmp/.frontendSet 
+systemctl status kodi
+systemctl daemon-reload 
+echo kodi > /tmp/.frontendSet 
+systemctl status kodi
+systemctl status kodi
+systemctl status kodi
+systemctl status kodi
+systemctl status kodi
+systemctl status kodi
+systemctl status kodi
+systemctl status kodi
+systemctl status kodi
+cat /tmp/.frontendSet 
+echo kodi > /tmp/.frontendSet 
+cat /tmp/.frontendSet 
+systemctl status kodi
+watch pidof -x kodi.bin 
+./kodi-send.py --action="Quit"
+watch pidof -x kodi.bin 
+cd cplusplus/VDR/StreamingClient/
+nano INCLUDES/kodi.cpp 
+nano INCLUDES/frontend.cpp 
+nano INCLUDES/tools.h
+nano INCLUDES/frontend.h
+nano INCLUDES/frontend.cpp 
+mv /usr/local/src/kodi-send.py /usr/bin/
+nano UPDATE/file_tree 
+nano UPDATE/update.sh 
+nano INCLUDES/frontend.cpp 
+nano INCLUDES/tools.cpp 
+nano INCLUDES/frontend.cpp 
+kodi-send.py --action=Quit
+nano INCLUDES/frontend.cpp 
+nano INCLUDES/remote.cpp 
+make -j2
+nano Makefile 
+nano Make.config 
+make clean
+make -j2
+nano INCLUDES/frontend.cpp 
+nano INCLUDES/tools.cpp 
+nano INCLUDES/frontend.cpp 
+make -j2
+make install
+cd UPDATE/
+./update.sh create
+git clone --help
+nano /etc/vectra130/www/config/update.php
+nano prepare_update.sh 
+cat /etc/vectra130/update.log | less
+nano update.sh 
+./update.sh create
+tail -f /etc/vectra130/update.log 
+nano /etc/vectra130/VERSION 
 tail -f /etc/vectra130/update.log 
