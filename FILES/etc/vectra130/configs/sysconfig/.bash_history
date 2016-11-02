@@ -1,12 +1,3 @@
-pidof -x StreamingClient 
-systemctl restart streamingclient
-killall StreamingClient 
-killall StreamingClient 
-killall StreamingClient -9
-killall StreamingClient -9
-reboot
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-du -hs FILES
 bzip2 FILES
 bzip2 -h
 bzip2 FILES/
@@ -498,3 +489,12 @@ ps aux | grep git
 tail -f /etc/vectra130/update.log 
 tail -f /etc/vectra130/update.log 
 reboot
+cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
+nano prepare_update.sh
+nano /etc/vectra130/VERSION 
+tail -f /etc/vectra130/update.log 
+nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
+./update.sh create
+tail -f /etc/vectra130/update.log 
+ano /us
+nano /usr/bin/kodi

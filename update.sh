@@ -201,7 +201,7 @@ echo -e "\n\e[33m########## Patche Dateien ...\e[0m" #| $LOG
 for i in $(find $UPDATEDIR/PATCHES -type f | sed 's/.*PATCHES\(.*\).diff/\1/');
 do
 	echo -n "."
-	patch -fv "$i" < $UPDATEDIR/PATCHES/$i.diff >> $DLOG
+	patch -f --verbose "$i" < $UPDATEDIR/PATCHES/$i.diff >> $DLOG
 done
 echo
 
