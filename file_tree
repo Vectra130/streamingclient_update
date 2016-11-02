@@ -35,7 +35,7 @@ cf /usr/bin/BootSequenz
 cf /usr/bin/CheckServer
 up /usr/bin/kodi-send.py
 
-fc /usr/local/sbin/lighttpd
+cf /usr/local/sbin/lighttpd
 
 rc /usr/lib/vdr/plugins
 
@@ -44,17 +44,17 @@ cf /etc/systemd/system/kodi.service
 cf /etc/systemd/system/streamingclient.service
 cf /etc/systemd/system/streamingclient-boot.service
 
-fc /etc/proftpd
-fc /etc/lighttpd
-fc /etc/fstab
-up /etc/dbus-1/system.d/de.tvdr.vdr.conf
-fc /etc/apt/sources.list
-rc /etc/apt/sources.list.d
-rc /etc/hostname
+cf /etc/proftpd
+cf /etc/lighttpd
+cf /etc/fstab
+cf /etc/dbus-1/system.d/de.tvdr.vdr.conf
+cf /etc/apt/sources.list
+cf /etc/apt/sources.list.d
+cf /etc/hostname
 
 nd /tmp_system
 sl /tmp_system/hosts /etc/
 sl /tmp_system/mailname /etc/
 sl /tmp_system/resolv.conf /etc/
 
-fc /boot/cmdline.txt
+cf /boot/cmdline.txt
