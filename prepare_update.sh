@@ -64,11 +64,11 @@ install_update()
 
 stop_streamingclient
 update_info
-if [ -e $UPDATEDIR/.git ]; then
-	pull_update
-else
+#if [ -e $UPDATEDIR/.git ]; then
+#	pull_update
+#else
 	clone_update
-fi
+#fi
 install_update
 
 exit 0
