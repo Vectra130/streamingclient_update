@@ -14,14 +14,14 @@ clone_update()
 {
 	#update herunterladen
 	[ -e $UPDATEDIR ] && rm -r $UPDATEDIR
-	git clone --depth 1 $GITREPO $UPDATEDIR
+	git clone --depth 1 $GITREPO $UPDATEDIR >> /etc/vectra130/update.log
 }
 
 pull_update()
 {
 	#pull
 	cd $UPDATEDIR
-	git pull --depth 1
+	git pull --depth 1 >> /etc/vectra130/update.log
 }
 
 stop_streamingclient()

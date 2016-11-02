@@ -83,7 +83,7 @@ BINDIR="/usr/bin"
 TTY="> /dev/tty1"
 LOG="tee -a /dev/tty1 | tee -a /etc/vectra130/update.log"
 DLOG="/etc/vectra130/update.log"
-VERSION=$(cat UPDATE.info | grep VERSION | awk -F: '{ print $2 }')
+VERSION=$(cat /etc/vectra130/update/UPDATE.info | grep VERSION | awk -F: '{ print $2 }')
 
 cd $UPDATEDIR
 #updateinfos zeigen
