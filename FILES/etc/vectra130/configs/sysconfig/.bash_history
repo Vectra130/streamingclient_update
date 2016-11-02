@@ -1,11 +1,3 @@
-nano update.sh
-./update.sh create
-cat /etc/vectra130/update.log 
-nano file_tree 
-ls -l /etc/vectra130/configs/vdrconfig/
-nano update.sh
-tail -f /etc/vectra130/update.log 
-nano update.sh
 nano /etc/vectra130/update/prepare_update.sh 
 /etc/vectra130/update/git_update_files/update.sh 
 nano update.sh
@@ -498,3 +490,11 @@ make -j2
 make install
 StreamingClient -v
 reboot
+cat /etc/vectra130/VERSION 
+nano /etc/vectra130/VERSION 
+cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
+./update.sh create
+nano update.sh 
+./update.sh upload
+./update.sh create
+tail -f /etc/vectra130/update.log 

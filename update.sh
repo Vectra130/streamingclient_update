@@ -17,7 +17,7 @@ UPDATEDIR="/usr/local/src/cplusplus/VDR/StreamingClient/UPDATE"
 UPDATEFILESDIR="$UPDATEDIR/FILES"
 SYSTEMDDIR="/etc/systemd/system"
 BINDIR="/usr/bin"
-VERSION=$(cat /etc/vectra130/VERSION)
+VERSION=$(StreamingClient -v | grep Streaming | sed 's/Streaming.*v\(.*\) by.*/\1/g')
 read -n 1 -p "Update Version $VERSION ok? [Y/n] " CHECK
 if [ x$CHECK == xn ]; then
 	echo
