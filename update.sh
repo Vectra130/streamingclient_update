@@ -1,5 +1,5 @@
 #/bin/bash
-#1.13.1
+#v1.0
 #Updatefile zum updaten des StreamingClients
 
 error_exit()
@@ -36,7 +36,6 @@ echo
 
 echo Erstelle Update $VERSION ...
 
-#echo $VERSION > VERSION
 [ -e UPDATE.info ] && rm UPDATE.info
 
 while read -r line; do
@@ -53,12 +52,7 @@ done < $UPDATEDIR/file_tree
 
 [ ! -e $UPDATEFILESDIR/debconf ] && mkdir $UPDATEFILESDIR/debconf
 debconf-get-selections > $UPDATEFILESDIR/debconf/selections
-#echo Archiv packen...
 [ -e ${UPDATEDIR}/FILES.tar ] && rm ${UPDATEDIR}/FILES.tar
-#du -hs $UPDATEFILESDIR | awk '{ print $1 "B" }' > $UPDATEDIR/size_FILES
-#tar cfpz ${UPDATEDIR}/FILES.tar $UPDATEFILESDIR && rm -r $UPDATEFILESDIR && echo ok
-#du -hs $UPDATEDIR/FILES.tar | awk '{ print $1 "B" }' > $UPDATEDIR/size_FILES_TAR
-#du -hs $UPDATEDIR --exclude=.git | awk '{ print $1 "B" }' > $UPDATEDIR/size_DOWNLOAD
 
 echo "VERSION:"$VERSION > UPDATE.info
 echo "DATE:"$(date) >> UPDATE.info
@@ -69,6 +63,7 @@ echo "$(cat /$UPDATEDIR/UPDATE.info)"
 upload_update()
 {
 VERSION=$(cat UPDATE.info | grep VERSION | awk -F: '{ print $2 }')
+[ x$VERSION == x ] && exit 2
 echo -e "\n-- aktualisiere git ..."
 git add -A -v
 read -p "Commit Info: " COMMIT
@@ -76,6 +71,7 @@ echo
 [ "x$COMMIT" == x ] && COMMIT=$VERSION
 git commit -m "$COMMIT"
 git push && echo "--- Version $VERSION hoch geladen"
+[ -e UPDATE.info ] && rm UPDATE.info
 }
 
 install_update()
@@ -87,6 +83,7 @@ BINDIR="/usr/bin"
 TTY="> /dev/tty1"
 LOG="tee -a /dev/tty1 | tee -a /etc/vectra130/update.log"
 DLOG="/etc/vectra130/update.log"
+VERSION=$(cat UPDATE.info | grep VERSION | awk -F: '{ print $2 }')
 
 cd $UPDATEDIR
 #updateinfos zeigen
@@ -95,8 +92,10 @@ echo -e "\e[3J" #| $LOG
 echo -e "\n\e[34m############################## UPDATEVERLAUF ##############################\e[0m\n" #| $LOG
 echo -e "\n\e[33m########## Updatefiles heruntergeladen\e[0m" #| $LOG
 
-#echo -e "\n\e[33m########## Updatefiles entpacken ...\e[0m" #| $LOG
-#tar xfpz ${UPDATEDIR}/FILES.tar && rm -r $UPDATEDIR/FILES.tar || error_exit
+if [ x$VERSION == x ]; then
+	echo "VERSIONSINFO NICHT VORHANDEN" >> $DLOG
+	error_exit
+fi
 
 echo -e "\n\e[33m########## Erstelle read-write Filesystem ...\e[0m" #| $LOG
 mount -o rw,remount /
@@ -233,42 +232,29 @@ if [ $(cat /etc/passwd | grep ^"vdr:x:1001:1001::/etc/vectra130/configs/userconf
 	adduser --no-create-home --uid 1001 --gid 1001 --home /etc/vectra130/configs/userconfig --shell /bin/bash --disabled-password --disabled-login --system vdr >> $DLOG
 	if [ $? -ne 0 ]; then error_exit; fi
 fi
-#if [ $(cat /etc/passwd | grep ^"kodi:x:1002:1002::/etc/vectra130/configs/userconfig:/bin/bash" | wc -l) != 1 ];then
 if [ $(cat /etc/passwd | grep ^"kodi:" | wc -l) == 1 ];then
 	deluser kodi
 	delgroup kodi
-#	addgroup --gid 1002 kodi >> $DLOG
-#	if [ $? -ne 0 ]; then error_exit; fi
-#	adduser --no-create-home --uid 1002 --gid 1002 --home /etc/vectra130/configs/userconfig --shell /bin/bash --disabled-password --disabled-login --system kodi >> $DLOG
-#	if [ $? -ne 0 ]; then error_exit; fi
 fi
 echo "vdr:vdr" | chpasswd >> $DLOG
 if [ $? -ne 0 ]; then error_exit; fi
-#echo "kodi:kodi" | chpasswd >> $DLOG
-#if [ $? -ne 0 ]; then error_exit; fi
-#usermod -a -G video,audio,sudo,cdrom,plugdev,users,dialout,dip,input,kodi vdr >> $DLOG
 usermod -a -G video,audio,sudo,cdrom,plugdev,users,dialout,dip,input vdr >> $DLOG
 if [ $? -ne 0 ]; then error_exit; fi
-#usermod -a -G video,audio,sudo,cdrom,plugdev,users,dialout,dip,input,vdr kodi >> $DLOG
-#if [ $? -ne 0 ]; then error_exit; fi
 
 #datei rechte vergeben
 echo -e "\n\e[33m########## Aktualisiere User Rechte ...\e[0m" #| $LOG
 chown -R vdr:vdr /etc/vectra130/configs/vdrconfig
 if [ $? -ne 0 ]; then error_exit; fi
-#chown -R kodi:kodi /etc/vectra130/configs/kodiconfig
 chown -R vdr:vdr /etc/vectra130/configs/kodiconfig
 if [ $? -ne 0 ]; then error_exit; fi
 chown -R vdr:vdr /etc/vectra130/configs/userconfig
 if [ $? -ne 0 ]; then error_exit; fi
 chown -R vdr:vdr /etc/vectra130/data/vdr
 if [ $? -ne 0 ]; then error_exit; fi
-#chown -R kodi:kodi /etc/vectra130/data/kodi
 chown -R vdr:vdr /etc/vectra130/data/kodi
 if [ $? -ne 0 ]; then error_exit; fi
 chown -R vdr:vdr /usr/*/vdr
 if [ $? -ne 0 ]; then error_exit; fi
-#chown -R kodi:kodi /usr/*/kodi
 chown -R vdr:vdr /usr/*/kodi
 if [ $? -ne 0 ]; then error_exit; fi
 chown -R vdr:vdr /vdrvideo0?
@@ -281,8 +267,7 @@ echo -e "\n\e[33m########## Räume auf uns schließe Update ab ...\e[0m" #| $LOG
 apt-get -y autoclean
 apt-get -y autoremove
 apt-get clean
-cp -av /etc/vectra130/update/VERSION /etc/vectra130/VERSION >> $DLOG
-if [ $? -ne 0 ]; then error_exit; fi
+echo $VERSION > /etc/vectra130/VERSION
 #rm -r /etc/vectra130/update/*
 echo -e "\n\n\n\e[32m############################## Update beendet, starte neu ... ##############################\e[0m\n"
 

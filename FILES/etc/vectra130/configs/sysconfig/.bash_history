@@ -1,40 +1,3 @@
-tar --help
-tar --help | more
-tar cfv -p --bzip2 FILES.tar FILES
-rm FILES.tar 
-tar cfv -p --bzip2 FILES.tar FILES
-tar cfv -p --bzip2 FILES.tar FILES
-ls -la
-ls -lh
-rm -p 
-rm ./-p
-ls -lh
-tar cfvp --bzip2 FILES.tar FILES
-ls -lh
-rm ./--bzip2 
-tar -h | more
-tar --help | more
-tar --help
-tar cfvpj FILES.tar FILES
-ls -lh
-rm FILES.tar 
-tar cfvpj FILES.tar FILES
-ls -lh
-rm FILES.tar 
-tar cfvpz FILES.tar FILES
-ls -lh
-ls -lh FILES
-ls -lh FILES/etc/vectra130/configs/vdrconfig/
-du -h FILES
-du -s FILES
-ls -lh FILES/etc/vectra130/configs/vdrconfig/
-rm -r FILES
-tar xfpz FILES.tar
-du -s FILES
-ls -lh FILES/etc/vectra130/configs/vdrconfig/
-ls -lh
-du -sh FILES
-nano update.sh
 ./update.sh create
 nano update.sh
 ./update.sh create
@@ -498,3 +461,40 @@ nano update.sh
 ./update.sh create
 nano /etc/vectra130/VERSION 
 tail -f /etc/vectra130/update.log 
+cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
+ls
+nano VERSION 
+nano update.sh
+./update.sh create
+nano update.sh
+./update.sh create
+cat UPDATE.info 
+ls
+rm UPDATEVERLAUF 
+rm VERSION 
+rm update.sh.bkp 
+ls
+rm prepare_update.sh.bkp 
+rm size_*
+nano update.sh 
+./update.sh create
+na o prepare_update.sh 
+nano prepare_update.sh 
+nano /etc/vectra130/www/config/update.php
+nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
+./update.sh create
+nano update.sh 
+./update.sh upload
+nano update.sh 
+nano update.sh 
+./update.sh create
+nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
+nano /etc/vectra130/www/config/update.php
+nano FILES/etc/vectra130/www/config/update.php
+nano /etc/vectra130/www/config/update.php
+nano FILES/etc/vectra130/www/config/update.php
+nano /etc/vectra130/www/config/update.php
+diff FILES/etc/vectra130/www/config/update.php /etc/vectra130/www/config/update.php
+diff -u FILES/etc/vectra130/www/config/update.php /etc/vectra130/www/config/update.php
+nano /etc/vectra130/www/config/update.php
+/etc/vectra130/www/config/scripts/updateStreamingClient.sh date

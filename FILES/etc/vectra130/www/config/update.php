@@ -32,17 +32,20 @@ else {
 // update files laden
 if( $SYSTEMTYP == "Server" )
     exec('/etc/vectra130/www/config/scripts/updateStreamingServer.sh check', $updateCheck);
+    exec('/etc/vectra130/www/config/scripts/updateStreamingServer.sh date', $updateDate);
+    exec('/etc/vectra130/www/config/scripts/updateStreamingServer.sh size', $updateSize);
 else
     exec('/etc/vectra130/www/config/scripts/updateStreamingClient.sh check', $updateCheck);
+    exec('/etc/vectra130/www/config/scripts/updateStreamingClient.sh date', $updateDate);
+    exec('/etc/vectra130/www/config/scripts/updateStreamingClient.sh size', $updateSize);
 ?>
 <div class='panel' id='update' title='Update - <?php echo $hostname; ?>' selected='true'>
 <?php
 echo "<form method='post' action='update.php?hostname=".$hostname."&SYSTEMTYP=".$SYSTEMTYP."&action=exec' enctype='multipart/form-data'>";
 if( $updateCheck[0] != "" )
 {
-    echo '<p><b>Neues Online Update gefunden.</br></br>Aktuelle Version: v'.exec('cat /etc/vectra130/VERSION').'</br> Update Version  : v'.$updateCheck[0].'</br></br></p>';
+//    echo '<p><b>Neues Online Update gefunden.</br></br>Aktuelle Version: v'.exec('cat /etc/vectra130/VERSION').'</br>Update Version: v'.$updateCheck[0].'</br>Update Gr&ouml;&szig;e: '.$updateSize[0].'</br>Update Datum: '.$updateDate[0].'</br></br></p>';
     echo '<p>Das Update installiert im Hintergrund.</br>Je nach Gr&ouml;&szlig;e und Internetverbindung kann dies einige Minuten dauern.</br></br>Alle Frontends (VDR, Kodi) werden beendet. Nach dem Update wird das System automatisch neu gestartet.</br></br></br></b></p>';
-//    echo "<a class='whiteButton' type='submit'>Herunterladen und Installieren</a><div class='spinner'></div>";
     echo "<a href='#' class='whiteButton' type='submit'>Herunterladen und Installieren</a><div class='spinner'></div>";
 } else
 {

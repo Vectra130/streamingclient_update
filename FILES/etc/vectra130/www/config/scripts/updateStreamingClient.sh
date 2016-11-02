@@ -39,4 +39,12 @@ if [ x$ACTION == xupdate ]; then
 	fi
 fi
 
+if [ x$ACTION == xdate ]; then
+	cat $UPDATEDIR/UPDATE.info | grep "^DATE:" | awk -F: '{ print $2 }'
+fi
+
+if [ x$ACTION == xsize ]; then
+	cat $UPDATEDIR/UPDATE.info | grep "^SIZE:" | awk -F: '{ print $2 }'
+fi
+
 exit 0
