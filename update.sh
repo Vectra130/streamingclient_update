@@ -36,7 +36,7 @@ echo
 
 echo Erstelle Update $VERSION ...
 
-[ -e UPDATE.info ] && rm UPDATE.info
+[ -e $UPDATEDIR/UPDATE.info ] && rm $UPDATEDIR/UPDATE.info
 
 while read -r line; do
 	[ $(echo $line | grep -E "^up |^cf |^rc " | wc -l) == 0 ] && continue
@@ -54,15 +54,16 @@ done < $UPDATEDIR/file_tree
 debconf-get-selections > $UPDATEFILESDIR/debconf/selections
 [ -e ${UPDATEDIR}/FILES.tar ] && rm ${UPDATEDIR}/FILES.tar
 
-echo "VERSION:"$VERSION > UPDATE.info
-echo "DATE:"$(date) >> UPDATE.info
-echo "SIZE:"$(du -hs $UPDATEDIR --exclude=.git | awk '{ print $1 "B" }') >> UPDATE.info
+echo "VERSION:"$VERSION > $UPDATEDIR/UPDATE.info
+echo "DATE:"$(date) >> $UPDATEDIR/UPDATE.info
+echo "SIZE:"$(du -hs $UPDATEDIR --exclude=.git | awk '{ print $1 "B" }') >> $UPDATEDIR/UPDATE.info
 echo "$(cat /$UPDATEDIR/UPDATE.info)"
 }
 
 upload_update()
 {
-VERSION=$(cat UPDATE.info | grep VERSION | awk -F: '{ print $2 }')
+UPDATEDIR="/usr/local/src/cplusplus/VDR/StreamingClient/UPDATE"
+VERSION=$(cat $UPDATEDIR/UPDATE.info | grep VERSION | awk -F: '{ print $2 }')
 [ x$VERSION == x ] && exit 2
 echo -e "\n-- aktualisiere git ..."
 git add -A -v
@@ -71,7 +72,7 @@ echo
 [ "x$COMMIT" == x ] && COMMIT=$VERSION
 git commit -m "$COMMIT"
 git push && echo "--- Version $VERSION hoch geladen"
-[ -e UPDATE.info ] && rm UPDATE.info
+[ -e $UPDATEDIR/UPDATE.info ] && rm $UPDATEDIR/UPDATE.info
 }
 
 install_update()
