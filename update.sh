@@ -63,6 +63,7 @@ echo "$(cat /$UPDATEDIR/UPDATE.info)"
 upload_update()
 {
 UPDATEDIR="/usr/local/src/cplusplus/VDR/StreamingClient/UPDATE"
+cd $UPDATEDIR
 VERSION=$(cat $UPDATEDIR/UPDATE.info | grep VERSION | awk -F: '{ print $2 }')
 [ x$VERSION == x ] && exit 2
 echo -e "\n-- aktualisiere git ..."
