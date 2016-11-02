@@ -155,6 +155,7 @@ while read -r line; do
 		DIR="$(dirname ${line:3})"
 		[ ! -e $DIR ] && mkdir -p $DIR
 #		echo "--> kopiere ${line:3} (option:${line:0:2})" >> $DLOG
+		[ -e ${line:3} ] && rm -rf ${line:3}
 		cp -rafv $UPDATEFILESDIR/${line:3} $DIR >> $DLOG
 		if [ $? -ne 0 ]; then error_exit; fi
 	fi
