@@ -33,6 +33,7 @@ cf /usr/bin/vdr
 cf /usr/bin/StreamingClient
 cf /usr/bin/BootSequenz
 cf /usr/bin/CheckServer
+up /usr/bin/kodi-send.py
 
 fc /usr/local/sbin/lighttpd
 

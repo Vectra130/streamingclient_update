@@ -14,7 +14,7 @@ clone_update()
 {
 	#update herunterladen
 	[ -e $UPDATEDIR ] && rm -r $UPDATEDIR
-	git clone --depth 1 $GITREPO $UPDATEDIR >> /etc/vectra130/update.log
+	git clone --verbose --depth 1 $GITREPO $UPDATEDIR >> /etc/vectra130/update.log
 }
 
 pull_update()

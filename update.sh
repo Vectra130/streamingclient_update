@@ -128,7 +128,7 @@ fi
 
 #programme aktualisieren
 echo -e "\n\e[33m########## Aktualisiere Programme ...\e[0m" #| $LOG
-aptitude -y --no-gui install proftpd-basic kodi # kodi-eventclients-common kodi-eventclients-kodi-send
+aptitude -y --no-gui install proftpd-basic kodi kodi-eventclients-common
 if [ $? -ne 0 ]; then error_exit; fi
 
 # dateien kopieren
@@ -269,7 +269,7 @@ apt-get -y autoclean
 apt-get -y autoremove
 apt-get clean
 echo $VERSION > /etc/vectra130/VERSION
-#rm -r /etc/vectra130/update/*
+rm -r /etc/vectra130/update/*
 echo -e "\n\n\n\e[32m############################## Update beendet, starte neu ... ##############################\e[0m\n"
 
 date >> $DLOG

@@ -1,47 +1,3 @@
-./update.sh create
-nano update.sh
-./update.sh create
-ls
-cat size_FILES
-cat size_FILES_TAR 
-du -hs ./
-du -hs ./*
-du -hs ./*/*
-ls -lh
-du -hs 
-ls -lha
-du --help
-du -hs --exclude=.git
-nano update.sh
-du -hs --exclude=.git | awk '{ print $1 "B" }'
-nano update.sh
-./update.sh create
-cat size_FILES
-cat size_FILES_TAR 
-cat size_DOWNLOAD 
-ls -lh
-./update.sh create
-cat size_*
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-nano update.sh
-nano file_tree 
-nano update.sh
-./update.sh create
-ls
-tar --help
-exit
-cd /usr/local/src/cplusplus/VDR/StreamingClient/
-cd UPDATE/
-nano update.sh
-ls
-nano file_tree 
-nano VERSION 
-nano file_tree 
-nano update.sh
-read -h
-nano update.sh
-./update.sh create
-ls
 nano update.sh
 ./update.sh create
 nano update.sh
@@ -498,3 +454,47 @@ diff FILES/etc/vectra130/www/config/update.php /etc/vectra130/www/config/update.
 diff -u FILES/etc/vectra130/www/config/update.php /etc/vectra130/www/config/update.php
 nano /etc/vectra130/www/config/update.php
 /etc/vectra130/www/config/scripts/updateStreamingClient.sh date
+cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
+nano update.sh 
+./update.sh create
+nano /etc/vectra130/www/config/update.php
+nano /etc/vectra130/VERSION 
+ls -l /etc/vectra130/update
+/etc/vectra130/www/config/scripts/updateStreamingClient.sh check
+nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh
+nano /etc/vectra130/www/config/update.php
+cat /etc/vectra130/www/config/*.php | grep sz
+nano /etc/vectra130/www/config/update.php
+cat /etc/vectra130/www/config/*.php | grep color
+nano /etc/vectra130/www/config/update.php
+cat /etc/vectra130/VERSION 
+nano /etc/vectra130/VERSION 
+date --help
+date -R
+date
+date %A
+date +%A
+Restgeld aus ZwK liegt im Cashcup im Wechsler
+./update.sh create
+tail f /etc/vectra130/update.log 
+tail -f /etc/vectra130/update.log 
+cat /etc/vectra130/update/UPDATE.info 
+nano prepare_update.sh 
+nano update.sh 
+./update.sh create
+./update.sh upload
+nano update.sh 
+ls /etc/vectra130/update
+rm /etc/vectra130/update/VERSION 
+rm /etc/vectra130/update/prepare_update.sh.?
+ls /etc/vectra130/update
+ls /etc/vectra130/update/git_update_files/
+rm -r /etc/vectra130/update/*
+ls /etc/vectra130/update -a
+./update.sh create
+ls -l /etc/vectra130/update
+ls -la /etc/vectra130/update
+ls -la /etc/vectra130/update
+tail -f /etc/vectra130/update.log 
+ls -la /etc/vectra130/update
+tail -f /etc/vectra130/update.log 
