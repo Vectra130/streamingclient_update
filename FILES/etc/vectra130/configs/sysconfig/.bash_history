@@ -1,89 +1,3 @@
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-nano update.sh
-cp -rau /etc/vectra130/VERSION /tmp/test | echo $?
-cp -rau /etc/vectra130/VERSION1 /tmp/test | echo $?
-nano update.sh
-[ x$(cp -rau /etc/vectra130/VERSION1 /tmp/test) != x ] || echo fail
-[ x$(cp -rau /etc/vectra130/VERSION /tmp/test) != x ] || echo fail
-[ x$(cp -rau /etc/vectra130/VERSION /tmp/test | echo $?) != x ] || echo fail
-[ x$(cp -rau /etc/vectra130/VERSION /tmp/test | echo $?) != x ] || echo fail
-[ x$(cp -rau /etc/vectra130/VERSIONe /tmp/test | echo $?) != x ] || echo fail
-nano update.sh
-ls -l /etc/vectra130/update/git_update_files/
-ls -l /etc/vectra130/update/git_update_files/FILES/
-ls -la /etc/vectra130/update/git_update_files/FILES/
-ls -la /etc/vectra130/update/git_update_files/
-tail -f /etc/vectra130/update.log 
-nano /etc/vectra130/www/config/update.php
-tail -f /etc/vectra130/update.log 
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-nano update.sh
-./update.sh create
-nano update.sh
-./update.sh create
-./update.sh upload
-tail -f /etc/vectra130/update.log 
-nano /etc/vectra130/www/config/update.php
-./update.sh create
-nano /etc/vectra130/VERSION 
-tail -f /etc/vectra130/update.log 
-tail -f /etc/vectra130/update.log 
-tail -f /etc/vectra130/update.log 
-cat /etc/vectra130/update.log 
-echo test |tee -a /tmp/test1
-cat /tmp/test1 
-echo test > /tmp/test2 | tee -a /tmp/test1
-cat /tmp/test1 
-cat /tmp/test2
-top
-ps aux | grep update
-watch pidof -x prepare_update.sh
-pidof -x prepare_update.sh
-ps aux | grep prepare_update.sh
-top
-cat /etc/vectra130/update.log 
-nano /etc/vectra130/update/prepare_update.sh 
-nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
-nano prepare_update.sh
-nano update.sh
-./update.sh create
-nano update.sh
-nano update.sh
-./update.sh create
-nano /etc/vectra130/VERSION 
-nano /etc/vectra130/VERSION 
-nano update.sh
-./update.sh create
-nano /etc/vectra130/VERSION 
-./update.sh create
-nano update.sh
-./update.sh create
-cat /etc/vectra130/update.log 
-watch cat /etc/vectra130/update.log 
-tail -f /etc/vectra130/update.log 
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-nano update.sh
-nano /etc/vectra130/www/config/update.php
-nano update.sh
-nano update.sh
-cat /etc/vectra130/update.log 
-nano update.sh
-cp --help
-nano update.sh
-cp /etc/vectra130/VERSION /tmp/
-echo $?
-echo $?
-cp /etc/vectra130/VERSIONq /tmp/
-echo $?
-cp -raf /etc/vectra130/VERSION /tmp/
-echo $?
-cp -rafv /etc/vectra130/VERSION /tmp/
-cp -rafv /etc/vectra130/VERSION /tmp/ >> /tmp/test1
-echo $?
-cp -rafv /etc/vectra130/VERSIONh /tmp/ >> /tmp/test1
-echo $?
-cp -rafv /etc/vectra130/VERSION /tmp/ >> /tmp/test1
-echo $?
 nano update.sh
 ./update.sh create
 cat /etc/vectra130/update.log 
@@ -498,3 +412,89 @@ cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
 ./update.sh create
 nano /etc/vectra130/VERSION 
 exit
+cat /etc/vectra130/update.log | less
+nano /etc/vectra130/www/config/update.php
+/usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/update.sh create
+ls /etc/vectra130/update
+/usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/update.sh create
+cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
+ls -a
+nano update.sh 
+./update.sh create
+nano file_tree 
+nano update.sh 
+nano file_tree 
+./update.sh create
+nano file_tree 
+nano update.sh 
+./update.sh create
+nano /etc/vectra130/www/config/update.php
+nano file_tree 
+nano update.sh 
+nano update.sh 
+nano update.sh 
+./update.sh create
+nano update.sh 
+nano file_tree 
+nano update.sh 
+nano file_tree 
+nano update.sh 
+./update.sh create
+nano /etc/vectra130/www/config/update.php
+cd ..
+nano INCLUDES/init.cpp 
+grep chvt *
+grep chvt INCLUDES/*
+journalctl -u streamingclient
+journalctl -u streamingclient-boot.service 
+grep chvt INCLUDES/*
+nano INCLUDES/init.cpp 
+grep cleanConsole *
+grep cleanConsole INCLUDES/*
+nano INCLUDES/init.cpp 
+make
+cd UPDATE/
+./update.sh create
+cd ..
+git status
+git diff
+git add -A
+git commit -m "signalhandler in while schleifen eingebaut"
+git push
+git gat
+git tag
+git tag 1.13.1
+git push --tag
+nano Make.config 
+StreamingClient -v
+./StreamingClient -v
+make install
+StreamingClient -v
+nano INCLUDES/init.cpp 
+mount -o rw,remount /boot
+nano /boot/cmdline.txt
+mount -o ro,remount /boot
+make
+make install
+cd UPDATE/
+./update.sh create
+cd ..
+grep VERSION *
+grep VERSION INCLUDES/*
+nano INCLUDES/system.cpp 
+grep getVersion INCLUDES/*
+nano INCLUDES/system.cpp 
+nano Make.config 
+make -j2
+make install
+cat /etc/vectra130/VERSION 
+reboot
+cat /etc/vectra130/VERSION 
+cd /usr/local/src/cplusplus/VDR/StreamingClient/
+make clean
+grep VERSION INCLUDES/*
+grep VERSION INCLUDES/*
+make -j2
+make install
+StreamingClient -v
+reboot
