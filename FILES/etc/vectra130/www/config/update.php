@@ -20,7 +20,7 @@ if( "$ACTION" == "exec" ) {
     echo "<div class='panel' id='update_exec' title='System Update' selected='true'>";
     if( $result[0] == "OK" )
     {
-	echo "<fieldset><p></br><b>Systemupdate wird durchgef&uuml;hrt. System nicht ausschalten.</br>Der Download kann einige minuten dauern.</br>Nach dem Download werden Statusmeldungen auf dem Fernseher ausgegeben.</br>Das System startet nach dem Update automatisch neu.</b></br></br></p></fieldset>";
+	echo "<fieldset><p></br><b>Systemupdate wird durchgef&uuml;hrt. System nicht ausschalten.</br>Der Download kann einige Minuten dauern.</br>Nach dem Download werden Statusmeldungen auf dem Fernseher ausgegeben.</br>Das System startet nach dem Update automatisch neu.</b></br></br></p></fieldset>";
 	exec ('/bin/bash /etc/vectra130/update/prepare_update.sh | tee -a /etc/vectra130/update.log > /dev/tty1 &2>/dev/tty1 &');
     } else
     {
