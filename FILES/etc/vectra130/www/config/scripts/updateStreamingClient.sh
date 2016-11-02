@@ -10,7 +10,7 @@ GITREPO="https://github.com/Vectra130/streamingclient_update.git"
 
 if [ x$ACTION == xcheck ]; then
 	# pruefe git auf update
-	[ -e $UPDATEDIR/VERSION ] && rm $UPDATEDIR/VERSION
+	[ -e $UPDATEDIR/UPDATE.info ] && rm $UPDATEDIR/UPDATE.info
 	wget https://raw.githubusercontent.com/Vectra130/streamingclient_update/master/VERSION -P $UPDATEDIR
 	VERSNOW=$(cat /etc/vectra130/VERSION)
 	VERSNOW1=$(printf "%02d" $(echo $VERSNOW | awk -F. '{ print $1 }'))
@@ -18,7 +18,7 @@ if [ x$ACTION == xcheck ]; then
 	VERSNOW3=$(printf "%02d" $(echo $VERSNOW | awk -F. '{ print $3 }'))
 	VERSNOWNUM=$VERSNOW1$VERSNOW2$VERSNOW3
 
-	VERSNEW=$(cat $UPDATEDIR/VERSION)
+	VERSNEW=$(cat $UPDATEDIR/UPDATE.info | grep "^VERSION:" | awk -F: '{ print $2 }')
 	VERSNEW1=$(printf "%02d" $(echo $VERSNEW | awk -F. '{ print $1 }'))
 	VERSNEW2=$(printf "%02d" $(echo $VERSNEW | awk -F. '{ print $2 }'))
 	VERSNEW3=$(printf "%02d" $(echo $VERSNEW | awk -F. '{ print $3 }'))

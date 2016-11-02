@@ -36,7 +36,9 @@ echo
 
 echo Erstelle Update $VERSION ...
 
-echo $VERSION > VERSION
+#echo $VERSION > VERSION
+[ -e UPDATE.info ] && rm UPDATE.info
+
 while read -r line; do
 	[ $(echo $line | grep -E "^up |^cf |^rc " | wc -l) == 0 ] && continue
 	DIR="$UPDATEFILESDIR/$(dirname ${line:3})"
@@ -53,13 +55,15 @@ done < $UPDATEDIR/file_tree
 debconf-get-selections > $UPDATEFILESDIR/debconf/selections
 #echo Archiv packen...
 [ -e ${UPDATEDIR}/FILES.tar ] && rm ${UPDATEDIR}/FILES.tar
-du -hs $UPDATEFILESDIR | awk '{ print $1 "B" }' > $UPDATEDIR/size_FILES
+#du -hs $UPDATEFILESDIR | awk '{ print $1 "B" }' > $UPDATEDIR/size_FILES
 #tar cfpz ${UPDATEDIR}/FILES.tar $UPDATEFILESDIR && rm -r $UPDATEFILESDIR && echo ok
 #du -hs $UPDATEDIR/FILES.tar | awk '{ print $1 "B" }' > $UPDATEDIR/size_FILES_TAR
-du -hs $UPDATEDIR --exclude=.git | awk '{ print $1 "B" }' > $UPDATEDIR/size_DOWNLOAD
-echo "FILES: $(cat /$UPDATEDIR/size_FILES)"
-#echo "TAR:   $(cat /$UPDATEDIR/size_FILES_TAR)"
-echo "UPDATE:$(cat /$UPDATEDIR/size_DOWNLOAD)"
+#du -hs $UPDATEDIR --exclude=.git | awk '{ print $1 "B" }' > $UPDATEDIR/size_DOWNLOAD
+
+echo "VERSION:"$VERSION > UPDATE.info
+echo "DATE:"$(date) >> UPDATE.info
+echo "SIZE:"$(du -hs $UPDATEDIR --exclude=.git | awk '{ print $1 "B" }') >> UPDATE.info
+echo "$(cat /$UPDATEDIR/UPDATE.info)"
 }
 
 upload_update()

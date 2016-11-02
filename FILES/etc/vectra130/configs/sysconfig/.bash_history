@@ -1,12 +1,3 @@
-bzip2 FILES
-bzip2 -h
-bzip2 FILES/
-bzip2 FILES/*
-tar cfv FILES/
-tar --usage
-tar --help
-tar cfv FILES.tar FILES
-ls -lh
 tar --help
 tar --help | more
 tar cfv -p --bzip2 FILES.tar FILES
@@ -498,3 +489,12 @@ nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh
 tail -f /etc/vectra130/update.log 
 ano /us
 nano /usr/bin/kodi
+nano /usr/bin/kodi
+cat /etc/vectra130/update.log 
+patch -v
+patch --help
+cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
+nano update.sh
+./update.sh create
+nano /etc/vectra130/VERSION 
+tail -f /etc/vectra130/update.log 
