@@ -200,7 +200,7 @@ fi
 if [ $(cat /boot/config.txt | grep "^dtoverlay=pi3-act-led,gpio=11" | wc -l) != 1 ]; then
 	echo "dtoverlay=pi3-act-led,gpio=11" >> /boot/config.txt
 fi
-
+[ -e  /etc/vectra130/configs/sysconfig/config ] && mv /etc/vectra130/configs/sysconfig/config /etc/vectra130/configs/userconfig/config
 # patche anwenden
 echo -e "\n\e[33m########## Patche Dateien ...\e[0m" #| $LOG
 for i in $(find $UPDATEDIR/PATCHES -type f | sed 's/.*PATCHES\(.*\).diff/\1/');
