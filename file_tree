@@ -7,6 +7,7 @@
 # nf = touch
 # sl = symlink
 # nd = ordner anlegen
+# mv = verschieben
 
 nd /etc/vectra130/data/vdr/vtx
 nd /etc/vectra130/data/kodi
@@ -20,6 +21,7 @@ up /etc/vectra130/configs/vdrconfig/diseqc.conf
 up /etc/vectra130/configs/vdrconfig/remote.conf
 up /etc/vectra130/configs/vdrconfig/plugins
 up /etc/vectra130/configs/vdrconfig/themes
+mv /etc/vectra130/configs/sysconfig/config /etc/vectra130/configs/userconfig/config
 rc /etc/vectra130/configs/sysconfig
 rm /etc/vectra130/bin
 up /etc/vectra130/www
@@ -27,7 +29,7 @@ up /etc/vectra130/sysimages
 up /etc/vectra130/sysvideos
 rc /etc/vectra130/scripts
 sl /etc/vectra130/configs/sysconfig/VDR-Streaming-Client.service /etc/avahi/services/
-#sl configs/kodiconfig /etc/vectra130/.kodi
+sl /etc/vectra130/configs/kodiconfig /etc/vectra130/.kodi
 
 cf /usr/bin/vdr
 cf /usr/bin/StreamingClient

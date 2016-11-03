@@ -33,6 +33,7 @@ echo
 # nf = touch
 # sl = symlink
 # nd = ordner anlegen
+# mv = verschieben
 
 echo Erstelle Update $VERSION ...
 
@@ -141,9 +142,11 @@ echo -e "\n\e[33m########## Kopiere Files ($(du -hs | awk '{ print $1 }')B) ...\
 # nf = touch
 # sl = symlink
 # nd = ordner anlegen
+# mv = verschieben
+
 [ -e  /etc/vectra130/configs/sysconfig/config ] && mv /etc/vectra130/configs/sysconfig/config /etc/vectra130/configs/userconfig/config
 while read -r line; do
-	[ $(echo $line | grep -E "^up |^cf |^rc |^rm |^nf |^sl |^nd " | wc -l) == 0 ] && continue
+	[ $(echo $line | grep -E "^up |^cf |^rc |^rm |^nf |^sl |^nd |^mv " | wc -l) == 0 ] && continue
 	echo -n "."
 	if [ x${line:0:2} == xup ]; then
 		DIR="$(dirname ${line:3})"
@@ -185,6 +188,15 @@ while read -r line; do
 		[ ! -e $DIR ] && mkdir -p $DIR
 #		echo "--> symlink $line1 -> $line2 (option:${line:0:2})" >> $DLOG
 		ln -sfv $line1 $line2 >> $DLOG
+	fi
+	if [ x${line:0:2} == xmv ]; then
+		line1=$(echo $line | awk '{ print $2 }')
+		line2=$(echo $line | awk '{ print $3 }')
+		[ ! -e $line1 ] && continue
+		DIR="$(dirname $line2)"
+		[ ! -e $DIR ] && mkdir -p $DIR
+#		echo "--> mv $line1 -> $line2 (option:${line:0:2})" >> $DLOG
+		mv $line1 $line2 >> $DLOG
 	fi
 	if [ x${line:0:2} == xnd ]; then
 		DIR="${line:3}"
