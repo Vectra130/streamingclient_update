@@ -1,383 +1,3 @@
-ls -ld /usr/lib/kodi
-ls -ld /usr/lib/python*
-ls -ld /usr/lib/python*/* | grep kodi
-ls -ld /usr/lib/python*/*/ | grep kodi
-ls -ld /usr/lib/python*/*/* | grep kodi
-ls -ld /usr/share/kodi/
-ls -l /usr/share/kodi/
-mount -o rw,remount /
-nano /etc/systemd/system/kodi.service 
-mount -o ro,remount /
-nano /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/file_tree 
-which lighttpd
-which lighttpd
-nano /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/file_tree 
-nano /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/file_tree 
-nano /etc/vectra130/configs/userconfig/config 
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-nano update.sh
-./update.sh create
-nano /etc/vectra130/VERSION 
-nano /etc/vectra130/VERSION 
-nano /etc/vectra130/update/VERSION 
-ls -l /etc/vectra130/update
-nano /etc/vectra130/www/config/update.php
-./update.sh create
-ps aux | grep git
-tail -f /etc/vectra130/update.log 
-which /kodi-sebd
-which /kodi-send
-which kodi-send
-which kodi-bin
-which kodi.bin
-which kodi?bin
-nano /usr/bin/kodi
-ls /usr/lib/kodi/
-ls /usr/lib/kodi/system/
-ls /usr/lib/kodi/addons/
-ls -la /usr/lib/kodi/
-cd /usr/bin/
-cp kodi kodi.orig
-mount -o rw,remount /
-cp kodi kodi.orig
-nano kodi
-ls /etc/vectra130/configs/userconfig/
-ls /etc/vectra130/configs/kodiconfig/
-nano kodi
-nano kodi
-diff -u kodi.orig kodi
-diff -u kodi.orig kodi > /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/usr/bin/kodi
-mkdir -p /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/usr/bin/
-diff -u kodi.orig kodi > /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/usr/bin/kodi
-rm kodi.orig 
-mount -o rw,remount /
-mount -o rw,remount /
-nano kodi
-mount -o ro,remount /
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-ls
-nano prepare_update.sh
-ls -a /etc/vectra130/update/git_update_files/
-nano update.sh
-mv PATCHES/usr/bin/kodi PATCHES/usr/bin/kodi.diff
-find PATCHES/ -type f
-nano update.sh
-find /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/ -type f
-find /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/ -type f | sed 's/.*PATCHES\(.*\)/\1/'
-nano update.sh
-patch /usr/bin/kodi < /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/usr/bin/kodi.diff 
-mount -o rw,remount /
-patch /usr/bin/kodi < /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/usr/bin/kodi.diff 
-nano /usr/bin/kodi
-patch /usr/bin/kodi < /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/usr/bin/kodi.diff 
-patch -h
-patch --help
-patch -t /usr/bin/kodi < /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/usr/bin/kodi.diff 
-nano /usr/bin/kodi
-patch -f /usr/bin/kodi < /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/usr/bin/kodi.diff 
-nano /usr/bin/kodi
-patch -f /usr/bin/kodi < /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/usr/bin/kodi.diff 
-nano /usr/bin/kodi
-echo $?
-patch -t /usr/bin/kodi < /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/usr/bin/kodi.diff 
-echo $?
-patch -f /usr/bin/kodi < /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/usr/bin/kodi.diff 
-echo $?
-nano update.sh
-patch -t /usr/bin/kodi < /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/usr/bin/kodi.diff 
-nano /usr/bin/kodi
-nano update.sh
-nano update.sh
-find /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/ -type f | sed 's/.*PATCHES\(.*\).diff/\1/'
-find /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/PATCHES/ -type f | sed 's/.*PATCHES\(.*\)/\1/'
-nano update.sh
-nano update.sh
-./update.sh create
-nano /etc/vectra130/VERSION 
-cat /boot/config.txt
-ps aux | grep git
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-nano update.sh
-apt-cache search kodi-send
-nano update.sh
-nano update.sh
-aptitude install kodi-eventclients-kodi-send
-mount -o rw,remount /
-aptitude install kodi-eventclients-kodi-send
-aptitude --help
-aptitude --help
-aptitude install kodi-eventclients-kodi-send kodi-eventclients-kodi-common
-nano update.sh
-aptitude install kodi-eventclients-kodi-send kodi-eventclients-common
-aptitude update
-aptitude install kodi-eventclients-kodi-send kodi-eventclients-common
-apt-cache policy kodi-eventclients-*
-apt-cache search kodi-eventclients-common
-nano update.sh
-nano /etc/systemd/system/kodi.service 
-nano file_tree 
-ls -la /etc/vectra130/
-rm /etc/vectra130/.kodi
-rm /etc/vectra130/kodi*
-rm -r /etc/vectra130/kodi*
-df -h
-ls -la /etc/vectra130/configs/
-ls -la /etc/vectra130/configs/userconfig/
-ls -la /etc/vectra130/configs/kodiconfig/
-rm /etc/vectra130/configs/kodiconfig/kodiconfig 
-ls -la /etc/vectra130/configs/kodiconfig/
-./update.sh create
-nano prepare_update.sh
-nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
-./update.sh create
-./update.sh upload
-nano /etc/vectra130/VERSION 
-ps aux | grep git
-tail -f /etc/vectra130/update.log 
-nano prepare_update.sh
-./update.sh create
-tail -f /etc/vectra130/update.log 
-ps aux | grep git
-tail -f /etc/vectra130/update.log 
-tail -f /etc/vectra130/update.log 
-reboot
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-nano prepare_update.sh
-nano /etc/vectra130/VERSION 
-tail -f /etc/vectra130/update.log 
-nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
-./update.sh create
-tail -f /etc/vectra130/update.log 
-ano /us
-nano /usr/bin/kodi
-nano /usr/bin/kodi
-cat /etc/vectra130/update.log 
-patch -v
-patch --help
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-nano update.sh
-./update.sh create
-nano /etc/vectra130/VERSION 
-tail -f /etc/vectra130/update.log 
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-ls
-nano VERSION 
-nano update.sh
-./update.sh create
-nano update.sh
-./update.sh create
-cat UPDATE.info 
-ls
-rm UPDATEVERLAUF 
-rm VERSION 
-rm update.sh.bkp 
-ls
-rm prepare_update.sh.bkp 
-rm size_*
-nano update.sh 
-./update.sh create
-na o prepare_update.sh 
-nano prepare_update.sh 
-nano /etc/vectra130/www/config/update.php
-nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
-./update.sh create
-nano update.sh 
-./update.sh upload
-nano update.sh 
-nano update.sh 
-./update.sh create
-nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
-nano /etc/vectra130/www/config/update.php
-nano FILES/etc/vectra130/www/config/update.php
-nano /etc/vectra130/www/config/update.php
-nano FILES/etc/vectra130/www/config/update.php
-nano /etc/vectra130/www/config/update.php
-diff FILES/etc/vectra130/www/config/update.php /etc/vectra130/www/config/update.php
-diff -u FILES/etc/vectra130/www/config/update.php /etc/vectra130/www/config/update.php
-nano /etc/vectra130/www/config/update.php
-/etc/vectra130/www/config/scripts/updateStreamingClient.sh date
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-nano update.sh 
-./update.sh create
-nano /etc/vectra130/www/config/update.php
-nano /etc/vectra130/VERSION 
-ls -l /etc/vectra130/update
-/etc/vectra130/www/config/scripts/updateStreamingClient.sh check
-nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh
-nano /etc/vectra130/www/config/update.php
-cat /etc/vectra130/www/config/*.php | grep sz
-nano /etc/vectra130/www/config/update.php
-cat /etc/vectra130/www/config/*.php | grep color
-nano /etc/vectra130/www/config/update.php
-cat /etc/vectra130/VERSION 
-nano /etc/vectra130/VERSION 
-date --help
-date -R
-date
-date %A
-date +%A
-Restgeld aus ZwK liegt im Cashcup im Wechsler
-./update.sh create
-tail f /etc/vectra130/update.log 
-tail -f /etc/vectra130/update.log 
-cat /etc/vectra130/update/UPDATE.info 
-nano prepare_update.sh 
-nano update.sh 
-./update.sh create
-./update.sh upload
-nano update.sh 
-ls /etc/vectra130/update
-rm /etc/vectra130/update/VERSION 
-rm /etc/vectra130/update/prepare_update.sh.?
-ls /etc/vectra130/update
-ls /etc/vectra130/update/git_update_files/
-rm -r /etc/vectra130/update/*
-ls /etc/vectra130/update -a
-./update.sh create
-ls -l /etc/vectra130/update
-ls -la /etc/vectra130/update
-ls -la /etc/vectra130/update
-tail -f /etc/vectra130/update.log 
-ls -la /etc/vectra130/update
-tail -f /etc/vectra130/update.log 
-cat /etc/vectra130/VERSION 
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-nano update.sh 
-ls
-echo kodi > /tmp/.frontendSet 
-cd /usr/local/src/
-wget https://github.com/xbmc/xbmc/blob/master/tools/EventClients/Clients/Kodi%20Send/kodi-send.py
-nano kodi-send.py 
-rm kodi-send.py 
-wget https://raw.githubusercontent.com/xbmc/xbmc/master/tools/EventClients/Clients/Kodi%20Send/kodi-send.py
-nano kodi-send.py 
-chmod +x kodi-send.py 
-./kodi-send.py 
-aptitude install kodi-eventclients-common 
-mount -o rw,remount /
-aptitude install kodi-eventclients-common 
-./kodi-send.py 
-./kodi-send.py --action="Quit"
-pidof -x kodi
-echo kodi > /tmp/.frontendSet 
-watch pidof -x kodi
-systemctl status kodi
-nano /usr/bin/kodi
-systemctl start kodi
-systemctl status kodi
-nano /usr/bin/kodi
-nano /etc/systemd/system/kodi.service 
-echo kodi > /tmp/.frontendSet 
-systemctl status kodi
-systemctl daemon-reload 
-echo kodi > /tmp/.frontendSet 
-systemctl status kodi
-systemctl status kodi
-systemctl status kodi
-systemctl status kodi
-systemctl status kodi
-systemctl status kodi
-systemctl status kodi
-systemctl status kodi
-systemctl status kodi
-cat /tmp/.frontendSet 
-echo kodi > /tmp/.frontendSet 
-cat /tmp/.frontendSet 
-systemctl status kodi
-watch pidof -x kodi.bin 
-./kodi-send.py --action="Quit"
-watch pidof -x kodi.bin 
-cd cplusplus/VDR/StreamingClient/
-nano INCLUDES/kodi.cpp 
-nano INCLUDES/frontend.cpp 
-nano INCLUDES/tools.h
-nano INCLUDES/frontend.h
-nano INCLUDES/frontend.cpp 
-mv /usr/local/src/kodi-send.py /usr/bin/
-nano UPDATE/file_tree 
-nano UPDATE/update.sh 
-nano INCLUDES/frontend.cpp 
-nano INCLUDES/tools.cpp 
-nano INCLUDES/frontend.cpp 
-kodi-send.py --action=Quit
-nano INCLUDES/frontend.cpp 
-nano INCLUDES/remote.cpp 
-make -j2
-nano Makefile 
-nano Make.config 
-make clean
-make -j2
-nano INCLUDES/frontend.cpp 
-nano INCLUDES/tools.cpp 
-nano INCLUDES/frontend.cpp 
-make -j2
-make install
-cd UPDATE/
-./update.sh create
-git clone --help
-nano /etc/vectra130/www/config/update.php
-nano prepare_update.sh 
-cat /etc/vectra130/update.log | less
-nano update.sh 
-./update.sh create
-tail -f /etc/vectra130/update.log 
-nano /etc/vectra130/VERSION 
-tail -f /etc/vectra130/update.log 
-nano /etc/vectra130/www/config/update.php
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-./update.sh create
-nano /etc/vectra130/VERSION 
-exit
-cat /etc/vectra130/update.log | less
-nano /etc/vectra130/www/config/update.php
-/usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/update.sh create
-ls /etc/vectra130/update
-/usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/update.sh create
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-ls -a
-nano update.sh 
-./update.sh create
-nano file_tree 
-nano update.sh 
-nano file_tree 
-./update.sh create
-nano file_tree 
-nano update.sh 
-./update.sh create
-nano /etc/vectra130/www/config/update.php
-nano file_tree 
-nano update.sh 
-nano update.sh 
-nano update.sh 
-./update.sh create
-nano update.sh 
-nano file_tree 
-nano update.sh 
-nano file_tree 
-nano update.sh 
-./update.sh create
-nano /etc/vectra130/www/config/update.php
-cd ..
-nano INCLUDES/init.cpp 
-grep chvt *
-grep chvt INCLUDES/*
-journalctl -u streamingclient
-journalctl -u streamingclient-boot.service 
-grep chvt INCLUDES/*
-nano INCLUDES/init.cpp 
-grep cleanConsole *
-grep cleanConsole INCLUDES/*
-nano INCLUDES/init.cpp 
-make
-cd UPDATE/
-./update.sh create
-cd ..
-git status
-git diff
-git add -A
-git commit -m "signalhandler in while schleifen eingebaut"
-git push
-git gat
 git tag
 git tag 1.13.1
 git push --tag
@@ -498,3 +118,383 @@ nano INCLUDES/frontend.cpp
 make
 make install
 mount -o ro,remount /
+cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
+nano file_tree 
+./update.sh create
+svdrpsend help
+StreamingClient -v
+killall vdr
+journalctl -u streamingclient -r
+cd /usr/local/src/cplusplus/VDR/StreamingClient/
+nano INCLUDES/frontend.cpp 
+journalctl -u streamingclient -r
+nano /etc/dbus-1/system.d/de.tvdr.vdr.conf 
+journalctl -u streamingclient -r
+journalctl -u dbus.service 
+journalctl -u dbus.service 
+journalctl -u streamingclient -r
+nano /etc/dbus-1/system.d/de.tvdr.vdr.conf 
+systemctl status dbus.service 
+systemctl restart dbus.service 
+systemctl status dbus.service 
+systemctl status dbus.service -l
+  vdr-dbus-send.sh /Plugins/<pluginname> plugin.SVDRPCommand string:'command' string:'parameter'
+  vdr-dbus-send.sh /Plugins/test plugin.SVDRPCommand string:'command' string:'parameter'
+which vdr-dbus
+nano INCLUDES/remote.cpp 
+  dbus-send /Plugins/test plugin.SVDRPCommand string:'command' string:'parameter'
+systemctl status dbus.service -l
+nano /etc/vectra130/configs/vdrconfig/conf.d/21-dbus2vdr.conf 
+cd /usr/local/src/cplusplus/VDR/StreamingClient/
+nano INCLUDES/frontend.cpp 
+git status
+git diff
+nano INCLUDES/frontend.cpp 
+make
+grep VERSION INCLUDES/*
+nano INCLUDES/system.cpp INCLUDES/version.cpp 
+nano INCLUDES/system.cpp INCLUDES/version.cpp 
+nano INCLUDES/system.h INCLUDES/version.h
+nano INCLUDES/system.cpp INCLUDES/version.cpp 
+make
+nano INCLUDES/version.cpp 
+make
+make clean
+make
+git add INCLUDES/version.* INCLUDES/system.*
+git commit -m "bugfix versions angabe"
+git diff
+git add INCLUDES/frontend.cpp 
+git commit -m "nulldevice abfrage in extra thread mit timeout"
+git status
+git add -A
+git commit -m version
+git push
+git status
+nano UPDATE/file_tree 
+nano /etc/vectra130/configs/sysconfig/.config.template 
+nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
+/etc/vectra130/www/config/scripts/updateStreamingClient.sh check
+nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
+/etc/vectra130/www/config/scripts/updateStreamingClient.sh check
+nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
+/etc/vectra130/www/config/scripts/updateStreamingClient.sh check
+nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
+/etc/vectra130/www/config/scripts/updateStreamingClient.sh check
+nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
+/etc/vectra130/www/config/scripts/updateStreamingClient.sh check
+nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
+/etc/vectra130/www/config/scripts/updateStreamingClient.sh check
+nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
+/etc/vectra130/www/config/scripts/updateStreamingClient.sh check
+nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
+cat /etc/vectra130/configs/userconfig/config | grep "C:STABLEONLY" | awk -F: '{ print $3 }'
+cat /etc/vectra130/configs/sysconfig/config | grep "C:STABLEONLY" | awk -F: '{ print $3 }'
+cat /etc/vectra130/configs/sysconfig/.config.template | grep "C:STABLEONLY" | awk -F: '{ print $3 }'
+nano /etc/vectra130/configs/sysconfig/.config.template 
+cat /etc/vectra130/configs/sysconfig/.config.template | grep "C:STABLEONLY" | awk -F: '{ print $3 }'
+nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
+nano /etc/vectra130/configs/sysconfig/.config.template 
+/etc/vectra130/www/config/scripts/updateStreamingClient.sh check
+nano /etc/vectra130/VERSION 
+/etc/vectra130/www/config/scripts/updateStreamingClient.sh check
+nano /etc/vectra130/VERSION 
+/etc/vectra130/www/config/scripts/updateStreamingClient.sh check
+nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh /etc/vectra130/www/config/scripts/updateStreamingServer.sh 
+scp -r /etc/vectra130/www/* 192.168.1.80:/etc/vectra130/www/
+nano /etc/vectra130/configs/sysconfig/.config.template 
+nano /etc/vectra130/configs/sysconfig/.config.template 
+nano /etc/vectra130/configs/sysconfig/.config.template 
+nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
+cat /etc/vectra130/update/UPDATE.info 
+cat /etc/vectra130/update/UPDATE.info | awk -F: '{ print $2 }'
+nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
+cat /etc/vectra130/update/UPDATE.info | awk -F: '{ print $2- }'
+cat /etc/vectra130/update/UPDATE.info | awk -F: '{ print $2.. }'
+cat /etc/vectra130/update/UPDATE.info | awk -F: '{ print $2$3 }'
+cat /etc/vectra130/update/UPDATE.info | awk -F: '{ print $2:$3 }'
+nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
+cat /etc/vectra130/update/UPDATE.info
+cat /etc/vectra130/update/UPDATE.info | sed 's/.+[A-Z]:\(.*\)/\1/'
+cat /etc/vectra130/update/UPDATE.info | sed 's/.+[A-Z][:]\(.*\)/\1/'
+cat /etc/vectra130/update/UPDATE.info | sed 's/.*[A-Z][:]\(.*\)/\1/'
+nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
+/etc/vectra130/www/config/scripts/updateStreamingClient.sh check
+nano /etc/vectra130/VERSION 
+/etc/vectra130/www/config/scripts/updateStreamingClient.sh check
+nano /etc/vectra130/www/config/update.php
+nano /etc/vectra130/www/config/update.php
+cd /etc/vectra130/www/config/
+nano scripts/updateStreamingClient.sh scripts/updateStreamingServer.sh 
+scripts/updateStreamingServer.sh check
+scripts/updateStreamingClient.sh check
+diff -u scripts/updateStreamingClient.sh scripts/updateStreamingServer.sh 
+cp scripts/updateStreamingClient.sh scripts/updateStreamingServer.sh 
+nano scripts/updateStreamingServer.sh 
+scp scripts/updateStreaming* 192.168.1.80:/etc/vectra130/www/config/scripts/
+scp update.php 192.168.1.80:/etc/vectra130/www/config/
+exit
+cd /usr/local/src/cplusplus/VDR/StreamingClient/
+make install
+reboot
+cd /usr/local/src/cplusplus/VDR/StreamingClient/
+nano INCLUDES/frontend.h INCLUDES/vdr.h
+nano INCLUDES/frontend.h INCLUDES/vdr.h
+nano INCLUDES/frontend.cpp INCLUDES/vdr.cpp 
+nano INCLUDES/frontend.cpp INCLUDES/vdr.cpp 
+nano INCLUDES/vdr.h
+nano INCLUDES/kodi.h
+nano INCLUDES/frontend.cpp INCLUDES/kodi.cpp 
+nano INCLUDES/frontend.cpp INCLUDES/music.cpp 
+make clean
+make -j2
+nano INCLUDES/frontend.cpp 
+make -j2
+nano INCLUDES/frontend.h
+nano INCLUDES/kodi.cpp 
+grep killDaemon INCLUDES/*
+grep killDaemon INCLUDES/*.h
+nano INCLUDES/vdr.cpp 
+nano INCLUDES/kodi.cpp 
+make -j2
+nano INCLUDES/frontend.h 
+make clean
+make -j2
+nano INCLUDES/kodi.cpp 
+nano INCLUDES/vdr.cpp 
+make
+cd /usr/local/src/cplusplus/VDR/StreamingClient/
+make install
+make
+reboot
+journalctl -u streamingclient
+exit
+cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
+nano file_tree 
+nano /boot/cmdline.txt
+nano /boot/config.txt
+exit
+fdisk -l /dev/mmcblk0 
+fdisk -l /dev/mmcblk0 >> /etc/vectra130/hdd_info
+cat /etc/vectra130/hdd_info 
+exit
+ping 192.168.1.80
+CheckServer 
+CheckServer 
+cd /usr/local/src/cplusplus/VDR/StreamingClient/
+nano INCLUDES/power.cpp 
+journalctl -u streamingclient
+nano INCLUDES/power.cpp 
+nano INCLUDES/frontend.cpp 
+make
+git diff
+git status
+git add INCLUDES/frontend.cpp 
+git commit -m "bugfix abort"
+git add -A
+git commit -m "optimierung beendigung der frontends"
+git push
+cd /usr/local/src/cplusplus/VDR/StreamingClient/
+nano Make.config 
+git add Make.config 
+git commit -m version
+watch CheckServer 
+ifconfig -a
+raspi-config 
+mount -o rw,remount /
+raspi-config 
+iwlist wlan0 scan
+ifup wlan0
+nano /etc/network/interfaces
+ifup wlan0
+iwlist wlan0 scan
+nano /etc/wpa_supplicant/wpa_supplicant.conf 
+cd /usr/local/src/cplusplus/VDR/StreamingClient/
+nano INCLUDES/init.cpp 
+nano INCLUDES/net.cpp 
+nano INCLUDES/net.cpp 
+nano /etc/wpa_supplicant/wpa_supplicant.conf 
+nano INCLUDES/net.cpp 
+wpa_passphrase Vectra130 29118117110726108019059900
+wpa_passphrase -h
+wpa_passphrase --help
+nano INCLUDES/net.cpp 
+make
+nano INCLUDES/net.cpp 
+make
+nano UPDATE/file_tree 
+ls /etc/wpa_supplicant/
+nano /etc/systemd/system/streamingclient-boot.service 
+make install
+mount -o rw,remount /boot
+nano /boot/cmdline.txt
+mount -o ro,remount /
+mount -o ro,remount /boot
+nano /etc/vectra130/configs/sysconfig/.config.template 
+/usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/update.sh create
+ifconfig -a
+systemctl status networking.service 
+systemctl status networking.service 
+cat /etc/vectra130/configs/sysconfig/wpa_supplicant.conf 
+ifup wlan0
+ifdown wlan0
+ifup wlan0
+ifconfig -a
+cat /etc/resolv.conf 
+service networking restart &
+systemctl daemon-reload
+service networking restart &
+cat /etc/network/interfaces
+ifconfig wlan0
+nano /etc/wpa_supplicant/wpa_supplicant.conf 
+cp /etc/vectra130/configs/sysconfig/wpa_supplicant.conf /etc/wpa_supplicant/
+mount -o rw,remount /
+ifconfig wlan0
+service networking restart &
+ifconfig wlan0
+cp /etc/vectra130/configs/sysconfig/wpa_supplicant.conf /etc/wpa_supplicant/
+service networking restart &
+ifconfig wlan0
+nano /etc/wpa_supplicant/wpa_supplicant.conf 
+service networking restart &
+ifconfig wlan0
+iwlist wlan0 scan | egrep "(ESSID|IEEE)"
+ifconfig wlan0
+reboot
+ifconfig wlan0
+journalctl -u networking.service 
+journalctl -u networking.service -l
+nano /etc/wpa_supplicant/wpa_supplicant.conf 
+cat /var/run/wpa_supplicant/wlan0
+ifconfig wlan0 up
+ifconfig wlan0
+ifup wlan0 
+ifdown wlan0 
+ifup wlan0 
+journalctl -u networking.service -l
+ifconfig
+nano /etc/wpa_supplicant/wpa_supplicant.conf 
+nano /etc/network/interfaces
+service networking restart &
+systemctl daemon-reload 
+service networking restart
+ifconfig
+nano /etc/network/interfaces
+nano /etc/network/interfaces
+service networking restart
+ifconfig
+nano /etc/network/interfaces
+nano /etc/wpa_supplicant/wpa_supplicant.conf 
+nano /etc/network/interfaces
+service networking restart
+ifconfig
+cat /etc/network/interfaces
+ifconfig wlan0 down
+ifdown wlan0
+ifconfig 
+ifup wlan0
+ifconfig 
+ifconfig 
+cat /etc/network/interfaces
+cd /usr/local/src/cplusplus/VDR/StreamingClient/
+nano INCLUDES/net.cpp 
+cd /usr/local/src/cplusplus/VDR/StreamingClient/
+nano INCLUDES/net.cpp 
+nano INCLUDES/net.cpp 
+make install
+ln -sf /etc/vectra130/configs/sysconfig/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf 
+ls -l /etc/wpa_supplicant/wpa_supplicant.conf 
+reboot
+cat /etc/network/interfaces
+cd /usr/local/src/cplusplus/VDR/StreamingClient/
+nano INCLUDES/net.cpp 
+make
+make install
+nano /etc/vectra130/configs/userconfig/config 
+reboot
+cat /etc/network/interfaces
+nano /etc/vectra130/configs/sysconfig/wpa_supplicant.conf 
+iwlist -h
+iw -h
+iw
+iw wlan0 info
+service networking restart
+systemctl daemon-reload 
+service networking restart
+iw wlan0 info
+ifdown wlan0
+iw wlan0 info
+ifup wlan0
+mount -o rw,remount /
+ifup wlan0
+ifdown wlan0
+ifup wlan0
+nano /etc/network/if-pre-up.d/wpasupplicant 
+nano /etc/network/interfaces
+systemctl daemon-reload 
+service networking restart
+nano /etc/network/interfaces
+service networking restart
+ifconfig 
+ifdown wlan0
+ifup wlan0
+nano /etc/network/interfaces
+service networking restart
+ifup wlan0
+ifdown wlan0
+ifup wlan0
+reboot
+iwlist scan
+ifup wlan0
+iwlist scan
+ifconfig wlan0
+ping 192.168.1.1
+nano /etc/vectra130/configs/userconfig/config 
+reboot
+mount -o rw,remount /
+aptitude install wicd-curses
+wicd-curses 
+ifconfig wlan0
+wicd-curses 
+nano /etc/network/interfaces
+wicd -h
+wicd-curses -h
+pidof -x wicd
+nano /etc/wicd/wireless-settings.conf 
+nano /etc/wicd/wired-settings.conf 
+nano /etc/wicd/manager-settings.conf 
+nano /etc/wicd/dhclient.conf.template
+nano /etc/wicd/dhclient.conf.template.default 
+reboot
+wicd-curses 
+ifconfig wlan0
+wicd-curses 
+ifconfig 
+wicd-curses 
+ifconfig 
+cd /usr/local/src/cplusplus/VDR/StreamingClient/
+grep ifup *
+grep ifup INCLUDES/*
+nano INCLUDES/net.cpp 
+grep -i ifup INCLUDES/*
+nano INCLUDES/init.cpp 
+nano INCLUDES/net.cpp 
+make
+systemctl status wicd.service 
+nano /etc/vectra130/configs/userconfig/config 
+make install
+reboot
+ifconfig 
+ifup wlan0
+ifconfig 
+ifconfig 
+wicd-curses 
+wicd
+ps aux | grep wicd
+nano /etc/init.d/wicd 
+rm /var/run/wicd/wicd.pid
+wicd
+pidof -x wicd
+nano /etc/vectra130/configs/userconfig/config 
+reboot
+ifconfig 

@@ -1,6 +1,6 @@
 ##### CONFIG ANFANG #####
 # Grundeinstellungen des VDR
-# v2.1
+# v2.2
 # Nicht bearbeiten !!!
 # Einstellungen werden ueber das Webinterface und vom StreamingClient konfiguriert
 #
@@ -45,8 +45,8 @@ I:MAC-Adresse: B8:27:EB:D4:C1:0C
 L:
 I:WLAN
 C:USEWLAN:0:B:1:Nein,Ja:Wlan nutzen:
-C:WLANSSID::A:16:a-zA-Z0-9-_:SSID AccessPoint:Hier den Namen des Funknetzwerks eingeben
-C:WPAKEY::AP:26:a-zA-Z0-9-:WPA2 WLAN Key:Hier den WLAN Key des WLAN Netzwerks eingeben. Aus Sicherheitsgr&uuml;nden wird nur WPA2 unterst&uuml;tzt::
+C:WLANSSID::A:16:a-zA-Z0-9-_:SSID:Hier den Namen des Funknetzwerks eingeben
+C:WPAKEY::AP:26:a-zA-Z0-9-:WPA2 Key:Hier den WLAN Key des WLAN Netzwerks eingeben. Aus Sicherheitsgr&uuml;nden wird nur WPA2 unterst&uuml;tzt::
 I:
 H:--- System ---
 I:Audio
@@ -82,6 +82,7 @@ C:CLIENTTYP:RasPi:A:0:0:Client Typ:
 C:LOGLEVEL:1:L:1:0,1,2,3:Log Level:
 C:VDRLOGLEVEL:1:L:1:0,1,2,3:VDR Log Level:
 C:KODILOGLEVEL:1:L:1:0,1,2,3:Kodi Log Level:
+C:STABLEONLY:1:B:0:Nein,Ja:Nur auf Stable Versionen updaten:
 C:KEYBTTY:/dev/tty2:L:0:/dev/tty1,/dev/tty2:Standard TTY:
 C:SVDRPPORT:6419:A:0:0:VDR Svdrp Port:
 C:USEVDR:1:B:1:Nein,Ja:VDR benutzen:

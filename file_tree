@@ -30,6 +30,7 @@ up /etc/vectra130/sysvideos
 rc /etc/vectra130/scripts
 sl /etc/vectra130/configs/sysconfig/VDR-Streaming-Client.service /etc/avahi/services/
 sl /etc/vectra130/configs/kodiconfig /etc/vectra130/.kodi
+sl /etc/vectra130/configs/sysconfig/wpa_supplicant.conf /etc/wpa_supplicant/
 
 cf /usr/bin/vdr
 cf /usr/bin/StreamingClient

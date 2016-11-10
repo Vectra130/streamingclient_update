@@ -25,8 +25,14 @@ if [ x$ACTION == xcheck ]; then
 	VERSNEWNUM=$VERSNEW1$VERSNEW2$VERSNEW3
 	[ "x$VERSNOWNUM" == "x" ] && exit 1
 	[ "x$VERSNEWNUM" == "x" ] && exit 1
+	if [ x$(cat /etc/vectra130/configs/userconfig/config | grep "C:STABLEONLY" | awk -F: '{ print $3 }') == x1 ]; then
+		if [ $[ VERSNEW2 / 2 * 2 ] -ne $VERSNEW2 ]; then
+			exit 1
+		fi
+	fi
 	[ $VERSNOWNUM -ge $VERSNEWNUM ] && exit 1
-	echo $VERSNEW
+
+	cat $UPDATEDIR/UPDATE.info | sed 's/.*[A-Z][:]\(.*\)/\1/'
 fi
 
 if [ x$ACTION == xupdate ]; then
@@ -37,14 +43,6 @@ if [ x$ACTION == xupdate ]; then
 		chmod +x $UPDATEDIR/prepare_update.sh
 		echo OK
 	fi
-fi
-
-if [ x$ACTION == xdate ]; then
-	cat $UPDATEDIR/UPDATE.info | grep "^DATE:" | awk -F: '{ print $2 }'
-fi
-
-if [ x$ACTION == xsize ]; then
-	cat $UPDATEDIR/UPDATE.info | grep "^SIZE:" | awk -F: '{ print $2 }'
 fi
 
 exit 0
