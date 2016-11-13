@@ -28,7 +28,7 @@ stop_streamingclient()
 {
 #StreamingClient beenden
 if [ x$(cat /tmp/.frontendSet) != xsuspend ]; then
-	echo suspend > /tmp/.frontendSet
+	echo standby > /tmp/.frontendSet
 	while [ $(pidof -xs vdr | wc -w) != 0 ]; do
 		sleep 1
 	done

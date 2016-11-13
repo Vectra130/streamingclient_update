@@ -1,201 +1,3 @@
-git tag
-git tag 1.13.1
-git push --tag
-nano Make.config 
-StreamingClient -v
-./StreamingClient -v
-make install
-StreamingClient -v
-nano INCLUDES/init.cpp 
-mount -o rw,remount /boot
-nano /boot/cmdline.txt
-mount -o ro,remount /boot
-make
-make install
-cd UPDATE/
-./update.sh create
-cd ..
-grep VERSION *
-grep VERSION INCLUDES/*
-nano INCLUDES/system.cpp 
-grep getVersion INCLUDES/*
-nano INCLUDES/system.cpp 
-nano Make.config 
-make -j2
-make install
-cat /etc/vectra130/VERSION 
-reboot
-cat /etc/vectra130/VERSION 
-cd /usr/local/src/cplusplus/VDR/StreamingClient/
-make clean
-grep VERSION INCLUDES/*
-grep VERSION INCLUDES/*
-make -j2
-make install
-StreamingClient -v
-reboot
-cat /etc/vectra130/VERSION 
-nano /etc/vectra130/VERSION 
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-./update.sh create
-nano update.sh 
-./update.sh upload
-./update.sh create
-tail -f /etc/vectra130/update.log 
-cat /etc/vectra130/VERSION 
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-nano update.sh 
-StreamingClient -v
-StreamingClient -v | sed 's/Streaming.*v\(.*\) by.*/\1/g
-StreamingClient -v | sed 's/Streaming.*v\(.*\) by.*/\1/g'
-StreamingClient -v | grep Streaming | sed 's/Streaming.*v\(.*\) by.*/\1/g'
-nano update.sh 
-./update.sh create
-pidof -x vdr
-killall vdr
-journalctl -u streamingclient -f
-ln -s /etc/vectra130/configs/kodiconfig/ /etc/vectra130/configs/userconfig/.kodi
-ln -s /etc/vectra130/configs/kodiconfig/ /etc/vectra130/configs/kodiconfig/.kodi
-ln -s /etc/vectra130/configs/kodiconfig/ /etc/vectra130/configs/.kodi
-ln -s /etc/vectra130/configs/kodiconfig/ /etc/vectra130/.kodi
-nano /usr/bin/kodi
-ls /etc/vectra130/configs/kodiconfig/
-ls -a /etc/vectra130/configs/kodiconfig/
-ls -a /etc/vectra130/configs/kodiconfig/.kodi
-journalctl -u kodi
-journalctl -u streamingclient -r
-ls -l /etc/vectra130/configs/kodiconfig/temp/
-ls -l /etc/vectra130/configs/kodiconfig/temp/
-nano /usr/bin/kodi
-nano /usr/bin/kodi
-mount -o rw,remount /
-nano /usr/bin/kodi
-mount -o ro,remount /
-rm /etc/vectra130/.kodi/
-ls -la /etc/vectra130/
-ls -l /etc/vectra130/.kodi/temp/
-echo $HOME
-ls -a /root/
-ls -la /root/
-cat /etc/passwd
-ln -sv /etc/vectra130/configs/kodiconfig/ /etc/vectra130/.kodi
-ln -sf /etc/vectra130/configs/kodiconfig/ /etc/vectra130/.kodi
-mount -o rw,remount /
-nano /usr/bin/kodi
-rm /etc/vectra130/configs/.kodi
-rm /etc/vectra130/configs/userconfig/.kodi
-rm /etc/vectra130/configs/kodiconfig/.kodi
-ls /etc/vectra130/.kodi/temp/
-ls /etc/vectra130/.kodi/temp/kodi.log 
-cat /etc/vectra130/.kodi/temp/kodi.log 
-ls /etc/vectra130/.kodi/temp/kodi.log 
-ls -a /etc/vectra130/.kodi/temp/
-ls -l /etc/vectra130/
-ls -la /etc/vectra130/
-ln -sf /etc/vectra130/configs/kodiconfig/ /etc/vectra130/.kodi
-ls -la /etc/vectra130/
-pidof -x kodi
-rm -r /etc/vectra130/.kodi/
-ln -sf /etc/vectra130/configs/kodiconfig/ /etc/vectra130/.kodi
-ls -la /etc/vectra130/
-killall vdr
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-nano file_tree 
-nano /etc/systemd/system/kodi.service 
-nano /usr/bin/kodi
-ps aux | grep kodi
-nano /etc/default/kodi 
-nano /usr/bin/kodi
-mount -o rw,remount /
-nano /usr/bin/kodi
-mount -o ro,remount /
-nano file_tree 
-nano update.sh 
-rm PATCHES/usr/bin/kodi.diff 
-journalctl -u vdr.service 
-cd ../
-nano INCLUDES/frontend.cpp 
-make
-make install
-mount -o ro,remount /
-cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
-nano file_tree 
-./update.sh create
-svdrpsend help
-StreamingClient -v
-killall vdr
-journalctl -u streamingclient -r
-cd /usr/local/src/cplusplus/VDR/StreamingClient/
-nano INCLUDES/frontend.cpp 
-journalctl -u streamingclient -r
-nano /etc/dbus-1/system.d/de.tvdr.vdr.conf 
-journalctl -u streamingclient -r
-journalctl -u dbus.service 
-journalctl -u dbus.service 
-journalctl -u streamingclient -r
-nano /etc/dbus-1/system.d/de.tvdr.vdr.conf 
-systemctl status dbus.service 
-systemctl restart dbus.service 
-systemctl status dbus.service 
-systemctl status dbus.service -l
-  vdr-dbus-send.sh /Plugins/<pluginname> plugin.SVDRPCommand string:'command' string:'parameter'
-  vdr-dbus-send.sh /Plugins/test plugin.SVDRPCommand string:'command' string:'parameter'
-which vdr-dbus
-nano INCLUDES/remote.cpp 
-  dbus-send /Plugins/test plugin.SVDRPCommand string:'command' string:'parameter'
-systemctl status dbus.service -l
-nano /etc/vectra130/configs/vdrconfig/conf.d/21-dbus2vdr.conf 
-cd /usr/local/src/cplusplus/VDR/StreamingClient/
-nano INCLUDES/frontend.cpp 
-git status
-git diff
-nano INCLUDES/frontend.cpp 
-make
-grep VERSION INCLUDES/*
-nano INCLUDES/system.cpp INCLUDES/version.cpp 
-nano INCLUDES/system.cpp INCLUDES/version.cpp 
-nano INCLUDES/system.h INCLUDES/version.h
-nano INCLUDES/system.cpp INCLUDES/version.cpp 
-make
-nano INCLUDES/version.cpp 
-make
-make clean
-make
-git add INCLUDES/version.* INCLUDES/system.*
-git commit -m "bugfix versions angabe"
-git diff
-git add INCLUDES/frontend.cpp 
-git commit -m "nulldevice abfrage in extra thread mit timeout"
-git status
-git add -A
-git commit -m version
-git push
-git status
-nano UPDATE/file_tree 
-nano /etc/vectra130/configs/sysconfig/.config.template 
-nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
-/etc/vectra130/www/config/scripts/updateStreamingClient.sh check
-nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
-/etc/vectra130/www/config/scripts/updateStreamingClient.sh check
-nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
-/etc/vectra130/www/config/scripts/updateStreamingClient.sh check
-nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
-/etc/vectra130/www/config/scripts/updateStreamingClient.sh check
-nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
-/etc/vectra130/www/config/scripts/updateStreamingClient.sh check
-nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
-/etc/vectra130/www/config/scripts/updateStreamingClient.sh check
-nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
-/etc/vectra130/www/config/scripts/updateStreamingClient.sh check
-nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
-cat /etc/vectra130/configs/userconfig/config | grep "C:STABLEONLY" | awk -F: '{ print $3 }'
-cat /etc/vectra130/configs/sysconfig/config | grep "C:STABLEONLY" | awk -F: '{ print $3 }'
-cat /etc/vectra130/configs/sysconfig/.config.template | grep "C:STABLEONLY" | awk -F: '{ print $3 }'
-nano /etc/vectra130/configs/sysconfig/.config.template 
-cat /etc/vectra130/configs/sysconfig/.config.template | grep "C:STABLEONLY" | awk -F: '{ print $3 }'
-nano /etc/vectra130/www/config/scripts/updateStreamingClient.sh 
-nano /etc/vectra130/configs/sysconfig/.config.template 
-/etc/vectra130/www/config/scripts/updateStreamingClient.sh check
 nano /etc/vectra130/VERSION 
 /etc/vectra130/www/config/scripts/updateStreamingClient.sh check
 nano /etc/vectra130/VERSION 
@@ -498,3 +300,201 @@ pidof -x wicd
 nano /etc/vectra130/configs/userconfig/config 
 reboot
 ifconfig 
+cd /usr/local/src/cplusplus/VDR/StreamingClient/
+make
+StreamingClient -v
+./StreamingClient -v
+make
+./StreamingClient -v
+cd UPDATE/
+./update.sh create
+cd /usr/local/src/cplusplus/VDR/StreamingClient/
+cd UPDATE/
+nano VERSION
+git push
+git add VERSION 
+git commit -m "abwärtskompatibilität"
+git push
+nano /etc/wicd/manager-settings.conf 
+top
+uptime
+echo vdr > /tmp/.frontendSet 
+echo suspend > /tmp/.frontendSet 
+top
+echo vdr > /tmp/.frontendSet 
+top
+echo suspend > /tmp/.frontendSet 
+top
+top
+echo kodi > /tmp/.frontendSet 
+top
+echo suspend > /tmp/.frontendSet 
+top
+exit
+cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
+nano file_tree 
+ls FILES/etc/vectra130/configs/sysconfig/
+ls /etc/vectra130/configs/sysconfig/
+ls -l /etc/network/
+nano file_tree 
+ls -l /etc/
+nano file_tree 
+nano update.sh 
+apt-key adv --keyserver keyserver.ubuntu.com --recv-key 5243CDED; echo x$?
+apt-key adv --keyserver keyserver.ubuntud.com --recv-key 5243CDED; echo x$?
+apt-key adv --keyserver keyserver.ubuntu.com --recv-key 5243CDEj; echo x$?
+nano update.sh 
+nano update.sh 
+df -h
+lsblk
+lsblk -h
+lsblk --output SIZE
+lsblk /dev/mmcblk3 --output SIZE
+lsblk /dev/mmcblk0p3 --output SIZE
+lsblk /dev/mmcblk0p3 --output SIZE -d
+lsblk /dev/mmcblk0p3 --output SIZE -i
+lsblk /dev/mmcblk0p3 --output SIZE -l
+lsblk /dev/mmcblk0p3 --output SIZE -n
+lsblk /dev/mmcblk0p3 --output SIZE -n
+df -h | grep mmcblk0p3
+df -h | grep mmcblk0p3 | awk '{ print $4 }'
+nano update.sh 
+df | grep mmcblk0p3 | awk '{ print $4 }'
+df -m | grep mmcblk0p3 | awk '{ print $4 }'
+nano update.sh 
+df -m | grep mmcblk0p4 | awk '{ print $4 }'
+nano update.sh 
+cd /usr/local/src/cplusplus/VDR/StreamingClient/
+nano INCLUDES/kodi.cpp 
+nano INCLUDES/kodi.h
+nano INCLUDES/frontend.h 
+nano INCLUDES/frontend.h INCLUDES/kodi.h INCLUDES/vdr.h INCLUDES/music.h INCLUDES/web.h
+nano INCLUDES/frontend.h INCLUDES/kodi.h INCLUDES/vdr.h INCLUDES/music.h INCLUDES/web.h
+nano INCLUDES/kodi.h
+nano INCLUDES/kodi.cpp 
+make clean
+make
+nano INCLUDES/frontend.cpp 
+make
+git status
+git diff
+git status
+git add INCLUDES/frontend.*
+git add INCLUDES/[kmvw].*
+git add INCLUDES/kodi.*
+git add INCLUDES/vdr.h 
+git add INCLUDES/music.h 
+git add INCLUDES/web.h 
+git status 
+git commit -m "defines verschoben"
+cd /usr/local/src/cplusplus/VDR/StreamingClient/
+nano INCLUDES/init.cpp 
+nano INCLUDES/net.cpp 
+nano INCLUDES/net.cpp 
+cd /usr/local/src/cplusplus/VDR/StreamingClient/
+nano INCLUDES/kodi.cpp 
+make
+make install
+reboot
+echo kodi > /tmp/.frontendSet 
+journalctl -u streamingclient -r
+echo suspend > /tmp/.frontendSet 
+journalctl -u streamingclient -r
+journalctl -u streamingclient -r
+cd /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/
+nano prepare_update.sh 
+nano ../INCLUDES/frontend.cpp 
+nano prepare_update.sh 
+nano /usr/local/src/cplusplus/VDR/StreamingClient/UPDATE/update.sh 
+exit
+top
+journalctl -u  streamingclient -r
+journalctl -u  streamingclient -r
+killall StreamingClient 
+journalctl -u  streamingclient -r
+pidof -x StreamingClient 
+killall StreamingClient -9
+pidof -x StreamingClient 
+reboot
+cd /usr/local/src/cplusplus/VDR/StreamingClient/
+nano INCLUDES/video.cpp 
+nano INCLUDES/png2fb.c
+make
+nano INCLUDES/png2fb.c
+make
+nano INCLUDES/png2fb.c
+make
+nano INCLUDES/avahi.c INCLUDES/png2fb.c
+nano INCLUDES/avahiBrowse.c INCLUDES/png2fb.c
+make
+nano INCLUDES/avahiBrowse.c INCLUDES/png2fb.c
+make
+nano INCLUDES/png2fb.c
+make
+git status
+git diff
+exit
+nano /etc/apt/sources.list.d/kodi.list 
+mount -o rw,remount /
+nano /etc/apt/sources.list.d/kodi.list 
+aptitude update
+aptitude install kodi
+nano /etc/vectra130/VERSION 
+nano /etc/apt/sources.list.d/kodi.list 
+aptitude update
+aptitude install kodi
+nano /etc/apt/sources.list.d/kodi.list 
+cd /usr/local/src/cplusplus/VDR/StreamingClient/
+killall StreamingClient 
+./StreamingClient -d
+pidof -x StreamingClient 
+journalctl -u streamingclient -r
+killall StreamingClient 
+killall StreamingClient 
+killall StreamingClient 
+killall StreamingClient -9
+killall StreamingClient 
+killall StreamingClient 
+service streamingclient start
+journalctl -u streamingclient -r
+echo vdr > /tmp/.frontendSet 
+journalctl -u streamingclient -r
+top
+echo suspend > /tmp/.frontendSet 
+top
+make install
+service streamingclient stop
+service streamingclient start
+journalctl -u streamingclient -f
+echo vdr > /tmp/.frontendSet 
+top
+journalctl -u streamingclient -f
+pidof -x StreamingClient 
+top
+ps aux | grep Stre
+journalctl -u streamingclient -f
+echo suspend > /tmp/.frontendSet 
+journalctl -u streamingclient -f
+echo vdr > /tmp/.frontendSet 
+journalctl -u streamingclient -f
+service streamingclient stop
+journalctl -u streamingclient -f
+service streamingclient start
+journalctl -u streamingclient -f
+top
+pidof -x vdr
+cat /tmp/.frontendSet 
+journalctl -u streamingclient -f
+echo suspend > /tmp/.frontendSet 
+journalctl -u streamingclient -f
+reboot
+journalctl -u streamingclient -f
+pidof -x StreamingClient 
+free -h
+cd /usr/local/src/cplusplus/VDR/StreamingClient/
+git status
+git diff INCLUDES/png2fb.c
+nano INCLUDES/png2fb.c
+make
+make install
+reboot

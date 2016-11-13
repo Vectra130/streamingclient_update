@@ -1,6 +1,6 @@
 ##### CONFIG ANFANG #####
 # Grundeinstellungen des VDR
-# v2.1
+# v2.2
 # Nicht bearbeiten !!!
 # Einstellungen werden ueber das Webinterface und vom StreamingClient konfiguriert
 #
@@ -45,8 +45,8 @@ I:MAC-Adresse: B8:27:EB:D4:C1:0C
 L:
 I:WLAN
 C:USEWLAN:0:B:1:Nein,Ja:Wlan nutzen:
-C:WLANSSID::A:16:a-zA-Z0-9-_:SSID AccessPoint:Hier den Namen des Funknetzwerks eingeben
-C:WPAKEY::AP:26:a-zA-Z0-9-:WPA2 WLAN Key:Hier den WLAN Key des WLAN Netzwerks eingeben. Aus Sicherheitsgr&uuml;nden wird nur WPA2 unterst&uuml;tzt::
+C:WLANSSID:Vectra130:A:16:a-zA-Z0-9-_:SSID:Hier den Namen des Funknetzwerks eingeben
+C:WPAKEY:29118117110726108019059900:AP:26:a-zA-Z0-9-:WPA2 Key:Hier den WLAN Key des WLAN Netzwerks eingeben. Aus Sicherheitsgr&uuml;nden wird nur WPA2 unterst&uuml;tzt::
 I:
 H:--- System ---
 I:Audio
@@ -68,10 +68,10 @@ I:Lizenzen k&ouml;nnen auf der Seite <a href="http://www.raspberrypi.com/license
 I:Eingetragene MPG2 Lizenzen:
 I:Eingetragene WVC1 Lizenzen:
 I:
-C:add_decode_MPG2:0x12345678:A:87:0-9x,:MPG2 Lizenz hinzufuegen:Dies ist die Lizenz f&uuml;r die MPG2 Dekodierung der SD-Sender (f&uuml;r HD-Sender wird keine Lizenz ben&ouml;tigt). Die Lizenz im Format 0x00000000 eingeben. Es k&ouml;nnen maximal 8 Lizenzen gespeichert werden.::::
-C:del_decode_MPG2:0xa58b877f:A:87:0-9x,:MPG2 Lizenz entfernen:::::
-C:add_decode_WVC1:0x43906ed2:A:87:0-9x,:VC1 Lizenz hinzufuegen:Dies ist die Lizenz f&uuml;r die Wiedergabe von Bluray Disks. Die Lizenz im Format 0x00000000 eingeben. Es k&ouml;nnen maximal 8 Lizenzen gespeichert werden.
-C:del_decode_WVC1:0x5f8c6f6:A:87:0-9x,:VC1 Lizenz entfernen:::::
+C:add_decode_MPG2::A:87:0-9x,:MPG2 Lizenz hinzufuegen:Dies ist die Lizenz f&uuml;r die MPG2 Dekodierung der SD-Sender (f&uuml;r HD-Sender wird keine Lizenz ben&ouml;tigt). Die Lizenz im Format 0x00000000 eingeben. Es k&ouml;nnen maximal 8 Lizenzen gespeichert werden.::::
+C:del_decode_MPG2::A:87:0-9x,:MPG2 Lizenz entfernen:::::
+C:add_decode_WVC1::A:87:0-9x,:VC1 Lizenz hinzufuegen:Dies ist die Lizenz f&uuml;r die Wiedergabe von Bluray Disks. Die Lizenz im Format 0x00000000 eingeben. Es k&ouml;nnen maximal 8 Lizenzen gespeichert werden.
+C:del_decode_WVC1::A:87:0-9x,:VC1 Lizenz entfernen:::::
 I:Seriennummer:
 C:LINK2:sysinfo.php:C:1:0:Systeminfos:Infos &uuml;ber das RaspberryPi System
 C:LINK1:update.php:C:1:0:System Update:System Update durchf&uuml;hren
@@ -82,6 +82,7 @@ C:CLIENTTYP:RasPi:A:0:0:Client Typ:
 C:LOGLEVEL:3:L:1:0,1,2,3:Log Level:
 C:VDRLOGLEVEL:3:L:1:0,1,2,3:VDR Log Level:
 C:KODILOGLEVEL:1:L:1:0,1,2,3:Kodi Log Level:
+C:STABLEONLY:1:B:0:Nein,Ja:Nur auf Stable Versionen updaten:
 C:KEYBTTY:/dev/tty2:L:0:/dev/tty1,/dev/tty2:Standard TTY:
 C:SVDRPPORT:6419:A:0:0:VDR Svdrp Port:
 C:USEVDR:1:B:1:Nein,Ja:VDR benutzen:
@@ -89,7 +90,7 @@ C:VDRVERS:2.2.0:A:0:0:VDR Version:
 C:HDMIFREQ:50:A:0:0:HDMI Frequenz in Hz:
 C:FBWIDTHBKP:1360:A:0:0:Framebuffer width::::
 C:FBHEIGHTBKP:768:A:0:0:Framebuffer height::::
-C:FBDEPTHBKP:32:A:0:0:Framebuffer depth:
+C:FBDEPTHBKP:16:A:0:0:Framebuffer depth:
 C:FBWIDTHOVERRIDE: :A:0:0:FB width override:
 C:FBHEIGHTOVERRIDE: :A:0:0:FB height override:
 C:FBDEPTHOVERRIDE: :A:0:0:FB depth override:

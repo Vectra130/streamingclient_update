@@ -112,7 +112,12 @@ if [ $? -ne 0 ]; then error_exit; fi
 echo -e "\n\e[33m########## Aktualisiere Paket Quellen ...\e[0m" #| $LOG
 cp -ra FILES/etc/apt/* /etc/apt/
 if [ $? -ne 0 ]; then error_exit; fi
-apt-key adv --keyserver keyserver.ubuntu.com --recv-key 5243CDED
+for i in 1..10; do
+	apt-key adv --keyserver keyserver.ubuntu.com --recv-key 5243CDED
+	if [ $? -eq 0 ]; then break; fi
+	sleep 1
+	if [ i == 10 ]; then error_exit; fi
+done
 aptitude -y update
 dpkg --configure -a
 debconf-set-selections FILES/debconf/selections
@@ -120,12 +125,22 @@ if [ $? -ne 0 ]; then error_exit; fi
 
 #swapfile
 if [ ! -e /etc/vectra130/swapfile ]; then
-	echo -e "\n\e[33m########## Erstelle Swap File ...\e[0m" #| $LOG
-	dd if=/dev/zero of=/etc/vectra130/swapfile bs=1M count=2048
-	chown root:root /etc/vectra130/swapfile
-	chown 0600 /etc/vectra130/swapfile
-	mkswap /etc/vectra130/swapfile
-	swapon /etc/vectra130/swapfile
+	FREE=$(df -m | grep mmcblk0p3 | awk '{ print $4 }')
+	if [ x$FREE != x ]; then
+		if [ $FREE -gt 5000 ]; then
+			SWAPSIZE=2048
+		elif [ $FREE -gt 100 ]; then
+			SWAPSIZE=10
+		fi
+	fi
+	if [ $FREE -gt 0 ]; then
+		echo -e "\n\e[33m########## Erstelle Swap File (${FREE}MB ...\e[0m" #| $LOG
+		dd if=/dev/zero of=/etc/vectra130/swapfile bs=1M count=$FREE
+		chown root:root /etc/vectra130/swapfile
+		chown 0600 /etc/vectra130/swapfile
+		mkswap /etc/vectra130/swapfile
+		swapon /etc/vectra130/swapfile
+	fi
 fi
 
 #programme aktualisieren

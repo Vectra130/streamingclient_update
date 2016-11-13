@@ -59,5 +59,6 @@ nd /tmp_system
 sl /tmp_system/hosts /etc/
 sl /tmp_system/mailname /etc/
 sl /tmp_system/resolv.conf /etc/
+sl /tmp_system/interfaces /etc/network/
 
 cf /boot/cmdline.txt
